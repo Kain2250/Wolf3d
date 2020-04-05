@@ -6,7 +6,7 @@
 #    By: kain2250 <kain2250@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/03/24 00:56:54 by kain2250         ###   ########.fr        #
+#    Updated: 2020/03/29 15:46:15 by kain2250         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_DIRECTORY = ./libft/
 # Флаги для сборки библиотек
 LIBRARIES_MAC = -lpthread -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 LIBRARIES_UBUNTU = -lpthread -lm -lft -L$(LIBFT_DIRECTORY) -L /usr/X11/lib /usr/X11/lib/libmlx.a -lXext -lX11
-LIBRARIES_SDL_U = -lpthread -lm -lft -L$(LIBFT_DIRECTORY) -lSDL -lSDL_image
+LIBRARIES_SDL_U = -lpthread -lm -lft -L$(LIBFT_DIRECTORY) -lSDL -lSDL_image -lSDL_ttf
 
 # Заголовочные файлы и их пути:
 INCLUDES_DIRECTORY = ./includes/
@@ -38,7 +38,8 @@ HEADERS_LIST = wolf3d.h \
 	
 # Основные файлы программы и их пути:
 SRC_DIRECTORY = ./src/
-SRC_LIST = main.c
+SRC_LIST = main.c \
+	prime_funct.c
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 
 # Объектные файлы и их пути:
