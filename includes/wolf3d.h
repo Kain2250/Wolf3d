@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/23 20:21:09 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/24 19:40:20 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 # define WOLF3D_H
 
 # define NAME_WIN "Wolf3d (by Bdrinkin)"
-# define WIDTH_WIN 2400
-# define HEIGHT_WIN 2000
+# define WIDTH_WIN 1024
+# define HEIGHT_WIN 768
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
 # define OTH_CLR 2
+# define DIR_FORWARD 1
+# define DIR_BACK 2
 
 # include <math.h>
 # include "debug_file.h"
@@ -144,15 +146,15 @@ typedef struct			s_sdl_sys
 	SDL_Rect			*rect_dst;
 }						t_sdl_sys;
 
-typedef struct			s_zalupa
+typedef struct			s_walls
 {
 	int					draw_start;
 	int					draw_end;
 	int					line_height;
 	int					x;
 	SDL_Color			*color;
-	struct s_zalupa		*next;
-}						t_zalupa;
+	struct s_walls		*next;
+}						t_walls;
 
 typedef struct			s_timer
 {
@@ -171,7 +173,7 @@ typedef struct			s_wolf
 	struct s_location	location;
 	struct s_timer		*time;
 	struct s_menu		menu;
-	struct s_zalupa		inter;
+	struct s_walls		walls;
 	struct s_font		*font[fnt_total];
 	bool				quit;
 }						t_wolf;
@@ -202,19 +204,29 @@ void					apply_surface_scaled(SDL_Surface *source,
 void					apply_render(SDL_Renderer *render,
 						SDL_Texture *texture, SDL_Rect *srcrect,
 						const SDL_Rect *dstrect);
+void					clear_screen(SDL_Renderer *render);
+bool					event_exit(t_wolf *wolf);
+/*
+** Функции манипуляции игроком
+*/
+void					rotate_plane_and_cam(t_wolf *wolf, float rot_speed);
+void					move_player(t_wolf *wolf, int direction);
+/*
+** Инициализация проекта, присваивание значения переменным
+*/
+void					filling_var(t_wolf *wolf);
+bool					load_files(SDL_Texture **textures,
+						SDL_Renderer *render);
+bool					initialization(t_wolf *wolf, char *map);
 
 bool					put_error_sdl(char *error, const char *error_sdl);
 int						put_error_sys(char *error);
 
 void					quit_sdl(t_wolf *wolf);
-bool					load_files(SDL_Texture **textures,
-						SDL_Renderer *render);
-bool					initialization(t_wolf *wolf, char *map);
 
 int						pars_map(t_wolf *f, char *map);
 
 int						raycasting(t_wolf *wolf);
-void					filling_var(t_wolf *wolf);
 void					fps_counter(t_wolf *wolf);
 
 bool					init_sdl(t_wolf *wolf);
