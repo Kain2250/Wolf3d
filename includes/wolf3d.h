@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/20 15:52:12 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/23 20:21:09 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define WOLF3D_H
 
 # define NAME_WIN "Wolf3d (by Bdrinkin)"
-# define WIDTH_WIN 1280
-# define HEIGHT_WIN 1024
+# define WIDTH_WIN 2400
+# define HEIGHT_WIN 2000
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
@@ -81,28 +81,26 @@ typedef struct			s_mouse
 
 typedef struct			s_player
 {
-	float				pos_x;
-	float				pos_y;
+	double				pos_x;
+	double				pos_y;
 	int					map_x;
 	int					map_y;
-	float				dir_x;
-	float				dir_y;
-	float				ray_dir_x;
-	float				ray_dir_y;
-	float				plane_x;
-	float				plane_y;
-	float				camera_x;
-	float				side_dist_x;
-	float				side_dist_y;
-	float				delta_dist_x;
-	float				delta_dist_y;
-	float				perp_wall_dist;
+	double				dir_x;
+	double				dir_y;
+	double				ray_dir_x;
+	double				ray_dir_y;
+	double				plane_x;
+	double				plane_y;
+	double				camera_x;
+	double				side_dist_x;
+	double				side_dist_y;
+	double				delta_dist_x;
+	double				delta_dist_y;
+	double				perp_wall_dist;
 	int					step_x;
 	int					step_y;
 	int					hit;
 	int					side;
-	float				time;
-	float				old_time;
 	bool				player;
 }						t_player;
 
@@ -112,6 +110,8 @@ typedef struct			s_location
 	int					x_len;
 	int					y_len;
 	int					x_len_check;
+	SDL_Rect			*sky;
+	SDL_Rect			*flor;
 	char				**map;
 }						t_location;
 
@@ -144,39 +144,78 @@ typedef struct			s_sdl_sys
 	SDL_Rect			*rect_dst;
 }						t_sdl_sys;
 
+typedef struct			s_zalupa
+{
+	int					draw_start;
+	int					draw_end;
+	int					line_height;
+	int					x;
+	SDL_Color			*color;
+	struct s_zalupa		*next;
+}						t_zalupa;
+
+typedef struct			s_timer
+{
+	Uint32				start_ticks;
+	Uint32				paused_ticks;
+	bool				paused;
+	bool				started;
+	int					counted_frames;
+}						t_timer;
+
 typedef struct			s_wolf
 {
 	struct s_sdl_sys	sdl;
 	struct s_mouse		mouse;
 	struct s_player		player;
 	struct s_location	location;
+	struct s_timer		*time;
 	struct s_menu		menu;
+	struct s_zalupa		inter;
 	struct s_font		*font[fnt_total];
 	bool				quit;
 }						t_wolf;
-
+/*
+** Таймер для FPS
+*/
+Uint32					get_ticks(t_timer *time);
+bool					time_is_started(t_timer *time);
+bool					time_is_paused(t_timer *time);
+void					timer_init(t_timer *time);
+void					timer_start(t_timer *time);
+void					timer_stop(t_timer *time);
+void					timer_pause(t_timer *time);
+void					timer_unpause(t_timer *time);
+float					get_fps(t_timer *time);
+/*
+** Эвенты
+*/
 bool					event_exit(t_wolf *wolf);
 bool					event_list(t_wolf *w);
-
-void					apply_surface(SDL_Surface *source, SDL_Surface *destination,
-						SDL_Rect offset);
+/*
+** Стандартные функции манипуляции изображений в SDL2
+*/
+void					apply_surface(SDL_Surface *source,
+						SDL_Surface *destination, SDL_Rect offset);
 void					apply_surface_scaled(SDL_Surface *source,
 						SDL_Surface *destination, SDL_Rect offset);
-void					apply_render(SDL_Renderer *render, SDL_Texture *texture,
-						SDL_Rect *srcrect, const SDL_Rect *dstrect);
-
+void					apply_render(SDL_Renderer *render,
+						SDL_Texture *texture, SDL_Rect *srcrect,
+						const SDL_Rect *dstrect);
 
 bool					put_error_sdl(char *error, const char *error_sdl);
 int						put_error_sys(char *error);
 
 void					quit_sdl(t_wolf *wolf);
-bool					load_files(SDL_Texture **textures, SDL_Renderer *render);
+bool					load_files(SDL_Texture **textures,
+						SDL_Renderer *render);
 bool					initialization(t_wolf *wolf, char *map);
 
 int						pars_map(t_wolf *f, char *map);
 
 int						raycasting(t_wolf *wolf);
-
+void					filling_var(t_wolf *wolf);
+void					fps_counter(t_wolf *wolf);
 
 bool					init_sdl(t_wolf *wolf);
 int						main(int ac, char **av);

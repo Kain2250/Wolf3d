@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/20 17:18:12 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/24 11:16:45 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,25 @@
 
 void		filling_var(t_wolf *wolf)
 {
-	wolf->player.pos_x = 9;
-	wolf->player.pos_y = 11;
+	wolf->player.pos_x = 8;
+	wolf->player.pos_y = 12;
 	wolf->player.dir_x = -1;
 	wolf->player.dir_y = 0;
 	wolf->player.plane_x = 0;
 	wolf->player.plane_y = 0.66;
-	wolf->player.time = 0;
-	wolf->player.old_time = 0;
+	wolf->location.flor = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
+	wolf->location.sky = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
+	wolf->location.sky->h = 32;
+	wolf->location.sky->w = 32;
+	wolf->location.sky->x = 0;
+	wolf->location.sky->y = 0;
+	wolf->location.flor->h = HEIGHT_WIN / 2;
+	wolf->location.flor->w = WIDTH_WIN;
+	wolf->location.flor->x = 0;
+	wolf->location.flor->y = HEIGHT_WIN / 2;
 }
 
-float			calc_dist(float ray_dir_1, float ray_dir_2)
+float			calc_dist(double ray_dir_1, double ray_dir_2)
 {
 	float		delta_dist;
 
@@ -33,7 +41,7 @@ float			calc_dist(float ray_dir_1, float ray_dir_2)
 	else if (ray_dir_2 == 0)
 		delta_dist = 1;
 	else
-		delta_dist = fabsf(1 / ray_dir_2);
+		delta_dist = fabs(1 / ray_dir_2);
 	return (delta_dist);
 }
 
@@ -44,10 +52,10 @@ SDL_Color		*color_cahge(char **map, int x, int y)
 	color = ft_memalloc(sizeof(SDL_Color));
 	if (map[x][y] == '1')
 	{
-		color->r = 255;
-		color->a = 0;
-		color->b = 100;
-		color->g = 50;
+		color->r = 50;
+		color->a = 255;
+		color->b = 200;
+		color->g = 100;
 	}
 	else if (map[x][y] == '2')
 	{
@@ -82,16 +90,14 @@ void		brightness_calc(SDL_Color *color)
 
 int				raycasting(t_wolf *wolf)
 {
-	int		x;
-	float	w;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	SDL_Color	*color;
+	int			x;
+	double		w;
+	t_zalupa	*frame;
 
 	x = 0;
 	w = WIDTH_WIN;
-	while (x < (int)WIDTH_WIN)
+	frame = ft_memalloc(sizeof(t_zalupa));
+	while (x < WIDTH_WIN)
 	{
 		wolf->player.camera_x = 2 * x / w - 1;
 		wolf->player.ray_dir_x = wolf->player.dir_x + wolf->player.plane_x * wolf->player.camera_x;
@@ -114,7 +120,7 @@ int				raycasting(t_wolf *wolf)
 		if (wolf->player.ray_dir_y < 0)
 		{
 			wolf->player.step_y = -1;
-			wolf->player.side_dist_y = (wolf->player.pos_y - wolf->player.map_y) * wolf->player.delta_dist_y;
+			wolf->player.side_dist_y = wolf->player.delta_dist_y * (wolf->player.pos_y - wolf->player.map_y);
 		}
 		else
 		{
@@ -142,20 +148,21 @@ int				raycasting(t_wolf *wolf)
 			wolf->player.perp_wall_dist = (wolf->player.map_x - wolf->player.pos_x + (1 - wolf->player.step_x) / 2) / wolf->player.ray_dir_x;
 		else
 			wolf->player.perp_wall_dist = (wolf->player.map_y - wolf->player.pos_y + (1 - wolf->player.step_y) / 2) / wolf->player.ray_dir_y;
-		line_height = (int)(HEIGHT_WIN / wolf->player.perp_wall_dist);
-		draw_start = -line_height / 2 + HEIGHT_WIN / 2;
-		if (draw_start < 0)
-		draw_start = 0;
-		draw_end = line_height / 2 + HEIGHT_WIN / 2;
-		if (draw_end >= HEIGHT_WIN)
-			draw_end = HEIGHT_WIN - 1;
-		color = color_cahge(wolf->location.map, wolf->player.map_x, wolf->player.map_y);
+		frame->line_height = (int)(HEIGHT_WIN / wolf->player.perp_wall_dist);
+		frame->draw_start = -frame->line_height / 2 + HEIGHT_WIN / 2;
+		if (frame->draw_start < 0)
+			frame->draw_start = 0;
+		frame->draw_end = frame->line_height / 2 + HEIGHT_WIN / 2;
+		if (frame->draw_end >= HEIGHT_WIN)
+			frame->draw_end = HEIGHT_WIN - 1;
+		
+		frame->color = color_cahge(wolf->location.map, wolf->player.map_x, wolf->player.map_y);
 		if (wolf->player.side == 1)
-		brightness_calc(color);
-		SDL_SetRenderDrawColor(wolf->sdl.render, color->r, color->g, color->b, color->a);
-		SDL_RenderDrawLine(wolf->sdl.render, x, draw_start, x, draw_end);
+			brightness_calc(frame->color);
+		SDL_SetRenderDrawColor(wolf->sdl.render, frame->color->r, frame->color->g, frame->color->b, frame->color->a);
+		SDL_RenderDrawLine(wolf->sdl.render, x, frame->draw_start, x, frame->draw_end);
 		x++;
-		// free(color);
+		free(frame->color);
 	}
 	return (0);
 }

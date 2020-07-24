@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/20 17:14:06 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/23 15:52:08 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void		quit_sdl(t_wolf *wolf)
 	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
+	free(wolf->location.flor);
+	free(wolf->location.sky);
+	free(wolf->time);
 	free(wolf);
 }
 
@@ -71,7 +74,6 @@ bool		init_sdl(t_wolf *wolf)
 	if ((wolf->sdl.render = SDL_CreateRenderer(wolf->sdl.window,
 		-1, SDL_RENDERER_ACCELERATED)) == NULL)
 		return (put_error_sdl(ERR_CREATE_RENDERER, SDL_GetError()));
-	// SDL_SetRenderDrawColor(wolf->sdl.render, 0xFF, 0xFF, 0xFF, 0xFF);
 	return (true);
 }
 
