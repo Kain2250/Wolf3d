@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:23:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/23 17:19:14 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/24 19:46:15 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,28 +135,3 @@ int			pars_map(t_wolf *f, char *map)
 	free(buff);
 	return (0);
 }
-
-// int				pars_map(t_wolf *w, char *map)
-// {
-// 	int			fd;
-// 	int			i;
-
-// 	if ((fd = open(map, O_RDONLY)) < 1)
-// 	{
-// 		perror(map);
-// 		return (1);
-// 	}
-// 	i = 0;
-// 	w->location.map = (char **)ft_memalloc(sizeof(char *) * 22);
-// 	while (i != 22)
-// 	{
-// 		w->location.map[i] = (char *)ft_memalloc(sizeof(char) * 25);
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (get_next_line(fd, &w->location.map[i]) == 1)
-// 		i++;
-// 	close(fd);
-// 	ft_put2arr(22, w->location.map);
-// 	return (0);
-// }
