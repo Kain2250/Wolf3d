@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/27 16:25:24 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/27 17:39:59 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ bool			event_list(t_wolf *wolf)
 	// SDL_PollEvent(&wolf->sdl.event);
 	if (event_exit(wolf) == true)
 		wolf->quit = true;
-	fps_counter(wolf);
-	if ((wolf->sdl.event.type == SDL_KEYDOWN &&
+	// fps_counter(wolf);
+	if (wolf->sdl.event.type == SDL_KEYDOWN &&
 		(wolf->sdl.event.key.keysym.sym == SDLK_a ||
 		wolf->sdl.event.key.keysym.sym == SDLK_s ||
 		wolf->sdl.event.key.keysym.sym == SDLK_w ||
-		wolf->sdl.event.key.keysym.sym == SDLK_d)))
+		wolf->sdl.event.key.keysym.sym == SDLK_d))
 		event_key_hook(wolf);
 	else if(wolf->sdl.event.type == SDL_MOUSEMOTION)
 		event_mouse_hook(wolf);
