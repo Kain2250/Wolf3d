@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/24 19:40:20 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/27 16:04:40 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@
 # define NAME_WIN "Wolf3d (by Bdrinkin)"
 # define WIDTH_WIN 1024
 # define HEIGHT_WIN 768
-# define BPERPIX 32
+// # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
 # define OTH_CLR 2
 # define DIR_FORWARD 1
 # define DIR_BACK 2
+# define COLOR_RED 160, 6, 5, 0
+# define COLOR_BLUE 18, 10, 143, 0
+# define COLOR_GREEN 119, 221, 119, 0
+# define COLOR_BLACK 0, 0, 0, 0
+# define COLOR_YELLOW 112, 66, 20, 0
+# define COLOR_SKY 100, 100, 100, 0
+# define COLOR_FLOR 50, 50, 50, 0
 
 # include <math.h>
+# include <stdbool.h>
 # include "debug_file.h"
 # include "libft.h"
 # include "definetextures.h"
@@ -32,12 +40,6 @@
 # include "SDL_image.h"
 # include "SDL_ttf.h"
 # include "SDL_mixer.h"
-
-typedef enum
-{
-	false,
-	true
-}						bool;
 
 typedef enum			e_texture
 {
@@ -49,7 +51,7 @@ typedef enum			e_texture
 	texture_wood_box,
 	texture_wood_door,
 	texture_total
-}						n_texture;
+}						t_texture;
 
 typedef enum			e_font_tex
 {
@@ -57,12 +59,12 @@ typedef enum			e_font_tex
 	fnt_ext_g,
 	fnt_cntn,
 	fnt_total
-}						n_font_tex;
+}						t_font_tex;
 
 typedef struct			s_font
 {
 	TTF_Font			*font;
-	SDL_Color			textColor;
+	SDL_Color			text_color;
 	SDL_Texture			*texture;
 	int					width;
 	int					height;
@@ -137,7 +139,7 @@ typedef struct			s_menu
 typedef struct			s_sdl_sys
 {
 	SDL_Window			*window;
-	SDL_Surface 		*surface;
+	SDL_Surface			*surface;
 	SDL_Renderer		*render;
 	SDL_Texture			*textures[texture_total];
 	SDL_Surface			*picture[texture_total];
@@ -218,18 +220,40 @@ void					filling_var(t_wolf *wolf);
 bool					load_files(SDL_Texture **textures,
 						SDL_Renderer *render);
 bool					initialization(t_wolf *wolf, char *map);
+/*
+** Основной алгоритм бросания лучей RayCasting
+*/
+int						raycasting(t_wolf *wolf);
+float					calc_dist(double ray_dir_1, double ray_dir_2);
+void					brightness_calc(SDL_Color *color);
+void					calculate_foog(t_wolf *wolf, t_walls *walls);
+void					cam_and_screen_setup(t_wolf *wolf, int x_screen,
+						double width);
+void					ray_computation(t_wolf *wolf);
+void					find_hit(t_wolf *wolf);
+void					getting_the_height_to_the_wall(t_wolf *wolf,
+						t_walls *walls);
+void					render_screen(SDL_Renderer *render, t_walls *walls,
+						int x, int y);
+/*
+** Функции выбора цвета
+*/
+SDL_Color				*assigned_color(Uint8 red, Uint8 green,
+						Uint8 blue, Uint8 alpha);
+SDL_Color				*color_cahge(char **map, int x, int y);
 
 bool					put_error_sdl(char *error, const char *error_sdl);
 int						put_error_sys(char *error);
 
-void					quit_sdl(t_wolf *wolf);
-
 int						pars_map(t_wolf *f, char *map);
 
-int						raycasting(t_wolf *wolf);
 void					fps_counter(t_wolf *wolf);
 
+void					clear_queue(void);
+
 bool					init_sdl(t_wolf *wolf);
+void					quit_sdl(t_wolf *wolf);
+int						error_exit(char *err, char *buff);
 int						main(int ac, char **av);
 
 #endif

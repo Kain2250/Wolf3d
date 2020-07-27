@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:23:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/24 19:46:15 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/27 10:45:16 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			check_line(char *buff)
 	return (1);
 }
 
-int			pars_map(t_wolf *f, char *map)
+int			pars_map(t_wolf *w, char *map)
 {
 	int		fd;
 	char	*buff;
@@ -112,26 +112,19 @@ int			pars_map(t_wolf *f, char *map)
 	}
 	while (get_next_line2(fd, &buff))
 	{
-		if (check_line(buff) && (f->location.x_len = get_x_len(buff, f)) != 0)
-			f->location.y_len++;
+		if (check_line(buff) && (w->location.x_len = get_x_len(buff, w)) != 0)
+			w->location.y_len++;
 		else
-		{
-			free(buff);
-			ft_putendl_fd(ERR_FILE_INVALID, ERR_FD);
-			return (1);
-		}
+			return (error_exit(ERR_FILE_INVALID, buff));
 		ft_strdel(&buff);
 	}
-	if (!f->location.x_len && !f->location.y_len)
-	{
-		ft_putendl_fd(ERR_FILE_INVALID, ERR_FD);
-		return (1);
-	}
+	if (!w->location.x_len && !w->location.y_len)
+		return (error_exit(ERR_FILE_INVALID, NULL));
 	close(fd);
 	fd = open(map, O_RDONLY);
 	buff = read_line(fd);
 	close(fd);
-	get_z(buff, f);
+	get_z(buff, w);
 	free(buff);
 	return (0);
 }

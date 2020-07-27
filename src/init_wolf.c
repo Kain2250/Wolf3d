@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/24 19:46:32 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/27 15:49:28 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	quit_sdl(t_wolf *wolf)
 
 void	filling_var(t_wolf *wolf)
 {
-	wolf->player.pos_x = 8;
+	wolf->player.pos_x = 12;
 	wolf->player.pos_y = 12;
 	wolf->player.dir_x = -1;
 	wolf->player.dir_y = 0;
 	wolf->player.plane_x = 0;
 	wolf->player.plane_y = 0.66;
 	wolf->mouse.move_speed = 0.2;
-	wolf->mouse.rot_speed = 0.09;
+	wolf->mouse.rot_speed = 0.019;
 	wolf->location.flor = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
 	wolf->location.sky = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
 	wolf->location.sky->h = 32;
