@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 19:41:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/24 19:44:03 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/27 13:53:16 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 void			render_screen(SDL_Renderer *render,
 				t_walls *walls, int x, int y)
 {
+	SDL_SetRenderDrawColor(render, COLOR_SKY);
+	SDL_RenderDrawLine(render, x, 0, x, walls->draw_start);
 	SDL_SetRenderDrawColor(render, walls->color->r,
 	walls->color->g, walls->color->b, walls->color->a);
 	SDL_RenderDrawLine(render, x, walls->draw_start, y, walls->draw_end);
+	SDL_SetRenderDrawColor(render, COLOR_FLOR);
+	SDL_RenderDrawLine(render, x, walls->draw_end, x, HEIGHT_WIN);
 }
 
 void			getting_the_height_to_the_wall(t_wolf *wolf, t_walls *walls)

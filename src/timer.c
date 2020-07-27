@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 14:15:36 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/24 18:49:01 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/27 15:31:20 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		fps_counter(t_wolf *wolf)
 	avg_fps = wolf->time->counted_frames / (get_ticks(wolf->time) / 1000.f);
 	if (avg_fps > 2000000)
 		avg_fps = 0;
-	ft_putnbr((int)avg_fps);
-	ft_putchar('\n');
+	// ft_putnbr((int)avg_fps);
+	// ft_putchar('\n');
 	++wolf->time->counted_frames;
 }
