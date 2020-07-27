@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ubuntukeyhook.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kain2250 <kain2250@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:34:56 by kain2250          #+#    #+#             */
-/*   Updated: 2020/03/02 04:49:14 by kain2250         ###   ########.fr       */
+/*   Updated: 2020/07/27 11:23:59 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UBUNTKEYHOOK_H
+#ifndef UBUNTUKEYHOOK_H
 # define UBUNTUKEYHOOK_H
 
 # define KEY_ESC 65307

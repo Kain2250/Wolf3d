@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/24 20:32:27 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/27 16:28:59 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,6 @@ float			calc_dist(double ray_dir_1, double ray_dir_2)
 	else
 		delta_dist = fabs(1 / ray_dir_2);
 	return (delta_dist);
-}
-
-SDL_Color		*color_cahge(char **map, int x, int y)
-{
-	SDL_Color	*color;
-
-	color = ft_memalloc(sizeof(SDL_Color));
-	if (map[x][y] == '1')
-	{
-		color->r = 50;
-		color->a = 255;
-		color->b = 200;
-		color->g = 100;
-	}
-	else if (map[x][y] == '2')
-	{
-		color->r = 0;
-		color->a = 0;
-		color->b = 255;
-		color->g = 100;
-	}
-	else if (map[x][y] == '3')
-	{
-		color->r = 0;
-		color->a = 0;
-		color->b = 100;
-		color->g = 255;
-	}
-	else if (map[x][y] == '4')
-	{
-		color->r = 100;
-		color->a = 0;
-		color->b = 170;
-		color->g = 190;
-	}
-	return (color);
 }
 
 void			brightness_calc(SDL_Color *color)
@@ -98,5 +62,6 @@ int				raycasting(t_wolf *wolf)
 		free(walls->color);
 	}
 	SDL_RenderPresent(wolf->sdl.render);
+	clear_queue();
 	return (0);
 }
