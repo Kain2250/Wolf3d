@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/07/29 18:43:20 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/07/29 18:47:18 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,7 @@ SDL2_FLAGS = -lSDL2 -liconv  -Wl,-framework,CoreAudio \
 	-lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa \
 	-Wl,-framework,Carbon -Wl,-framework,IOKit \
 	-Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal \
-	-lSDL2_image 
-	##-lSDL2_mixer -lSDL2_ttf
+	-lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Список библиотек и их пути:
 ALLLIBS = $(CURDIR)/allLibs
