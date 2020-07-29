@@ -1,3 +1,4 @@
+#!bin/sh
 cd allLibs
 mkdir -p temp_src
 git clone https://github.com/davidsiaw/SDL2.git temp_src/SDL2-2
