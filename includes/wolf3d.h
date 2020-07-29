@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/29 18:43:09 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/29 18:47:06 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # include "errorout.h"
 # include "SDL.h"
 # include "SDL_image.h"
-// # include "SDL_ttf.h"
-// # include "SDL_mixer.h"
+# include "SDL_ttf.h"
+# include "SDL_mixer.h"
 
 typedef enum			e_texture
 {
