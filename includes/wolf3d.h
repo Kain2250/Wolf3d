@@ -14,8 +14,8 @@
 # define WOLF3D_H
 
 # define NAME_WIN "Wolf3d (by Bdrinkin)"
-# define WIDTH_WIN 1280
-# define HEIGHT_WIN 1024
+# define WIDTH_WIN 1024
+# define HEIGHT_WIN 720
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
@@ -36,10 +36,10 @@
 # include "libft.h"
 # include "definetextures.h"
 # include "errorout.h"
-# include "SDL.h"
-# include "SDL_image.h"
-# include "SDL_ttf.h"
-# include "SDL_mixer.h"
+# include <SDL.h>
+# include <SDL_image.h>
+//# include "SDL_ttf.h"
+//# include <SDL_mixer.h>
 
 typedef enum			e_texture
 {
