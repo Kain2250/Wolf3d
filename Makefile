@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/07/20 12:48:14 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/07/29 17:41:41 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ RESET = \033[0m
 all: builds
 
 builds:
-	@gcc -Wall -Wextra -Werror -Iincludes -IallLibs/libft/includes -IallLibs/SDL2/include/SDL2 -LallLibs/libft -lft -LallLibs/SDL2/lib -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf src/*.c -o wolf3d
+	@gcc -g -Wall -Wextra -Werror -Iincludes -IallLibs/libft/includes -IallLibs/SDL2_lib/include/SDL2 -LallLibs/libft -lft -LallLibs/SDL2_lib/lib -lSDL2  -lm -liconv  -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal -lSDL2_image -lSDL2_mixer -lSDL2_ttf src/*.c -o wolf3d
 
 clean:
 	@echo "$(NAME): $(RED)Объектные файлы удалены$(RESET)"
