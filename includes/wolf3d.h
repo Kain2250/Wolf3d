@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/29 18:47:06 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/29 18:55:04 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ typedef enum			e_font_tex
 	fnt_total
 }						t_font_tex;
 
-typedef struct			s_font
-{
-	TTF_Font			*font;
-	SDL_Color			text_color;
-	SDL_Texture			*texture;
-	int					width;
-	int					height;
-	int					size;
-}						t_font;
+// typedef struct			s_font
+// {
+// 	TTF_Font			*font;
+// 	SDL_Color			text_color;
+// 	SDL_Texture			*texture;
+// 	int					width;
+// 	int					height;
+// 	int					size;
+// }						t_font;
 
 typedef struct			s_mouse
 {
@@ -176,7 +176,7 @@ typedef struct			s_wolf
 	struct s_timer		*time;
 	struct s_menu		menu;
 	struct s_walls		walls;
-	struct s_font		*font[fnt_total];
+	// struct s_font		*font[fnt_total];
 	bool				quit;
 }						t_wolf;
 /*

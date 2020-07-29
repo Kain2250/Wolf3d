@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/27 17:39:59 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/29 19:16:58 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ bool			event_list(t_wolf *wolf)
 	if (event_exit(wolf) == true)
 		wolf->quit = true;
 	// fps_counter(wolf);
+	if (wolf->sdl.event.type == SDL_KEYDOWN &&
+		wolf->sdl.event.key.keysym.sym == SDLK_j)
+		SDL_SetRelativeMouseMode(SDL_FALSE);
+	if (wolf->sdl.event.type == SDL_KEYDOWN &&
+		wolf->sdl.event.key.keysym.sym == SDLK_k)
+		SDL_SetRelativeMouseMode(SDL_TRUE);
 	if (wolf->sdl.event.type == SDL_KEYDOWN &&
 		(wolf->sdl.event.key.keysym.sym == SDLK_a ||
 		wolf->sdl.event.key.keysym.sym == SDLK_s ||
