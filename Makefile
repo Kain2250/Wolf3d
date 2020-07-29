@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/07/29 17:41:41 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/07/29 18:06:43 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,27 +19,31 @@ CCFLAGS = -Wall -Wextra -Werror
 FLAGS = -O3
 THREADS_FLAGS = -lpthread
 OTHERS_FLAGS = -lm
-SDL2_FLAGS = -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lSDL2 -liconv -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal
+SDL2_FLAGS = -lSDL2 -liconv  -Wl,-framework,CoreAudio \
+	-Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback \
+	-lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa \
+	-Wl,-framework,Carbon -Wl,-framework,IOKit \
+	-Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal \
+	-lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Список библиотек и их пути:
-ALLLIBS = $(CURDIR)/allLibs/
-LIBFT_DIRECTORY = $(ALLLIBS)libft/
-LIBFT = $(LIBFT_DIRECTORY)libft.a
-LIBSDL2_DIR = $(ALLLIBS)libsdl2/
-LIBSDL2 = $(LIBSDL2_DIR)lib/
+ALLLIBS = $(CURDIR)/allLibs
+LIBFT_DIRECTORY = $(ALLLIBS)/libft
+LIBSDL2_DIR = $(ALLLIBS)/SDL2_lib
+LIBSDL2 = $(LIBSDL2_DIR)/lib
 
 # Флаги для сборки библиотек
 LIBRARIES_LIBFT = -L$(LIBFT_DIRECTORY) -lft
-LIBRARIES_SDL_U = -L $(LIBSDL2) $(THREADS_FLAGS) $(OTHERS_FLAGS) $(SDL2_FLAGS)
-				#$$(sdl2-config --cflags --libs)
+LIBRARIES_SDL_U = -L$(LIBSDL2) $(THREADS_FLAGS) $(OTHERS_FLAGS) $(SDL2_FLAGS)
+				# $$(sdl2-config --cflags --libs)
 
 # Заголовочные файлы и их пути:
-INCLUDES_DIRECTORY = $(CURDIR)/includes/
-INCLUDES_DIRECTORY_LIBFT = $(LIBFT_DIRECTORY)includes/
-INCLUDES_SDL2 = $(LIBSDL2_DIR)include/SDL2/
-INCLUDES = -I $(INCLUDES_DIRECTORY) \
-		-I $(INCLUDES_DIRECTORY_LIBFT) \
-		-I $(INCLUDES_SDL2)
+INCLUDES_DIRECTORY = $(CURDIR)/includes
+INCLUDES_DIRECTORY_LIBFT = $(LIBFT_DIRECTORY)/includes
+INCLUDES_SDL2 = $(LIBSDL2_DIR)/include/SDL2
+INCLUDES = -I$(INCLUDES_DIRECTORY) \
+		-I$(INCLUDES_DIRECTORY_LIBFT) \
+		-I$(INCLUDES_SDL2)
 	
 # Основные файлы программы и их пути:
 SRC_DIRECTORY = $(CURDIR)/src/
@@ -61,10 +65,11 @@ RESET = \033[0m
 .PHONY: all clean fclean re
 
 # Основные правила сборки:
-all: builds
+all: $(NAME)
 
-builds:
-	@gcc -g -Wall -Wextra -Werror -Iincludes -IallLibs/libft/includes -IallLibs/SDL2_lib/include/SDL2 -LallLibs/libft -lft -LallLibs/SDL2_lib/lib -lSDL2  -lm -liconv  -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal -lSDL2_image -lSDL2_mixer -lSDL2_ttf src/*.c -o wolf3d
+$(NAME):
+	$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) -L$(LIBSDL2) \
+	$(SDL2_FLAGS) $(OTHERS_FLAGS) $(SRC) -o $(NAME)
 
 clean:
 	@echo "$(NAME): $(RED)Объектные файлы удалены$(RESET)"
