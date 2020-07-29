@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/29 16:21:01 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/29 19:10:27 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	quit_sdl(t_wolf *wolf)
 		else
 			i++;
 	}
-	TTF_Quit();
+	// TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 	free(wolf->location.flor);
@@ -85,13 +85,13 @@ bool	init_sdl(t_wolf *wolf)
 {
 	if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_GAMECONTROLLER) == -1)
 		return (put_error_sdl(ERR_INIT_SDL, SDL_GetError()));
-	if (TTF_Init() == -1)
-		return (put_error_sdl(ERR_INIT_TTF, SDL_GetError()));
+	// if (TTF_Init() == -1)
+	// 	return (put_error_sdl(ERR_INIT_TTF, SDL_GetError()));
 	if (!(IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG))
 		return (put_error_sdl(ERR_INIT_IMG, IMG_GetError()));
 	if ((wolf->sdl.window = SDL_CreateWindow(NAME_WIN, SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, WIDTH_WIN,
-		HEIGHT_WIN, SDL_WINDOW_SHOWN)) == NULL)
+		HEIGHT_WIN, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE)) == NULL)
 		return (put_error_sdl(ERR_CREATE_WIN, SDL_GetError()));
 	if ((wolf->sdl.render = SDL_CreateRenderer(wolf->sdl.window,
 		-1, SDL_RENDERER_ACCELERATED)) == NULL)
