@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/27 15:49:28 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/29 16:21:01 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 
 bool	init_sdl(t_wolf *wolf)
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
+	if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_GAMECONTROLLER) == -1)
 		return (put_error_sdl(ERR_INIT_SDL, SDL_GetError()));
 	if (TTF_Init() == -1)
 		return (put_error_sdl(ERR_INIT_TTF, SDL_GetError()));
