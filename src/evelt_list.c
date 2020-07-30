@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/29 19:16:58 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/30 15:26:15 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,22 @@ bool			event_list(t_wolf *wolf)
 	if (event_exit(wolf) == true)
 		wolf->quit = true;
 	// fps_counter(wolf);
-	if (wolf->sdl.event.type == SDL_KEYDOWN &&
-		wolf->sdl.event.key.keysym.sym == SDLK_j)
-		SDL_SetRelativeMouseMode(SDL_FALSE);
-	if (wolf->sdl.event.type == SDL_KEYDOWN &&
-		wolf->sdl.event.key.keysym.sym == SDLK_k)
-		SDL_SetRelativeMouseMode(SDL_TRUE);
-	if (wolf->sdl.event.type == SDL_KEYDOWN &&
-		(wolf->sdl.event.key.keysym.sym == SDLK_a ||
-		wolf->sdl.event.key.keysym.sym == SDLK_s ||
-		wolf->sdl.event.key.keysym.sym == SDLK_w ||
-		wolf->sdl.event.key.keysym.sym == SDLK_d))
-		event_key_hook(wolf);
-	else if(wolf->sdl.event.type == SDL_MOUSEMOTION)
-		event_mouse_hook(wolf);
+	if (wolf->menu.menu == true)
+	{
+		if (wolf->sdl.event.type == SDL_KEYDOWN &&
+			wolf->sdl.event.key.keysym.sym == SDLK_j)
+			SDL_SetRelativeMouseMode(SDL_FALSE);
+		if (wolf->sdl.event.type == SDL_KEYDOWN &&
+			wolf->sdl.event.key.keysym.sym == SDLK_k)
+			SDL_SetRelativeMouseMode(SDL_TRUE);
+		if (wolf->sdl.event.type == SDL_KEYDOWN &&
+			(wolf->sdl.event.key.keysym.sym == SDLK_a ||
+			wolf->sdl.event.key.keysym.sym == SDLK_s ||
+			wolf->sdl.event.key.keysym.sym == SDLK_w ||
+			wolf->sdl.event.key.keysym.sym == SDLK_d))
+			event_key_hook(wolf);
+		else if(wolf->sdl.event.type == SDL_MOUSEMOTION)
+			event_mouse_hook(wolf);
+	}
 	return (true);
 }

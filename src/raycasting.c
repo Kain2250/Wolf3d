@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/27 17:41:41 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/30 11:04:27 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int				raycasting(t_wolf *wolf)
 		free(walls->color);
 	}
 	SDL_RenderPresent(wolf->sdl.render);
-	clear_queue();
+	// clear_queue();
 	return (0);
 }

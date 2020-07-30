@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/07/29 18:58:51 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/07/30 16:29:32 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,7 @@ SDL2_FLAGS = -lSDL2 -liconv  -Wl,-framework,CoreAudio \
 	-lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa \
 	-Wl,-framework,Carbon -Wl,-framework,IOKit \
 	-Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal \
-	-lSDL2_image -lSDL2_mixer 
-	#-lSDL2_ttf
+	-lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Список библиотек и их пути:
 ALLLIBS = $(CURDIR)/allLibs
@@ -69,7 +68,7 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME):
-	$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) -L$(LIBSDL2) \
+	@$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) -L$(LIBSDL2) \
 	$(SDL2_FLAGS) $(OTHERS_FLAGS) $(SRC) -o $(NAME)
 
 clean:
