@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/29 19:10:27 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/30 19:57:10 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	quit_sdl(t_wolf *wolf)
 		else
 			i++;
 	}
-	// TTF_Quit();
+	// Mix_Quit();
+	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 	free(wolf->location.flor);
@@ -47,16 +48,12 @@ void	filling_var(t_wolf *wolf)
 	wolf->player.plane_y = 0.66;
 	wolf->mouse.move_speed = 0.2;
 	wolf->mouse.rot_speed = 0.019;
-	wolf->location.flor = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
-	wolf->location.sky = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
-	wolf->location.sky->h = 32;
-	wolf->location.sky->w = 32;
-	wolf->location.sky->x = 0;
-	wolf->location.sky->y = 0;
-	wolf->location.flor->h = HEIGHT_WIN / 2;
-	wolf->location.flor->w = WIDTH_WIN;
-	wolf->location.flor->x = 0;
-	wolf->location.flor->y = HEIGHT_WIN / 2;
+	wolf->menu.button_new = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
+	wolf->menu.button_exit = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
+	wolf->menu.button_new->h = 150;
+	wolf->menu.button_new->w = 250;
+	wolf->menu.button_new->x = WIDTH_WIN / 3 * 2;
+	wolf->menu.button_new->y = HEIGHT_WIN / 3 * 2;
 }
 
 bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
@@ -70,6 +67,7 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 	textures[texture_sand] = IMG_LoadTexture(render, TEX_SAND);
 	textures[texture_wood_box] = IMG_LoadTexture(render, TEX_WOOD_BOX_SIDE);
 	textures[texture_wood_door] = IMG_LoadTexture(render, TEX_WOOD_DOOR);
+	textures[texture_button_play] = IMG_LoadTexture(render, TEX_BUTTON_PLAY);
 	i = 0;
 	while (i != texture_total)
 	{
@@ -83,10 +81,16 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 
 bool	init_sdl(t_wolf *wolf)
 {
-	if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_GAMECONTROLLER) == -1)
+	if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
+		SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC |
+		SDL_INIT_GAMECONTROLLER) == -1)
 		return (put_error_sdl(ERR_INIT_SDL, SDL_GetError()));
-	// if (TTF_Init() == -1)
-	// 	return (put_error_sdl(ERR_INIT_TTF, SDL_GetError()));
+	// if (Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS) == 0)
+	// 	return (put_error_sdl(ERR_INIT_MIX, Mix_GetError()));
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		return (put_error_sdl(ERR_INIT_MIX, Mix_GetError()));
+	if (TTF_Init() == -1)
+		return (put_error_sdl(ERR_INIT_TTF, SDL_GetError()));
 	if (!(IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG))
 		return (put_error_sdl(ERR_INIT_IMG, IMG_GetError()));
 	if ((wolf->sdl.window = SDL_CreateWindow(NAME_WIN, SDL_WINDOWPOS_UNDEFINED,
@@ -106,11 +110,13 @@ bool	initialization(t_wolf *wolf, char *map)
 		put_error_sys(ERR_MALLOC);
 		return (false);
 	}
-	if (init_sdl(wolf) == false)
+	if (pars_map(wolf, map) == 1)
 		return (false);
-	else if (pars_map(wolf, map) == 1)
+	else if (init_sdl(wolf) == false)
 		return (false);
 	else if (load_files(wolf->sdl.textures, wolf->sdl.render) == false)
 		return (false);
+	if ((wolf->sdl.mix.music[mix_menu] = Mix_LoadMUS(MIX_MENU_MUS)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
 	return (true);
 }
