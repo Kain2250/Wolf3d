@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/29 18:55:04 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/30 19:10:06 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef enum			e_texture
 	texture_sand,
 	texture_wood_box,
 	texture_wood_door,
+	texture_button_play,
 	texture_total
 }						t_texture;
 
@@ -61,15 +62,26 @@ typedef enum			e_font_tex
 	fnt_total
 }						t_font_tex;
 
-// typedef struct			s_font
-// {
-// 	TTF_Font			*font;
-// 	SDL_Color			text_color;
-// 	SDL_Texture			*texture;
-// 	int					width;
-// 	int					height;
-// 	int					size;
-// }						t_font;
+typedef enum			e_count_music
+{
+	mix_menu,
+	mix_game,
+	mix_step1,
+	mix_step2,
+	mix_step3,
+	mix_shot,
+	mix_total
+}						t_count_music;
+
+typedef struct			s_font
+{
+	TTF_Font			*font;
+	SDL_Color			text_color;
+	SDL_Texture			*texture;
+	int					width;
+	int					height;
+	int					size;
+}						t_font;
 
 typedef struct			s_mouse
 {
@@ -136,6 +148,15 @@ typedef struct			s_menu
 	SDL_Rect			*button_exit;
 }						t_menu;
 
+typedef struct			s_music
+{
+	Mix_Chunk			*scratch;
+	Mix_Chunk			*high;
+	Mix_Chunk			*medium;
+	Mix_Chunk			*low;
+	Mix_Music			*music[mix_total];
+}						t_music;
+
 typedef struct			s_sdl_sys
 {
 	SDL_Window			*window;
@@ -143,9 +164,12 @@ typedef struct			s_sdl_sys
 	SDL_Renderer		*render;
 	SDL_Texture			*textures[texture_total];
 	SDL_Surface			*picture[texture_total];
+	struct s_music		mix;
 	SDL_Event			event;
 	SDL_Rect			*rect_src;
 	SDL_Rect			*rect_dst;
+	int					width;
+	int					height;
 }						t_sdl_sys;
 
 typedef struct			s_walls
