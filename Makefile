@@ -24,13 +24,13 @@ SDL2_FLAGS = -lSDL2 -liconv  -Wl,-framework,CoreAudio \
 	-lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa \
 	-Wl,-framework,Carbon -Wl,-framework,IOKit \
 	-Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal \
-	-lSDL2_image #-lSDL2_mixer
+	-lSDL2_image -lSDL2_mixer 
 	#-lSDL2_ttf
 
 # Список библиотек и их пути:
 ALLLIBS = $(CURDIR)/allLibs
 LIBFT_DIRECTORY = $(ALLLIBS)/libft
-LIBSDL2_DIR = /usr/local/lib
+LIBSDL2_DIR = $(ALLLIBS)/SDL2_lib
 LIBSDL2 = $(LIBSDL2_DIR)/lib
 
 # Флаги для сборки библиотек
@@ -41,7 +41,7 @@ LIBRARIES_SDL_U = -L$(LIBSDL2) $(THREADS_FLAGS) $(OTHERS_FLAGS) $(SDL2_FLAGS)
 # Заголовочные файлы и их пути:
 INCLUDES_DIRECTORY = $(CURDIR)/includes
 INCLUDES_DIRECTORY_LIBFT = $(LIBFT_DIRECTORY)/includes
-INCLUDES_SDL2 = /usr/local/include/SDL2
+INCLUDES_SDL2 = $(LIBSDL2_DIR)/include/SDL2
 INCLUDES = -I$(INCLUDES_DIRECTORY) \
 		-I$(INCLUDES_DIRECTORY_LIBFT) \
 		-I$(INCLUDES_SDL2)

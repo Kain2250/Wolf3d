@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/29 18:55:04 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:31:17 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define WOLF3D_H
 
 # define NAME_WIN "Wolf3d (by Bdrinkin)"
-# define WIDTH_WIN 1024
-# define HEIGHT_WIN 720
+# define WIDTH_WIN 1280
+# define HEIGHT_WIN 1024
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
@@ -36,10 +36,11 @@
 # include "libft.h"
 # include "definetextures.h"
 # include "errorout.h"
-# include <SDL.h>
-# include <SDL_image.h>
+# include "SDL.h"
+# include "SDL_image.h"
 //# include "SDL_ttf.h"
-//# include <SDL_mixer.h>
+# include "SDL_mixer.h"
+# include <stdio.h>
 
 typedef enum			e_texture
 {
@@ -246,6 +247,7 @@ bool					put_error_sdl(char *error, const char *error_sdl);
 int						put_error_sys(char *error);
 
 int						pars_map(t_wolf *f, char *map);
+bool   					map_validation(char *line, t_wolf *w);
 
 void					fps_counter(t_wolf *wolf);
 
