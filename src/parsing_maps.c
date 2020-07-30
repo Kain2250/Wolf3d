@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_maps.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:23:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/27 10:45:16 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:43:27 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,49 @@ int			check_line(char *buff)
 	iter = 0;
 	while (buff[iter] != '\0')
 	{
+		
 		if (buff[iter] == '0' || buff[iter] == '1' ||
 			buff[iter] == '2' || buff[iter] == '3' ||
 			buff[iter] == '4' || buff[iter] == ' ')
+		{
+			printf("%d ", iter);
 			iter++;
+		}
 		else
 			return (0);
 	}
 	return (1);
+}
+
+int			size_validation(t_wolf *w, char *map)
+{
+	char	*buff;
+	int		fd;
+
+	printf("size_validation\n");
+	fd = open(map, O_RDONLY);
+	printf("%d\n", fd);
+	buff = read_line(fd);
+	printf("%s\n", buff);
+	close(fd);
+	if (!map_validation(buff, w))
+	{
+		printf("map\n");
+		free(buff);
+		return(error_exit(ERR_FILE_INVALID, NULL));
+	}
+	free(buff);
+
+	if (!(w->location.x_len >= 3) || !(w->location.y_len >= 3))
+	{
+		return (1);
+	}
+	fd = open(map, O_RDONLY);
+	buff = read_line(fd);
+	close(fd);
+	get_z(buff, w);
+	free(buff);
+	return (0);
 }
 
 int			pars_map(t_wolf *w, char *map)
@@ -118,13 +153,8 @@ int			pars_map(t_wolf *w, char *map)
 			return (error_exit(ERR_FILE_INVALID, buff));
 		ft_strdel(&buff);
 	}
-	if (!w->location.x_len && !w->location.y_len)
-		return (error_exit(ERR_FILE_INVALID, NULL));
 	close(fd);
-	fd = open(map, O_RDONLY);
-	buff = read_line(fd);
-	close(fd);
-	get_z(buff, w);
-	free(buff);
+	if (size_validation(w, map))
+		return(1);
 	return (0);
 }
