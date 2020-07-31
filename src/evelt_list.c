@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/30 15:26:15 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/31 22:37:10 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ void			clear_queue(void)
 
 void			event_key_hook(t_wolf *wolf)
 {
-	if (wolf->sdl.event.key.keysym.sym == SDLK_w)
+	if (wolf->sdl.event.key.keysym.sym == SDLK_w ||
+		wolf->sdl.event.key.keysym.sym == SDLK_UP)
 		move_player(wolf, DIR_FORWARD);
-	else if (wolf->sdl.event.key.keysym.sym == SDLK_s)
+	else if (wolf->sdl.event.key.keysym.sym == SDLK_s ||
+		wolf->sdl.event.key.keysym.sym == SDLK_DOWN)
 		move_player(wolf, DIR_BACK);
-	else if (wolf->sdl.event.key.keysym.sym == SDLK_d)
+	else if (wolf->sdl.event.key.keysym.sym == SDLK_d ||
+		wolf->sdl.event.key.keysym.sym == SDLK_RIGHT)
 		rotate_plane_and_cam(wolf, -wolf->mouse.rot_speed);
-	else if (wolf->sdl.event.key.keysym.sym == SDLK_a)
+	else if (wolf->sdl.event.key.keysym.sym == SDLK_a ||
+		wolf->sdl.event.key.keysym.sym == SDLK_LEFT)
 		rotate_plane_and_cam(wolf, wolf->mouse.rot_speed);
 	raycasting(wolf);
 	
@@ -43,6 +47,23 @@ void			event_mouse_hook(t_wolf *wolf)
 	clear_queue();
 }
 
+void			chenge_fov(t_wolf *wolf)
+{
+	if (wolf->sdl.event.key.keysym.sym == SDLK_e)
+	{
+		wolf->player.plane_x += 0.1;
+		wolf->player.plane_y += 0.1;
+	}
+	else if (wolf->sdl.event.key.keysym.sym == SDLK_q)
+	{
+		wolf->player.plane_x -= 0.1;
+		wolf->player.plane_y -= 0.1;
+	}
+	raycasting(wolf);
+	// printf("%f\n", wolf->player.plane_x);
+	// printf("%f\n\n", wolf->player.plane_y);
+}
+
 bool			event_list(t_wolf *wolf)
 {
 	SDL_WaitEvent(&wolf->sdl.event);
@@ -53,6 +74,9 @@ bool			event_list(t_wolf *wolf)
 	if (wolf->menu.menu == true)
 	{
 		if (wolf->sdl.event.type == SDL_KEYDOWN &&
+			(wolf->sdl.event.key.keysym.sym == SDLK_e || wolf->sdl.event.key.keysym.sym == SDLK_q))
+			chenge_fov(wolf);
+		if (wolf->sdl.event.type == SDL_KEYDOWN &&
 			wolf->sdl.event.key.keysym.sym == SDLK_j)
 			SDL_SetRelativeMouseMode(SDL_FALSE);
 		if (wolf->sdl.event.type == SDL_KEYDOWN &&
@@ -62,7 +86,11 @@ bool			event_list(t_wolf *wolf)
 			(wolf->sdl.event.key.keysym.sym == SDLK_a ||
 			wolf->sdl.event.key.keysym.sym == SDLK_s ||
 			wolf->sdl.event.key.keysym.sym == SDLK_w ||
-			wolf->sdl.event.key.keysym.sym == SDLK_d))
+			wolf->sdl.event.key.keysym.sym == SDLK_d ||
+			wolf->sdl.event.key.keysym.sym == SDLK_UP ||
+			wolf->sdl.event.key.keysym.sym == SDLK_DOWN ||
+			wolf->sdl.event.key.keysym.sym == SDLK_LEFT ||
+			wolf->sdl.event.key.keysym.sym == SDLK_RIGHT))
 			event_key_hook(wolf);
 		else if(wolf->sdl.event.type == SDL_MOUSEMOTION)
 			event_mouse_hook(wolf);

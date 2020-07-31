@@ -6,14 +6,14 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 19:41:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/30 11:03:54 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/31 21:32:22 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
 void			render_screen(SDL_Renderer *render,
-				t_walls *walls, int x, int y)
+				t_walls *walls, int x, int y, t_wolf *wolf)
 {
 	SDL_SetRenderDrawColor(render, COLOR_SKY);
 	SDL_RenderDrawLine(render, x, 0, x, walls->draw_start);
@@ -21,18 +21,18 @@ void			render_screen(SDL_Renderer *render,
 	walls->color->g, walls->color->b, walls->color->a);
 	SDL_RenderDrawLine(render, x, walls->draw_start, y, walls->draw_end);
 	SDL_SetRenderDrawColor(render, COLOR_FLOR);
-	SDL_RenderDrawLine(render, x, walls->draw_end, x, HEIGHT_WIN);
+	SDL_RenderDrawLine(render, x, walls->draw_end, x, wolf->sdl.height);
 }
 
 void			getting_the_height_to_the_wall(t_wolf *wolf, t_walls *walls)
 {
-	walls->line_height = (int)(HEIGHT_WIN / wolf->player.perp_wall_dist);
-	walls->draw_start = -walls->line_height / 2 + HEIGHT_WIN / 2;
+	walls->line_height = (int)(wolf->sdl.height / wolf->player.perp_wall_dist);
+	walls->draw_start = -walls->line_height / 2 + wolf->sdl.height / 2;
 	if (walls->draw_start < 0)
 		walls->draw_start = 0;
-	walls->draw_end = walls->line_height / 2 + HEIGHT_WIN / 2;
-	if (walls->draw_end >= HEIGHT_WIN)
-		walls->draw_end = HEIGHT_WIN - 1;
+	walls->draw_end = walls->line_height / 2 + wolf->sdl.height / 2;
+	if (walls->draw_end >= wolf->sdl.height)
+		walls->draw_end = wolf->sdl.height - 1;
 }
 
 void			find_hit(t_wolf *wolf)
