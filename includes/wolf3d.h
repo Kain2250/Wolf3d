@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/31 17:12:47 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/07/31 22:09:30 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@
 
 # include <math.h>
 # include <stdbool.h>
-# include "debug_file.h"
 # include "libft.h"
 # include "definetextures.h"
 # include "errorout.h"
 # include "SDL.h"
 # include "SDL_image.h"
-//# include "SDL_ttf.h"
 # include "SDL_mixer.h"
 # include <stdio.h>
 
@@ -55,14 +53,6 @@ typedef enum			e_texture
 	texture_total
 }						t_texture;
 
-typedef enum			e_font_tex
-{
-	fnt_new_g,
-	fnt_ext_g,
-	fnt_cntn,
-	fnt_total
-}						t_font_tex;
-
 typedef enum			e_count_music
 {
 	mix_menu,
@@ -73,16 +63,6 @@ typedef enum			e_count_music
 	mix_shot,
 	mix_total
 }						t_count_music;
-
-typedef struct			s_font
-{
-	TTF_Font			*font;
-	SDL_Color			text_color;
-	SDL_Texture			*texture;
-	int					width;
-	int					height;
-	int					size;
-}						t_font;
 
 typedef struct			s_mouse
 {
@@ -201,7 +181,6 @@ typedef struct			s_wolf
 	struct s_timer		*time;
 	struct s_menu		menu;
 	struct s_walls		walls;
-	// struct s_font		*font[fnt_total];
 	bool				quit;
 }						t_wolf;
 /*
@@ -259,7 +238,7 @@ void					find_hit(t_wolf *wolf);
 void					getting_the_height_to_the_wall(t_wolf *wolf,
 						t_walls *walls);
 void					render_screen(SDL_Renderer *render, t_walls *walls,
-						int x, int y);
+						int x, int y, t_wolf *wolf);
 /*
 ** Функции выбора цвета
 */

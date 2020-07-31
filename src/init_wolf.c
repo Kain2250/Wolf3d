@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/31 20:27:23 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/31 22:32:54 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,27 @@ void	quit_sdl(t_wolf *wolf)
 		else
 			i++;
 	}
-	// Mix_Quit();
-	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
-	free(wolf->location.flor);
-	free(wolf->location.sky);
 	free(wolf->time);
 	free(wolf);
 }
 
 void	filling_var(t_wolf *wolf)
 {
-	wolf->player.pos_x = 2;
-	wolf->player.pos_y = 2;
-	wolf->player.dir_x = -1;
-	wolf->player.dir_y = 0;
-	wolf->player.plane_x = 0;
-	wolf->player.plane_y = 0.66;
+	SDL_GetWindowSize(wolf->sdl.window, &wolf->sdl.width, &wolf->sdl.height);
+	wolf->player.dir_x = -1.f;
+	wolf->player.dir_y = 0.f;
+	wolf->player.plane_x = 0.f;
+	wolf->player.plane_y = 0.65;
 	wolf->mouse.move_speed = 0.2;
 	wolf->mouse.rot_speed = 0.019;
 	wolf->menu.button_new = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
 	wolf->menu.button_exit = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
 	wolf->menu.button_new->h = 150;
 	wolf->menu.button_new->w = 250;
-	wolf->menu.button_new->x = WIDTH_WIN / 3 * 2;
-	wolf->menu.button_new->y = HEIGHT_WIN / 3 * 2;
+	wolf->menu.button_new->x = wolf->sdl.width / 3 * 2;
+	wolf->menu.button_new->y = wolf->sdl.height / 3 * 2;
 }
 
 bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
@@ -87,8 +82,6 @@ bool	init_sdl(t_wolf *wolf)
 		return (put_error_sdl(ERR_INIT_SDL, SDL_GetError()));
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		return (put_error_sdl(ERR_INIT_MIX, Mix_GetError()));
-	if (TTF_Init() == -1)
-		return (put_error_sdl(ERR_INIT_TTF, SDL_GetError()));
 	if (!(IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG))
 		return (put_error_sdl(ERR_INIT_IMG, IMG_GetError()));
 	if ((wolf->sdl.window = SDL_CreateWindow(NAME_WIN, SDL_WINDOWPOS_UNDEFINED,
