@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/30 18:31:17 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/07/31 17:12:47 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define WOLF3D_H
 
 # define NAME_WIN "Wolf3d (by Bdrinkin)"
-# define WIDTH_WIN 1280
-# define HEIGHT_WIN 1024
+# define WIDTH_WIN 2000
+# define HEIGHT_WIN 1500
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
@@ -248,6 +248,8 @@ int						put_error_sys(char *error);
 
 int						pars_map(t_wolf *f, char *map);
 bool   					map_validation(char *line, t_wolf *w);
+bool					user_placing(t_wolf *w, char *line);
+void					denine(t_wolf *w);
 
 void					fps_counter(t_wolf *wolf);
 
