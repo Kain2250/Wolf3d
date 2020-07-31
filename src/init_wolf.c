@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/30 19:57:10 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/07/31 20:27:23 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	quit_sdl(t_wolf *wolf)
 
 void	filling_var(t_wolf *wolf)
 {
-	wolf->player.pos_x = 12;
-	wolf->player.pos_y = 12;
+	wolf->player.pos_x = 2;
+	wolf->player.pos_y = 2;
 	wolf->player.dir_x = -1;
 	wolf->player.dir_y = 0;
 	wolf->player.plane_x = 0;
@@ -85,8 +85,6 @@ bool	init_sdl(t_wolf *wolf)
 		SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC |
 		SDL_INIT_GAMECONTROLLER) == -1)
 		return (put_error_sdl(ERR_INIT_SDL, SDL_GetError()));
-	// if (Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS) == 0)
-	// 	return (put_error_sdl(ERR_INIT_MIX, Mix_GetError()));
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		return (put_error_sdl(ERR_INIT_MIX, Mix_GetError()));
 	if (TTF_Init() == -1)
