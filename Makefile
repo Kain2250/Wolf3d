@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/07/31 20:46:47 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/07/31 23:06:04 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,6 @@ NAME = wolf3d
 # Флаги компиляции:
 GCC = gcc
 CCFLAGS = -Wall -Wextra -Werror
-FLAGS = -O3
-THREADS_FLAGS = -lpthread
 OTHERS_FLAGS = -lm
 SDL2_FLAGS = -lSDL2 -liconv  -Wl,-framework,CoreAudio \
 	-Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback \
@@ -34,8 +32,7 @@ LIBSDL2 = $(LIBSDL2_DIR)/lib
 
 # Флаги для сборки библиотек
 LIBRARIES_LIBFT = -L$(LIBFT_DIRECTORY) -lft
-LIBRARIES_SDL_U = -L$(LIBSDL2) $(THREADS_FLAGS) $(OTHERS_FLAGS) $(SDL2_FLAGS)
-				# $$(sdl2-config --cflags --libs)
+LIBRARIES_SDL2 = -L$(LIBSDL2) $(SDL2_FLAGS)
 
 # Заголовочные файлы и их пути:
 INCLUDES_DIRECTORY = $(CURDIR)/includes
@@ -68,8 +65,13 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME):
-	@$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) -L$(LIBSDL2) \
-	$(SDL2_FLAGS) $(OTHERS_FLAGS) $(SRC) -o $(NAME)
+	@$(GCC) $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
+	$(OTHERS_FLAGS) $(SRC) -o $(NAME)
+
+sdl2:
+	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2$(RESET)"
+	@sh $(CURDIR)/configure.sh
+	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2 завершена$(RESET)"
 
 clean:
 	@echo "$(NAME): $(RED)Объектные файлы удалены$(RESET)"
