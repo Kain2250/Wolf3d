@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:23:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/30 18:43:27 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/07/31 17:25:09 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,9 @@ int			check_line(char *buff)
 		
 		if (buff[iter] == '0' || buff[iter] == '1' ||
 			buff[iter] == '2' || buff[iter] == '3' ||
-			buff[iter] == '4' || buff[iter] == ' ')
-		{
-			printf("%d ", iter);
+			buff[iter] == '4' || buff[iter] == ' ' || 
+			buff[iter] == '9')
 			iter++;
-		}
 		else
 			return (0);
 	}
@@ -109,28 +107,22 @@ int			size_validation(t_wolf *w, char *map)
 	char	*buff;
 	int		fd;
 
-	printf("size_validation\n");
 	fd = open(map, O_RDONLY);
-	printf("%d\n", fd);
 	buff = read_line(fd);
-	printf("%s\n", buff);
 	close(fd);
 	if (!map_validation(buff, w))
 	{
-		printf("map\n");
 		free(buff);
 		return(error_exit(ERR_FILE_INVALID, NULL));
 	}
 	free(buff);
-
 	if (!(w->location.x_len >= 3) || !(w->location.y_len >= 3))
-	{
 		return (1);
-	}
 	fd = open(map, O_RDONLY);
 	buff = read_line(fd);
 	close(fd);
 	get_z(buff, w);
+	denine(w);
 	free(buff);
 	return (0);
 }
