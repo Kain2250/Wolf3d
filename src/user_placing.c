@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   user_placing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 14:25:12 by mcarc             #+#    #+#             */
-/*   Updated: 2020/07/31 17:35:36 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/01 09:17:18 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		denine(t_wolf *w)
+void			denine(t_wolf *w)
 {
 	w->location.map[(int)w->player.pos_x][(int)w->player.pos_y] = '0';
 }
 
-static bool	evaluate_user_position(t_wolf *w)
+static bool		evaluate_user_position(t_wolf *w)
 {
 	if (w->player.pos_x == -1 || w->player.pos_y == -1)
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
 
-static void  line_user_placing(t_wolf *w, int y, char **sline)
+static void		line_user_placing(t_wolf *w, int y, char **sline)
 {
-	int x;
-	static int counter = 0;
+	int			x;
+	static int	counter = 0;
 
 	x = 0;
 	while (x < w->location.x_len)
@@ -47,11 +47,11 @@ static void  line_user_placing(t_wolf *w, int y, char **sline)
 	}
 }
 
-bool     user_placing(t_wolf *w, char *line)
+bool			user_placing(t_wolf *w, char *line)
 {
-	int		y;
-	char	**split;
-	char	**sline;
+	int			y;
+	char		**split;
+	char		**sline;
 
 	sline = ft_strsplit(line, '\n');
 	y = 0;
@@ -65,5 +65,5 @@ bool     user_placing(t_wolf *w, char *line)
 		y++;
 	}
 	ft_free_split(sline);
-    return (evaluate_user_position(w));
+	return (evaluate_user_position(w));
 }

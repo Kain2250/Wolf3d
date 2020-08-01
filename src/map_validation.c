@@ -3,16 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 16:03:36 by mcarc             #+#    #+#             */
-/*   Updated: 2020/07/31 19:56:57 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/01 09:19:12 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-bool	line_validation(char *buff, t_wolf *w)
+int			size_validation(t_wolf *w, char *map)
+{
+	char	*buff;
+	int		fd;
+
+	fd = open(map, O_RDONLY);
+	buff = read_line(fd);
+	close(fd);
+	if (!map_validation(buff, w))
+	{
+		free(buff);
+		return (error_exit(ERR_FILE_INVALID, NULL));
+	}
+	free(buff);
+	if (!(w->location.x_len >= 3) || !(w->location.y_len >= 3))
+		return (1);
+	fd = open(map, O_RDONLY);
+	buff = read_line(fd);
+	close(fd);
+	get_z(buff, w);
+	denine(w);
+	free(buff);
+	return (0);
+}
+
+bool		line_validation(char *buff, t_wolf *w)
 {
 	char	**split;
 
@@ -26,7 +51,7 @@ bool	line_validation(char *buff, t_wolf *w)
 	return (true);
 }
 
-bool	topline_validation(char *buff, t_wolf *w)
+bool		topline_validation(char *buff, t_wolf *w)
 {
 	char	**split;
 	int		x;
@@ -46,11 +71,11 @@ bool	topline_validation(char *buff, t_wolf *w)
 	return (true);
 }
 
-bool	map_validation(char *line, t_wolf *w)
+bool		map_validation(char *line, t_wolf *w)
 {
 	char	**sline;
-    int		y;
-    bool	placing;
+	int		y;
+	bool	placing;
 
 	sline = ft_strsplit(line, '\n');
 	y = 0;
