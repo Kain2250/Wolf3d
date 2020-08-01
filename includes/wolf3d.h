@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/01 10:31:44 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:27:25 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,18 @@ typedef enum			e_texture
 	texture_total
 }						t_texture;
 
+typedef enum			e_count_chank
+{
+	mix_step1,
+	mix_step2,
+	mix_step3,
+	mix_step_total
+}						t_count_chank;
+
 typedef enum			e_count_music
 {
 	mix_menu,
 	mix_game,
-	mix_step1,
 	mix_total
 }						t_count_music;
 
@@ -90,6 +97,7 @@ typedef struct			s_player
 	int					step_y;
 	int					hit;
 	int					side;
+	int					sit;
 	bool				player;
 }						t_player;
 
@@ -114,7 +122,7 @@ typedef struct			s_menu
 
 typedef struct			s_music
 {
-	Mix_Chunk			*steps;
+	Mix_Chunk			*steps[mix_step_total];
 	Mix_Music			*music[mix_total];
 }						t_music;
 

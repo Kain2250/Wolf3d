@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 22:43:03 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/01 10:10:54 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 16:01:11 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@
 # define MIX_MENU_MUS "resource/music/main_menu.wav"
 # define MIX_STEP "resource/music/step.wav"
 # define MIX_GAME "resource/music/game_music.wav"
+# define MIX_STEP1 "resource/music/step1.wav"
+# define MIX_STEP2 "resource/music/step2.wav"
+# define MIX_STEP3 "resource/music/step3.wav"
+# define MIX_STEP4 "resource/music/step4.wav"
 
 #endif
