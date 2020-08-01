@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:04 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/31 20:24:01 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 09:26:00 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ int			error_exit(char *err, char *buff)
 		free(buff);
 	ft_putendl_fd(err, ERR_FD);
 	return (1);
+}
+
+void		clear_queue(void)
+{
+	SDL_EventState(SDL_KEYDOWN, SDL_DISABLE);
+	SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);
+	SDL_EventState(SDL_MOUSEMOTION, SDL_DISABLE);
+	SDL_EventState(SDL_MOUSEMOTION, SDL_ENABLE);
 }
 
 bool		is_button_area(SDL_MouseButtonEvent event,

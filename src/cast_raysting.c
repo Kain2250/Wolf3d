@@ -6,22 +6,23 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 19:41:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/31 21:32:22 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 09:30:06 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void			render_screen(SDL_Renderer *render,
-				t_walls *walls, int x, int y, t_wolf *wolf)
+void			render_screen(t_walls *walls, int x, int y, t_wolf *wolf)
 {
-	SDL_SetRenderDrawColor(render, COLOR_SKY);
-	SDL_RenderDrawLine(render, x, 0, x, walls->draw_start);
-	SDL_SetRenderDrawColor(render, walls->color->r,
+	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
+	SDL_RenderDrawLine(wolf->sdl.render, x, 0, x, walls->draw_start);
+	SDL_SetRenderDrawColor(wolf->sdl.render, walls->color->r,
 	walls->color->g, walls->color->b, walls->color->a);
-	SDL_RenderDrawLine(render, x, walls->draw_start, y, walls->draw_end);
-	SDL_SetRenderDrawColor(render, COLOR_FLOR);
-	SDL_RenderDrawLine(render, x, walls->draw_end, x, wolf->sdl.height);
+	SDL_RenderDrawLine(wolf->sdl.render, x,
+	walls->draw_start, y, walls->draw_end);
+	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
+	SDL_RenderDrawLine(wolf->sdl.render, x,
+	walls->draw_end, x, wolf->sdl.height);
 }
 
 void			getting_the_height_to_the_wall(t_wolf *wolf, t_walls *walls)

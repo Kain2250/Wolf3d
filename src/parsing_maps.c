@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_maps.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:23:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/31 17:25:09 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/01 09:20:22 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,41 +90,15 @@ int			check_line(char *buff)
 	iter = 0;
 	while (buff[iter] != '\0')
 	{
-		
 		if (buff[iter] == '0' || buff[iter] == '1' ||
 			buff[iter] == '2' || buff[iter] == '3' ||
-			buff[iter] == '4' || buff[iter] == ' ' || 
+			buff[iter] == '4' || buff[iter] == ' ' ||
 			buff[iter] == '9')
 			iter++;
 		else
 			return (0);
 	}
 	return (1);
-}
-
-int			size_validation(t_wolf *w, char *map)
-{
-	char	*buff;
-	int		fd;
-
-	fd = open(map, O_RDONLY);
-	buff = read_line(fd);
-	close(fd);
-	if (!map_validation(buff, w))
-	{
-		free(buff);
-		return(error_exit(ERR_FILE_INVALID, NULL));
-	}
-	free(buff);
-	if (!(w->location.x_len >= 3) || !(w->location.y_len >= 3))
-		return (1);
-	fd = open(map, O_RDONLY);
-	buff = read_line(fd);
-	close(fd);
-	get_z(buff, w);
-	denine(w);
-	free(buff);
-	return (0);
 }
 
 int			pars_map(t_wolf *w, char *map)
@@ -147,6 +121,6 @@ int			pars_map(t_wolf *w, char *map)
 	}
 	close(fd);
 	if (size_validation(w, map))
-		return(1);
+		return (1);
 	return (0);
 }

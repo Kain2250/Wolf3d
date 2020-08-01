@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/31 22:09:30 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 09:31:07 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,8 @@ void					ray_computation(t_wolf *wolf);
 void					find_hit(t_wolf *wolf);
 void					getting_the_height_to_the_wall(t_wolf *wolf,
 						t_walls *walls);
-void					render_screen(SDL_Renderer *render, t_walls *walls,
-						int x, int y, t_wolf *wolf);
+void					render_screen(t_walls *walls, int x,
+						int y, t_wolf *wolf);
 /*
 ** Функции выбора цвета
 */
@@ -250,7 +250,7 @@ bool					put_error_sdl(char *error, const char *error_sdl);
 int						put_error_sys(char *error);
 
 int						pars_map(t_wolf *f, char *map);
-bool   					map_validation(char *line, t_wolf *w);
+bool					map_validation(char *line, t_wolf *w);
 bool					user_placing(t_wolf *w, char *line);
 void					denine(t_wolf *w);
 
