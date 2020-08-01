@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 19:41:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/01 09:30:06 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:26:59 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ void			render_screen(t_walls *walls, int x, int y, t_wolf *wolf)
 void			getting_the_height_to_the_wall(t_wolf *wolf, t_walls *walls)
 {
 	walls->line_height = (int)(wolf->sdl.height / wolf->player.perp_wall_dist);
-	walls->draw_start = -walls->line_height / 2 + wolf->sdl.height / 2;
+	walls->draw_start = -walls->line_height / 2 + wolf->sdl.height /
+	2 + wolf->player.sit;
 	if (walls->draw_start < 0)
 		walls->draw_start = 0;
-	walls->draw_end = walls->line_height / 2 + wolf->sdl.height / 2;
+	walls->draw_end = walls->line_height / 2 + wolf->sdl.height /
+	2 + wolf->player.sit;
 	if (walls->draw_end >= wolf->sdl.height)
 		walls->draw_end = wolf->sdl.height - 1;
 }

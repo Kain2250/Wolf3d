@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/01 09:25:23 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:39:54 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void			event_key_hook(t_wolf *wolf)
 	else if (wolf->sdl.event.key.keysym.sym == SDLK_a ||
 		wolf->sdl.event.key.keysym.sym == SDLK_LEFT)
 		rotate_plane_and_cam(wolf, wolf->mouse.rot_speed);
+	if (Mix_Playing(2) == 0)
+		Mix_PlayChannel(2, wolf->sdl.mix.steps[time(NULL) % 3], 0);
 	raycasting(wolf);
 }
 
@@ -34,6 +36,7 @@ void			event_mouse_hook(t_wolf *wolf)
 {
 	rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
 	* wolf->mouse.rot_speed);
+	wolf->player.sit += -atan(wolf->sdl.event.motion.yrel) * 10;
 	raycasting(wolf);
 	clear_queue();
 }
@@ -75,6 +78,15 @@ bool			event_list(t_wolf *wolf)
 		wolf->quit = true;
 	if (wolf->menu.menu == true)
 	{
+		if (wolf->sdl.event.type == SDL_KEYDOWN &&
+			wolf->sdl.event.key.keysym.sym == SDLK_LSHIFT)
+			wolf->mouse.move_speed = 0.2;
+		else if (wolf->sdl.event.type == SDL_KEYUP &&
+			wolf->sdl.event.key.keysym.sym == SDLK_LSHIFT)
+			wolf->mouse.move_speed = 0.1;
+		if (wolf->sdl.event.type == SDL_KEYDOWN &&
+			wolf->sdl.event.key.keysym.sym == SDLK_LCTRL)
+			wolf->player.sit *= -1;
 		if (wolf->sdl.event.type == SDL_KEYDOWN &&
 			(wolf->sdl.event.key.keysym.sym == SDLK_e ||
 			wolf->sdl.event.key.keysym.sym == SDLK_q))
