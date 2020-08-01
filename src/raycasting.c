@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/31 22:13:02 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 09:28:35 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				raycasting(t_wolf *wolf)
 	int			x_screen;
 	double		width;
 	t_walls		*walls;
-	
+
 	SDL_GetWindowSize(wolf->sdl.window, &wolf->sdl.width, &wolf->sdl.height);
 	clear_screen(wolf->sdl.render);
 	x_screen = 0;
@@ -58,7 +58,7 @@ int				raycasting(t_wolf *wolf)
 		find_hit(wolf);
 		getting_the_height_to_the_wall(wolf, walls);
 		calculate_foog(wolf, walls);
-		render_screen(wolf->sdl.render, walls, x_screen, x_screen, wolf);
+		render_screen(wolf->sdl.render, walls, x_screen, wolf);
 		x_screen++;
 		free(walls->color);
 	}

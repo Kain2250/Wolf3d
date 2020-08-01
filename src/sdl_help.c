@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 18:42:09 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/27 15:25:46 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 09:26:27 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void	clear_screen(SDL_Renderer *render)
 
 bool	event_exit(t_wolf *wolf)
 {
-	if (wolf->sdl.event.type == SDL_QUIT || (wolf->sdl.event.type == SDL_KEYDOWN &&
-		wolf->sdl.event.key.keysym.sym == SDLK_ESCAPE))
+	if (wolf->sdl.event.type == SDL_QUIT ||
+	(wolf->sdl.event.type == SDL_KEYDOWN &&
+	wolf->sdl.event.key.keysym.sym == SDLK_ESCAPE))
 		return (true);
 	else
 		return (false);
