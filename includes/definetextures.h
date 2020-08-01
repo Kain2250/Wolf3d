@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 22:43:03 by kain2250          #+#    #+#             */
-/*   Updated: 2020/07/30 18:35:37 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 10:10:54 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # define TEX_WOOD_DOOR "resource/textures/wood_door.jpg"
 # define TEX_WOOD_BOX_SIDE "resource/textures/wood_box_side.jpg"
 # define FONT_MAIN "resource/font/1_font.ttf"
-# define TEX_BUTTON_PLAY "resource/textures/start.png"
+# define TEX_BUTTON_START "resource/textures/start_button.png"
+# define TEX_BUTTON_EXIT "resource/textures/exit_button.png"
 # define MIX_MENU_MUS "resource/music/main_menu.wav"
 # define MIX_STEP "resource/music/step.wav"
 # define MIX_GAME "resource/music/game_music.wav"
