@@ -18,5 +18,6 @@ git clone https://github.com/davidsiaw/SDL2_mixer.git temp_src/SDL2_mixer
 make
 make install
 make clean
+make distclean
 rm -rf temp_src/SDL2_mixer
  

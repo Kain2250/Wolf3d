@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/07/31 23:06:04 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/01 08:57:49 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,8 +65,10 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME):
+	@echo "wolf3d: $(GREEN)Компиляция исполняемого файла$(RESET)"
 	@$(GCC) $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
 	$(OTHERS_FLAGS) $(SRC) -o $(NAME)
+	@echo "wolf3d: $(GREEN)Компиляция завершена$(RESET)"
 
 sdl2:
 	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2$(RESET)"
@@ -74,11 +76,22 @@ sdl2:
 	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2 завершена$(RESET)"
 
 clean:
+	@rm -rf $(ALLLIBS)/.deps
+	@rm -f $(ALLLIBS)/*.rules
+	@rm -f $(ALLLIBS)/*.spec
+	@rm -f $(ALLLIBS)/*.cmake
+	@rm -f $(ALLLIBS)/*.pc
+	@rm -rf $(ALLLIBS)/include/
+	@rm -rf $(ALLLIBS)/temp_src
+	@echo "$(NAME): $(RED)Объектные и вспомогательные файлы SDL2 удалены$(RESET)"
+	@rm -rf $(CURDIR)/objects
 	@echo "$(NAME): $(RED)Объектные файлы удалены$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME): $(RED)$(NAME)Удалено$(RESET)"
+	@echo "$(NAME): $(RED)Исполняемый файл $(NAME) удален$(RESET)"
+	# @rm -rf $(LIBSDL2_DIR)
+	# @echo "$(NAME): $(RED)Библиотека SDL2 удалена$(RESET)"
 
 re:
 	@$(MAKE) fclean
