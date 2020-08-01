@@ -6,35 +6,28 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 16:03:36 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/01 09:19:12 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 09:47:50 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int			size_validation(t_wolf *w, char *map)
+int			check_line(char *buff)
 {
-	char	*buff;
-	int		fd;
+	int		iter;
 
-	fd = open(map, O_RDONLY);
-	buff = read_line(fd);
-	close(fd);
-	if (!map_validation(buff, w))
+	iter = 0;
+	while (buff[iter] != '\0')
 	{
-		free(buff);
-		return (error_exit(ERR_FILE_INVALID, NULL));
+		if (buff[iter] == '0' || buff[iter] == '1' ||
+			buff[iter] == '2' || buff[iter] == '3' ||
+			buff[iter] == '4' || buff[iter] == ' ' ||
+			buff[iter] == '9')
+			iter++;
+		else
+			return (0);
 	}
-	free(buff);
-	if (!(w->location.x_len >= 3) || !(w->location.y_len >= 3))
-		return (1);
-	fd = open(map, O_RDONLY);
-	buff = read_line(fd);
-	close(fd);
-	get_z(buff, w);
-	denine(w);
-	free(buff);
-	return (0);
+	return (1);
 }
 
 bool		line_validation(char *buff, t_wolf *w)

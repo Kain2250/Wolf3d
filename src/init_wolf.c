@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/31 22:32:54 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 10:33:45 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,19 @@ void	quit_sdl(t_wolf *wolf)
 	}
 	IMG_Quit();
 	SDL_Quit();
-	free(wolf->time);
+	if (wolf->time != NULL)
+		free(wolf->time);
 	free(wolf);
 }
 
 void	filling_var(t_wolf *wolf)
 {
-	SDL_GetWindowSize(wolf->sdl.window, &wolf->sdl.width, &wolf->sdl.height);
 	wolf->player.dir_x = -1.f;
 	wolf->player.dir_y = 0.f;
 	wolf->player.plane_x = 0.f;
 	wolf->player.plane_y = 0.65;
 	wolf->mouse.move_speed = 0.2;
 	wolf->mouse.rot_speed = 0.019;
-	wolf->menu.button_new = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
-	wolf->menu.button_exit = (SDL_Rect *)ft_memalloc(sizeof(SDL_Rect));
-	wolf->menu.button_new->h = 150;
-	wolf->menu.button_new->w = 250;
-	wolf->menu.button_new->x = wolf->sdl.width / 3 * 2;
-	wolf->menu.button_new->y = wolf->sdl.height / 3 * 2;
 }
 
 bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
@@ -62,7 +56,8 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 	textures[texture_sand] = IMG_LoadTexture(render, TEX_SAND);
 	textures[texture_wood_box] = IMG_LoadTexture(render, TEX_WOOD_BOX_SIDE);
 	textures[texture_wood_door] = IMG_LoadTexture(render, TEX_WOOD_DOOR);
-	textures[texture_button_play] = IMG_LoadTexture(render, TEX_BUTTON_PLAY);
+	textures[texture_button_start] = IMG_LoadTexture(render, TEX_BUTTON_START);
+	textures[texture_button_exit] = IMG_LoadTexture(render, TEX_BUTTON_EXIT);
 	i = 0;
 	while (i != texture_total)
 	{
