@@ -6,14 +6,14 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/01 09:31:07 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 10:31:44 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define NAME_WIN "Wolf3d (by Bdrinkin)"
+# define NAME_WIN "Wolf3d (by Bdrinkin & Mcarc)"
 # define WIDTH_WIN 2000
 # define HEIGHT_WIN 1500
 # define BPERPIX 32
@@ -49,7 +49,8 @@ typedef enum			e_texture
 	texture_sand,
 	texture_wood_box,
 	texture_wood_door,
-	texture_button_play,
+	texture_button_start,
+	texture_button_exit,
 	texture_total
 }						t_texture;
 
@@ -58,20 +59,11 @@ typedef enum			e_count_music
 	mix_menu,
 	mix_game,
 	mix_step1,
-	mix_step2,
-	mix_step3,
-	mix_shot,
 	mix_total
 }						t_count_music;
 
 typedef struct			s_mouse
 {
-	int					prew_x;
-	int					prew_y;
-	int					x;
-	int					y;
-	int					l_click;
-	int					r_click;
 	float				move_speed;
 	float				rot_speed;
 }						t_mose;
@@ -112,29 +104,17 @@ typedef struct			s_location
 	char				**map;
 }						t_location;
 
-typedef struct			s_hitbox
-{
-	int					x_start;
-	int					y_start;
-	int					x_fin;
-	int					y_fin;
-}						t_hitbox;
-
 typedef struct			s_menu
 {
 	bool				menu;
 	bool				pause;
-	SDL_Rect			*button_contine;
 	SDL_Rect			*button_new;
 	SDL_Rect			*button_exit;
 }						t_menu;
 
 typedef struct			s_music
 {
-	Mix_Chunk			*scratch;
-	Mix_Chunk			*high;
-	Mix_Chunk			*medium;
-	Mix_Chunk			*low;
+	Mix_Chunk			*steps;
 	Mix_Music			*music[mix_total];
 }						t_music;
 
@@ -252,11 +232,16 @@ int						put_error_sys(char *error);
 int						pars_map(t_wolf *f, char *map);
 bool					map_validation(char *line, t_wolf *w);
 bool					user_placing(t_wolf *w, char *line);
+int						check_line(char *buff);
 void					denine(t_wolf *w);
 
 void					fps_counter(t_wolf *wolf);
 
 void					clear_queue(void);
+void					set_button(t_wolf *wolf);
+bool					is_button_area(SDL_MouseButtonEvent event,
+						SDL_Rect *area, int button);
+
 
 bool					init_sdl(t_wolf *wolf);
 void					quit_sdl(t_wolf *wolf);

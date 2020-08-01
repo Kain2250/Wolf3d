@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:23:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/01 09:20:22 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 09:46:34 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,29 @@ static char	*read_line(int fd)
 	return (buff2);
 }
 
-int			check_line(char *buff)
+int			size_validation(t_wolf *w, char *map)
 {
-	int		iter;
+	char	*buff;
+	int		fd;
 
-	iter = 0;
-	while (buff[iter] != '\0')
+	fd = open(map, O_RDONLY);
+	buff = read_line(fd);
+	close(fd);
+	if (!map_validation(buff, w))
 	{
-		if (buff[iter] == '0' || buff[iter] == '1' ||
-			buff[iter] == '2' || buff[iter] == '3' ||
-			buff[iter] == '4' || buff[iter] == ' ' ||
-			buff[iter] == '9')
-			iter++;
-		else
-			return (0);
+		free(buff);
+		return (error_exit(ERR_FILE_INVALID, NULL));
 	}
-	return (1);
+	free(buff);
+	if (!(w->location.x_len >= 3) || !(w->location.y_len >= 3))
+		return (1);
+	fd = open(map, O_RDONLY);
+	buff = read_line(fd);
+	close(fd);
+	get_z(buff, w);
+	denine(w);
+	free(buff);
+	return (0);
 }
 
 int			pars_map(t_wolf *w, char *map)
