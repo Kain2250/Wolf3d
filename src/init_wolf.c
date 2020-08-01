@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/01 10:33:45 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/01 18:35:19 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	filling_var(t_wolf *wolf)
 	wolf->player.dir_y = 0.f;
 	wolf->player.plane_x = 0.f;
 	wolf->player.plane_y = 0.65;
-	wolf->mouse.move_speed = 0.2;
+	wolf->mouse.move_speed = 0.1;
 	wolf->mouse.rot_speed = 0.019;
+	wolf->player.sit = 2;
 }
 
 bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
@@ -103,6 +104,14 @@ bool	initialization(t_wolf *wolf, char *map)
 	else if (load_files(wolf->sdl.textures, wolf->sdl.render) == false)
 		return (false);
 	if ((wolf->sdl.mix.music[mix_menu] = Mix_LoadMUS(MIX_MENU_MUS)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
+	if ((wolf->sdl.mix.music[mix_game] = Mix_LoadMUS(MIX_GAME)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
+	if ((wolf->sdl.mix.steps[mix_step1] = Mix_LoadWAV(MIX_STEP1)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
+	if ((wolf->sdl.mix.steps[mix_step2] = Mix_LoadWAV(MIX_STEP2)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
+	if ((wolf->sdl.mix.steps[mix_step3] = Mix_LoadWAV(MIX_STEP3)) == NULL)
 		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
 	return (true);
 }
