@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 22:43:03 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/01 16:01:11 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/02 20:57:48 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define TEX_DRESS_GREEN "resource/textures/dress_green.jpg"
 # define TEX_SAND "resource/textures/sand.jpg"
 # define TEX_WOOD_DOOR "resource/textures/wood_door.jpg"
-# define TEX_WOOD_BOX_SIDE "resource/textures/wood_box_side.jpg"
+# define TEX_WOOD_BOX_SIDE "resource/textures/brick.jpg"
 # define FONT_MAIN "resource/font/1_font.ttf"
 # define TEX_BUTTON_START "resource/textures/start_button.png"
 # define TEX_BUTTON_EXIT "resource/textures/exit_button.png"
