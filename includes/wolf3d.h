@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/01 18:27:25 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/02 20:57:21 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # define NAME_WIN "Wolf3d (by Bdrinkin & Mcarc)"
 # define WIDTH_WIN 2000
 # define HEIGHT_WIN 1500
+# define TEXT_WIDTH 512
+# define TEXT_HEIGHT 512
+
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
