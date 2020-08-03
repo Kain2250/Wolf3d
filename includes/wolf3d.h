@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/03 16:37:57 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 22:32:34 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # define WIDTH_WIN 2000
 # define HEIGHT_WIN 1500
 # define TEXT_SIZE 512
-
+# define IS_PUSH wolf->sdl.event.type == SDL_KEYDOWN
+# define KEY_KEY wolf->sdl.event.key.keysym.sym
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
@@ -150,6 +151,7 @@ typedef struct			s_walls
 	int					line_height;
 	int					x;
 	SDL_Color			*color;
+	struct s_walls		*next;
 }						t_walls;
 
 typedef struct			s_timer
@@ -250,7 +252,6 @@ void					clear_queue(void);
 void					set_button(t_wolf *wolf);
 bool					is_button_area(SDL_MouseButtonEvent event,
 						SDL_Rect *area, int button);
-
 
 bool					init_sdl(t_wolf *wolf);
 void					quit_sdl(t_wolf *wolf);

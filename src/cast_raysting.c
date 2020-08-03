@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 19:41:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/03 15:18:22 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 23:43:15 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			render_screen(t_walls *walls, int x, int y, t_wolf *wolf)
 	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
 	SDL_RenderDrawLine(wolf->sdl.render, x,
 	walls->draw_end, x, wolf->sdl.height);
+	free(walls->color);
 }
 
 void			getting_the_height_to_the_wall(t_wolf *wolf, t_walls *walls)
@@ -32,7 +33,7 @@ void			getting_the_height_to_the_wall(t_wolf *wolf, t_walls *walls)
 	2 + wolf->player.sit;
 	walls->draw_end = walls->line_height / 2 + wolf->sdl.height /
 	2 + wolf->player.sit;
-}
+	}
 
 void			find_hit(t_wolf *wolf)
 {
