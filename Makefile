@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/01 08:57:49 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/03 23:08:11 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo "wolf3d: $(GREEN)Компиляция исполняемого файла$(RESET)"
-	@$(GCC) $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
+	@$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
 	$(OTHERS_FLAGS) $(SRC) -o $(NAME)
 	@echo "wolf3d: $(GREEN)Компиляция завершена$(RESET)"
 

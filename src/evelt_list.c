@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/03 16:46:49 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 23:34:46 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,9 @@ void			chenge_fov(t_wolf *wolf)
 
 bool			is_key_movement(t_wolf *wolf)
 {
-	if (wolf->sdl.event.type == SDL_KEYDOWN &&
-		(wolf->sdl.event.key.keysym.sym == SDLK_a ||
-		wolf->sdl.event.key.keysym.sym == SDLK_s ||
-		wolf->sdl.event.key.keysym.sym == SDLK_w ||
-		wolf->sdl.event.key.keysym.sym == SDLK_d ||
-		wolf->sdl.event.key.keysym.sym == SDLK_UP ||
-		wolf->sdl.event.key.keysym.sym == SDLK_DOWN ||
-		wolf->sdl.event.key.keysym.sym == SDLK_LEFT ||
-		wolf->sdl.event.key.keysym.sym == SDLK_RIGHT))
+	if (IS_PUSH && (KEY_KEY == SDLK_a || KEY_KEY == SDLK_s ||
+		KEY_KEY == SDLK_w || KEY_KEY == SDLK_d || KEY_KEY == SDLK_UP ||
+		KEY_KEY == SDLK_DOWN || KEY_KEY == SDLK_LEFT ||	KEY_KEY == SDLK_RIGHT))
 		return (true);
 	return (false);
 }
@@ -87,28 +81,22 @@ bool			event_list(t_wolf *wolf)
 		wolf->quit = true;
 	if (wolf->menu.menu == true)
 	{
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			(wolf->sdl.event.key.keysym.sym == SDLK_1 ||
-			wolf->sdl.event.key.keysym.sym == SDLK_2))
-			change_color_mod(wolf);
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			wolf->sdl.event.key.keysym.sym == SDLK_LSHIFT)
-			wolf->mouse.move_speed = 0.2;
-		else if (wolf->sdl.event.type == SDL_KEYUP &&
-			wolf->sdl.event.key.keysym.sym == SDLK_LSHIFT)
-			wolf->mouse.move_speed = 0.1;
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			wolf->sdl.event.key.keysym.sym == SDLK_LCTRL)
-			wolf->player.sit *= -1;
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			(wolf->sdl.event.key.keysym.sym == SDLK_e ||
-			wolf->sdl.event.key.keysym.sym == SDLK_q))
-			chenge_fov(wolf);
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			wolf->sdl.event.key.keysym.sym == SDLK_j)
+		if (IS_PUSH && KEY_KEY == SDLK_p)
+		{
+			wolf->menu.menu = false;
+			Mix_HaltMusic();
 			SDL_SetRelativeMouseMode(SDL_FALSE);
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			wolf->sdl.event.key.keysym.sym == SDLK_k)
+			return (true);
+		}
+		if (IS_PUSH && (KEY_KEY == SDLK_1 || KEY_KEY == SDLK_2))
+			change_color_mod(wolf);
+		if (IS_PUSH && KEY_KEY == SDLK_LSHIFT)
+			wolf->mouse.move_speed = 0.2;
+		else if (wolf->sdl.event.type == SDL_KEYUP && KEY_KEY == SDLK_LSHIFT)
+			wolf->mouse.move_speed = 0.1;
+		if (IS_PUSH && KEY_KEY == SDLK_j)
+			SDL_SetRelativeMouseMode(SDL_FALSE);
+		if (IS_PUSH && KEY_KEY == SDLK_k)
 			SDL_SetRelativeMouseMode(SDL_TRUE);
 		if (is_key_movement(wolf) == true)
 			event_key_hook(wolf);
