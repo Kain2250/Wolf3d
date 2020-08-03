@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/01 18:39:54 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 16:46:49 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,15 @@ bool			is_key_movement(t_wolf *wolf)
 	return (false);
 }
 
+void			change_color_mod(t_wolf *wolf)
+{
+	if (wolf->sdl.event.key.keysym.sym == SDLK_1)
+		wolf->location.color_mode = true;
+	else if (wolf->sdl.event.key.keysym.sym == SDLK_2)
+		wolf->location.color_mode = false;
+	raycasting(wolf);
+}
+
 bool			event_list(t_wolf *wolf)
 {
 	SDL_WaitEvent(&wolf->sdl.event);
@@ -78,6 +87,10 @@ bool			event_list(t_wolf *wolf)
 		wolf->quit = true;
 	if (wolf->menu.menu == true)
 	{
+		if (wolf->sdl.event.type == SDL_KEYDOWN &&
+			(wolf->sdl.event.key.keysym.sym == SDLK_1 ||
+			wolf->sdl.event.key.keysym.sym == SDLK_2))
+			change_color_mod(wolf);
 		if (wolf->sdl.event.type == SDL_KEYDOWN &&
 			wolf->sdl.event.key.keysym.sym == SDLK_LSHIFT)
 			wolf->mouse.move_speed = 0.2;
