@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/02 18:51:05 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 13:44:26 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 	int	i;
 
 	textures[texture_main_menu] = IMG_LoadTexture(render, TEX_MENU);
-	textures[texture_concrete] = IMG_LoadTexture(render, TEX_CONCRETE);
-	textures[texture_dress_dry] = IMG_LoadTexture(render, TEX_DRESS_DRY);
-	textures[texture_dress_green] = IMG_LoadTexture(render, TEX_DRESS_GREEN);
-	textures[texture_sand] = IMG_LoadTexture(render, TEX_SAND);
-	textures[texture_wood_box] = IMG_LoadTexture(render, TEX_WOOD_BOX_SIDE);
-	textures[texture_wood_door] = IMG_LoadTexture(render, TEX_WOOD_DOOR);
+	textures[texture_steel_panel] = IMG_LoadTexture(render, TEX_STEEL_PANEL);
+	textures[texture_gray_brick] = IMG_LoadTexture(render, TEX_GRAY_BRICK);
+	textures[texture_steel_cuz] = IMG_LoadTexture(render, TEX_STEEL_CUZ);
+	textures[texture_steel_door] = IMG_LoadTexture(render, TEX_STEEL_DOOR);
+	textures[texture_gold_fass] = IMG_LoadTexture(render, TEX_GOLD_FASS);
+	textures[texture_brick] = IMG_LoadTexture(render, TEX_BRICK);
+	textures[texture_wind_wood] = IMG_LoadTexture(render, TEX_WIND_WOOD);
 	textures[texture_button_start] = IMG_LoadTexture(render, TEX_BUTTON_START);
 	textures[texture_button_exit] = IMG_LoadTexture(render, TEX_BUTTON_EXIT);
 	i = 0;

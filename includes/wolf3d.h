@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/02 20:57:21 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 16:37:57 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # define NAME_WIN "Wolf3d (by Bdrinkin & Mcarc)"
 # define WIDTH_WIN 2000
 # define HEIGHT_WIN 1500
-# define TEXT_WIDTH 512
-# define TEXT_HEIGHT 512
+# define TEXT_SIZE 512
 
 # define BPERPIX 32
 # define TEXT_CLR 0
@@ -46,12 +45,13 @@
 typedef enum			e_texture
 {
 	texture_main_menu,
-	texture_concrete,
-	texture_dress_dry,
-	texture_dress_green,
-	texture_sand,
-	texture_wood_box,
-	texture_wood_door,
+	texture_steel_panel,
+	texture_gray_brick,
+	texture_steel_cuz,
+	texture_steel_door,
+	texture_gold_fass,
+	texture_brick,
+	texture_wind_wood,
 	texture_button_start,
 	texture_button_exit,
 	texture_total
@@ -110,8 +110,7 @@ typedef struct			s_location
 	int					x_len;
 	int					y_len;
 	int					x_len_check;
-	SDL_Rect			*sky;
-	SDL_Rect			*flor;
+	bool				color_mode;
 	char				**map;
 }						t_location;
 
@@ -151,7 +150,6 @@ typedef struct			s_walls
 	int					line_height;
 	int					x;
 	SDL_Color			*color;
-	struct s_walls		*next;
 }						t_walls;
 
 typedef struct			s_timer
