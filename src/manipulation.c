@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 18:45:19 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/27 17:24:30 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 16:33:42 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void		move_player(t_wolf *wolf, int direction)
 		if (wolf->location.map[(int)x1][(int)wolf->player.pos_y] == '0')
 			wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
 		if (wolf->location.map[(int)wolf->player.pos_x][(int)y1] == '0')
-			wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
+			wolf->player.pos_y -= wolf->player.dir_y  * wolf->mouse.move_speed;
 	}
 }

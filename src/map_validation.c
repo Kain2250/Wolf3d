@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 16:03:36 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/01 09:47:50 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 13:39:20 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int			check_line(char *buff)
 		if (buff[iter] == '0' || buff[iter] == '1' ||
 			buff[iter] == '2' || buff[iter] == '3' ||
 			buff[iter] == '4' || buff[iter] == ' ' ||
-			buff[iter] == '9')
+			buff[iter] == '5' || buff[iter] == '6' ||
+			buff[iter] == '7' || buff[iter] == '9')
 			iter++;
 		else
 			return (0);

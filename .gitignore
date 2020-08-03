@@ -4,5 +4,4 @@ SDL*.h
 libSDL*
 Makefile.*
 SDL2*
-*.wav
 wolf3d

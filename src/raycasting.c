@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/02 20:51:16 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/03 16:38:09 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,35 +46,37 @@ void			render_texture(t_wolf *wolf, t_walls *walls, int x1)
 	SDL_Rect	rect_wall;
     double		wall_x;
 	int			tex_x;
+	int			qwe;
 
+	qwe = TEXT_SIZE;
     if (wolf->player.side == 0)
 		wall_x = wolf->player.pos_y + wolf->player.perp_wall_dist * wolf->player.ray_dir_y;
     else
 		wall_x = wolf->player.pos_x + wolf->player.perp_wall_dist * wolf->player.ray_dir_x;
     wall_x -= floor(wall_x);
-    tex_x = (int)(wall_x * (double)TEXT_WIDTH);
+    tex_x = (int)(wall_x * (double)TEXT_SIZE);
     if (wolf->player.side == 0 && wolf->player.ray_dir_x > 0)
-		tex_x = TEXT_WIDTH - tex_x - 1;
+		tex_x = TEXT_SIZE - tex_x - 1;
     if (wolf->player.side == 1 && wolf->player.ray_dir_y < 0)
-		tex_x = TEXT_WIDTH - tex_x - 1;
-	rect.x = tex_x;
-	rect.y = 0;
-	rect.h = TEXT_WIDTH;
-	rect.w = 1;
+		tex_x = TEXT_SIZE - tex_x - 1;
 	rect_wall.h = walls->draw_end - walls->draw_start;
 	rect_wall.w = 1;
 	rect_wall.x = x1;
 	rect_wall.y = walls->draw_start;
+	rect.x = tex_x;
+	rect.y = 0;
+	rect.h = TEXT_SIZE;
+	rect.w = 1;
 	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
 	SDL_RenderDrawLine(wolf->sdl.render, x1, 0, x1, walls->draw_start);
 	if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '1')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_wood_box], &rect, &rect_wall);
+		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_gold_fass], &rect, &rect_wall);
 	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '2')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_wood_door], &rect, &rect_wall);
+		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_steel_cuz], &rect, &rect_wall);
 	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '3')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_sand], &rect, &rect_wall);
+		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_steel_panel], &rect, &rect_wall);
 	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '4')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_concrete], &rect, &rect_wall);
+		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_gray_brick], &rect, &rect_wall);
 	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
 	SDL_RenderDrawLine(wolf->sdl.render, x1,
 	walls->draw_end, x1, wolf->sdl.height);
@@ -100,8 +102,10 @@ int				raycasting(t_wolf *wolf)
 		find_hit(wolf);
 		getting_the_height_to_the_wall(wolf, walls);
 		calculate_foog(wolf, walls);
-		render_texture(wolf, walls, x_screen);
-		// render_screen(walls, x_screen, x_screen, wolf);
+		if (wolf->location.color_mode == false)
+			render_texture(wolf, walls, x_screen);
+		else
+			render_screen(walls, x_screen, x_screen, wolf);
 		x_screen++;
 		free(walls->color);
 	}
