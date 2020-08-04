@@ -32,7 +32,7 @@ void		start_menu(t_wolf *wolf)
 {
 	set_button(wolf);
 	if (Mix_PlayingMusic() == 0)
-		Mix_PlayMusic(wolf->sdl.mix.music[mix_menu], 1);
+		Mix_PlayMusic(wolf->sdl.mix.music[mix_menu], -1);
 	SDL_RenderCopy(wolf->sdl.render,
 	wolf->sdl.textures[texture_main_menu], 0, 0);
 	SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_button_start],
