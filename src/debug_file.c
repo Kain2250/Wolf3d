@@ -3,23 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   debug_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:09:59 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 15:41:54 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/04 22:47:38 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	good_complite(void)
+void	quit_sdl(t_wolf *wolf)
 {
-	ft_putstrlen("All good\n");
+	int	i;
+
+	i = 0;
+	if (wolf->sdl.render != NULL)
+		SDL_DestroyRenderer(wolf->sdl.render);
+	if (wolf->sdl.window != NULL)
+		SDL_DestroyWindow(wolf->sdl.window);
+	while (i != texture_total)
+	{
+		if (wolf->sdl.textures[i] != NULL)
+			SDL_DestroyTexture(wolf->sdl.textures[i++]);
+		else
+			i++;
+	}
+	IMG_Quit();
+	SDL_Quit();
+	if (wolf->time != NULL)
+		free(wolf->time);
+	free(wolf);
+	exit(0);
 }
 
-void	bad_complite(void)
+int			error_exit(char *err, char *buff)
 {
-	ft_putstrlen("All bad\n");
+	if (buff != NULL)
+		free(buff);
+	ft_putendl_fd(err, ERR_FD);
+	return (1);
 }
 
 int		put_error_sys(char *error)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_raysting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 19:41:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 15:41:51 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/04 22:30:09 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void			render_screen(t_walls *walls, int x, int y, t_wolf *wolf)
 {
+	calculate_foog(wolf, walls);
 	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
 	SDL_RenderDrawLine(wolf->sdl.render, x, 0, x, walls->draw_start);
 	SDL_SetRenderDrawColor(wolf->sdl.render, walls->color->r,
