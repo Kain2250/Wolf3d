@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 23:02:12 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 23:27:12 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ void			change_color_mod(t_wolf *wolf)
 
 void			game_events(t_wolf *wolf)
 {
+	if (IS_PUSH && KEY_KEY == SDLK_p)
+	{
+		wolf->menu.menu = false;
+		SDL_SetRelativeMouseMode(SDL_FALSE);
+		Mix_HaltMusic();
+		return ;
+	}
 	if (IS_PUSH && (KEY_KEY == SDLK_1 || KEY_KEY == SDLK_2 ||
 		KEY_KEY == SDLK_3))
 		change_color_mod(wolf);
@@ -83,9 +90,9 @@ void			game_events(t_wolf *wolf)
 	else if (wolf->sdl.event.type == SDL_KEYUP && KEY_KEY == SDLK_LSHIFT)
 		wolf->mouse.move_speed = 0.1;
 	if (wolf->sdl.event.type == SDL_KEYDOWN &&
-		KEY_KEY == SDLK_j)
+		KEY_KEY == SDLK_i)
 		SDL_SetRelativeMouseMode(SDL_FALSE);
-	if (IS_PUSH && KEY_KEY == SDLK_k)
+	if (IS_PUSH && KEY_KEY == SDLK_o)
 		SDL_SetRelativeMouseMode(SDL_TRUE);
 	if (is_key_movement(wolf) == true)
 		event_key_hook(wolf);
