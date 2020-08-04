@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/03 13:44:26 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 15:41:59 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,7 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 {
 	int	i;
 
-	textures[texture_main_menu] = IMG_LoadTexture(render, TEX_MENU);
-	textures[texture_steel_panel] = IMG_LoadTexture(render, TEX_STEEL_PANEL);
-	textures[texture_gray_brick] = IMG_LoadTexture(render, TEX_GRAY_BRICK);
-	textures[texture_steel_cuz] = IMG_LoadTexture(render, TEX_STEEL_CUZ);
-	textures[texture_steel_door] = IMG_LoadTexture(render, TEX_STEEL_DOOR);
-	textures[texture_gold_fass] = IMG_LoadTexture(render, TEX_GOLD_FASS);
-	textures[texture_brick] = IMG_LoadTexture(render, TEX_BRICK);
-	textures[texture_wind_wood] = IMG_LoadTexture(render, TEX_WIND_WOOD);
-	textures[texture_button_start] = IMG_LoadTexture(render, TEX_BUTTON_START);
-	textures[texture_button_exit] = IMG_LoadTexture(render, TEX_BUTTON_EXIT);
+	load_textures(textures, render);
 	i = 0;
 	while (i != texture_total)
 	{
@@ -74,8 +65,7 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 bool	init_sdl(t_wolf *wolf)
 {
 	if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
-		SDL_INIT_EVENTS | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC |
-		SDL_INIT_GAMECONTROLLER) == -1)
+		SDL_INIT_EVENTS) == -1)
 		return (put_error_sdl(ERR_INIT_SDL, SDL_GetError()));
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		return (put_error_sdl(ERR_INIT_MIX, Mix_GetError()));
