@@ -5,5 +5,7 @@ libSDL*
 Makefile.*
 SDL2*
 wolf3d
-/.idea/*
-wolf3d.dSYM/
+.idea/*
+*.dSYM/
+*.o
+*.a

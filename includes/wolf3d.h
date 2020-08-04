@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/04 15:42:59 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/04 21:51:21 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@
 # define TEXT_SIZE 512
 # define IS_PUSH wolf->sdl.event.type == SDL_KEYDOWN
 # define KEY_KEY wolf->sdl.event.key.keysym.sym
-# define BPERPIX 32
-# define TEXT_CLR 0
-# define WHITE_CLR 1
-# define OTH_CLR 2
 # define DIR_FORWARD 1
 # define DIR_BACK 2
 # define COLOR_RED 160, 6, 5, 0
@@ -45,29 +41,40 @@
 
 typedef enum			e_cardinal_point
 {
-	north,
-	west,
-	south,
-	east
+	cardinal_north,
+	cardinal_west,
+	cardinal_south,
+	cardinal_east
 }						t_cardinal_point;
+
+typedef enum			e_mode_color
+{
+	mode_rgb,
+	mode_texture,
+	mode_cardinal,
+}						t_mode_color;
 
 typedef enum			e_texture
 {
 	texture_main_menu,
+	texture_steel_panel,
 	texture_steel_panel_n,
 	texture_steel_panel_s,
 	texture_steel_panel_e,
 	texture_steel_panel_w,
 	texture_gray_brick,
+	texture_steel_cuz,
 	texture_steel_cuz_n,
 	texture_steel_cuz_s,
 	texture_steel_cuz_e,
 	texture_steel_cuz_w,
 	texture_steel_door,
+	texture_gold_fass,
 	texture_gold_fass_n,
 	texture_gold_fass_s,
 	texture_gold_fass_e,
 	texture_gold_fass_w,
+	texture_brick,
 	texture_brick_n,
 	texture_brick_s,
 	texture_brick_e,
@@ -132,14 +139,13 @@ typedef struct			s_location
 	int					x_len;
 	int					y_len;
 	int					x_len_check;
-	bool				color_mode;
+	int					color_mode;
 	char				**map;
 }						t_location;
 
 typedef struct			s_menu
 {
 	bool				menu;
-	bool				pause;
 	SDL_Rect			*button_new;
 	SDL_Rect			*button_exit;
 }						t_menu;
@@ -153,14 +159,10 @@ typedef struct			s_music
 typedef struct			s_sdl_sys
 {
 	SDL_Window			*window;
-	SDL_Surface			*surface;
 	SDL_Renderer		*render;
 	SDL_Texture			*textures[texture_total];
-	SDL_Surface			*picture[texture_total];
 	struct s_music		mix;
 	SDL_Event			event;
-	SDL_Rect			*rect_src;
-	SDL_Rect			*rect_dst;
 	int					width;
 	int					height;
 }						t_sdl_sys;
@@ -257,6 +259,7 @@ void					render_screen(t_walls *walls, int x,
 SDL_Color				*assigned_color(Uint8 red, Uint8 green,
 						Uint8 blue, Uint8 alpha);
 SDL_Color				*color_cahge(char **map, int x, int y);
+void					shadow_render(t_wolf *wolf, int num_text, SDL_Rect rect[2]);
 
 bool					put_error_sdl(char *error, const char *error_sdl);
 int						put_error_sys(char *error);
@@ -280,6 +283,6 @@ int						error_exit(char *err, char *buff);
 int						main(int ac, char **av);
 
 void					side_determination(t_wolf *wolf);
-void					render_blocks(t_wolf *wolf, SDL_Rect rect, SDL_Rect rect_wall);
+void					render_blocks(t_wolf *wolf, SDL_Rect rect[2]);
 void					load_textures(SDL_Texture **textures, SDL_Renderer *render);
 #endif

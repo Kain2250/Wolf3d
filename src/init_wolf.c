@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 15:41:59 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/04 22:42:19 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void	quit_sdl(t_wolf *wolf)
-{
-	int	i;
-
-	i = 0;
-	if (wolf->sdl.render != NULL)
-		SDL_DestroyRenderer(wolf->sdl.render);
-	if (wolf->sdl.window != NULL)
-		SDL_DestroyWindow(wolf->sdl.window);
-	while (i != texture_total)
-	{
-		if (wolf->sdl.textures[i] != NULL)
-			SDL_DestroyTexture(wolf->sdl.textures[i++]);
-		else
-			i++;
-	}
-	IMG_Quit();
-	SDL_Quit();
-	if (wolf->time != NULL)
-		free(wolf->time);
-	free(wolf);
-}
 
 void	filling_var(t_wolf *wolf)
 {
@@ -44,6 +21,7 @@ void	filling_var(t_wolf *wolf)
 	wolf->mouse.move_speed = 0.1;
 	wolf->mouse.rot_speed = 0.019;
 	wolf->player.sit = 2;
+	wolf->location.color_mode = mode_texture;
 }
 
 bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
@@ -81,6 +59,21 @@ bool	init_sdl(t_wolf *wolf)
 	return (true);
 }
 
+bool	load_mixer(t_wolf *wolf)
+{
+	if ((wolf->sdl.mix.music[mix_menu] = Mix_LoadMUS(MIX_MENU_MUS)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, SDL_GetError()));
+	if ((wolf->sdl.mix.music[mix_game] = Mix_LoadMUS(MIX_GAME)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, SDL_GetError()));
+	if ((wolf->sdl.mix.steps[mix_step1] = Mix_LoadWAV(MIX_STEP1)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, SDL_GetError()));
+	if ((wolf->sdl.mix.steps[mix_step2] = Mix_LoadWAV(MIX_STEP2)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, SDL_GetError()));
+	if ((wolf->sdl.mix.steps[mix_step3] = Mix_LoadWAV(MIX_STEP3)) == NULL)
+		return (put_error_sdl(ERR_LOAD_MIX, SDL_GetError()));
+	return (true);
+}
+
 bool	initialization(t_wolf *wolf, char *map)
 {
 	if (!(wolf->time = (t_timer *)ft_memalloc(sizeof(t_timer))))
@@ -94,15 +87,7 @@ bool	initialization(t_wolf *wolf, char *map)
 		return (false);
 	else if (load_files(wolf->sdl.textures, wolf->sdl.render) == false)
 		return (false);
-	if ((wolf->sdl.mix.music[mix_menu] = Mix_LoadMUS(MIX_MENU_MUS)) == NULL)
-		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
-	if ((wolf->sdl.mix.music[mix_game] = Mix_LoadMUS(MIX_GAME)) == NULL)
-		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
-	if ((wolf->sdl.mix.steps[mix_step1] = Mix_LoadWAV(MIX_STEP1)) == NULL)
-		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
-	if ((wolf->sdl.mix.steps[mix_step2] = Mix_LoadWAV(MIX_STEP2)) == NULL)
-		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
-	if ((wolf->sdl.mix.steps[mix_step3] = Mix_LoadWAV(MIX_STEP3)) == NULL)
-		return (put_error_sdl(ERR_LOAD_MIX, IMG_GetError()));
+	else if (load_mixer(wolf) == false)
+		return (false);
 	return (true);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+         #
+#    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/03 19:48:58 by mcarc            ###   ########.fr        #
+#    Updated: 2020/08/04 23:11:50 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,25 @@ INCLUDES = -I$(INCLUDES_DIRECTORY) \
 		-I$(INCLUDES_SDL2)
 
 # Основные файлы программы и их пути:
-SRC_DIRECTORY = $(CURDIR)/src/
-SRC_LIST = *.c
+SRC_DIRECTORY = $(CURDIR)/src
+SRC_LIST = /main.c \
+	/parsing_maps/map_validation.c \
+	/parsing_maps/parsing_maps.c \
+	/parsing_maps/user_placing.c \
+	/raycasting/cast_raysting.c \
+	/raycasting/raycasting.c \
+	/raycasting/side_determination.c \
+	/raycasting/block_rendering.c \
+	/color.c \
+	/debug_file.c \
+	/event_list.c \
+	/init_wolf.c \
+	/manipulation.c \
+	/sdl_help.c \
+	/set_button.c \
+	/timer/struct_timer.c \
+	/texture_loading.c \
+	/timer/timer.c
 
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 
@@ -64,11 +81,14 @@ RESET = \033[0m
 # Основные правила сборки:
 all: $(NAME)
 
-$(NAME):
+$(NAME): libft
 	@echo "wolf3d: $(GREEN)Компиляция исполняемого файла$(RESET)"
-	@$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
+	@$(GCC) $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
 	$(OTHERS_FLAGS) $(SRC) -o $(NAME)
 	@echo "wolf3d: $(GREEN)Компиляция завершена$(RESET)"
+
+libft:
+	@$(MAKE) -C $(LIBFT_DIRECTORY)
 
 sdl2:
 	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2$(RESET)"
@@ -86,10 +106,13 @@ clean:
 	@echo "$(NAME): $(RED)Объектные и вспомогательные файлы SDL2 удалены$(RESET)"
 	@rm -rf $(CURDIR)/objects
 	@echo "$(NAME): $(RED)Объектные файлы удалены$(RESET)"
+	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(NAME): $(RED)Исполняемый файл $(NAME) удален$(RESET)"
+	@$(MAKE) -C $(LIBFT_DIRECTORY) fclean
+	@echo "Libft: $(RED)Библиотека Libft удалена$(RESET)"
 	# @rm -rf $(LIBSDL2_DIR)
 	# @echo "$(NAME): $(RED)Библиотека SDL2 удалена$(RESET)"
 
