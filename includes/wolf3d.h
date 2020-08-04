@@ -17,7 +17,8 @@
 # define WIDTH_WIN 2000
 # define HEIGHT_WIN 1500
 # define TEXT_SIZE 512
-
+# define IS_PUSH wolf->sdl.event.type == SDL_KEYDOWN
+# define KEY_KEY wolf->sdl.event.key.keysym.sym
 # define BPERPIX 32
 # define TEXT_CLR 0
 # define WHITE_CLR 1
@@ -171,6 +172,7 @@ typedef struct			s_walls
 	int					line_height;
 	int					x;
 	SDL_Color			*color;
+	struct s_walls		*next;
 }						t_walls;
 
 typedef struct			s_timer
@@ -271,7 +273,6 @@ void					fps_counter(t_wolf *wolf);
 void					set_button(t_wolf *wolf);
 bool					is_button_area(SDL_MouseButtonEvent event,
 						SDL_Rect *area, int button);
-
 
 bool					init_sdl(t_wolf *wolf);
 void					quit_sdl(t_wolf *wolf);

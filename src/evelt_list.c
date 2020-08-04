@@ -69,15 +69,9 @@ void			chenge_fov(t_wolf *wolf)
 
 bool			is_key_movement(t_wolf *wolf)
 {
-	if (wolf->sdl.event.type == SDL_KEYDOWN &&
-		(wolf->sdl.event.key.keysym.sym == SDLK_a ||
-		wolf->sdl.event.key.keysym.sym == SDLK_s ||
-		wolf->sdl.event.key.keysym.sym == SDLK_w ||
-		wolf->sdl.event.key.keysym.sym == SDLK_d ||
-		wolf->sdl.event.key.keysym.sym == SDLK_UP ||
-		wolf->sdl.event.key.keysym.sym == SDLK_DOWN ||
-		wolf->sdl.event.key.keysym.sym == SDLK_LEFT ||
-		wolf->sdl.event.key.keysym.sym == SDLK_RIGHT))
+	if (IS_PUSH && (KEY_KEY == SDLK_a || KEY_KEY == SDLK_s ||
+		KEY_KEY == SDLK_w || KEY_KEY == SDLK_d || KEY_KEY == SDLK_UP ||
+		KEY_KEY == SDLK_DOWN || KEY_KEY == SDLK_LEFT ||	KEY_KEY == SDLK_RIGHT))
 		return (true);
 	return (false);
 }
@@ -96,17 +90,14 @@ void			game_events(t_wolf *wolf)
 			(wolf->sdl.event.key.keysym.sym == SDLK_1 ||
 			wolf->sdl.event.key.keysym.sym == SDLK_2))
 			change_color_mod(wolf);
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			wolf->sdl.event.key.keysym.sym == SDLK_LSHIFT)
+		if (IS_PUSH && KEY_KEY == SDLK_LSHIFT)
 			wolf->mouse.move_speed = 0.2;
-		else if (wolf->sdl.event.type == SDL_KEYUP &&
-			wolf->sdl.event.key.keysym.sym == SDLK_LSHIFT)
+		else if (wolf->sdl.event.type == SDL_KEYUP && KEY_KEY == SDLK_LSHIFT)
 			wolf->mouse.move_speed = 0.1;
 		if (wolf->sdl.event.type == SDL_KEYDOWN &&
 			wolf->sdl.event.key.keysym.sym == SDLK_j)
 			SDL_SetRelativeMouseMode(SDL_FALSE);
-		if (wolf->sdl.event.type == SDL_KEYDOWN &&
-			wolf->sdl.event.key.keysym.sym == SDLK_k)
+		if (IS_PUSH && KEY_KEY == SDLK_k)
 			SDL_SetRelativeMouseMode(SDL_TRUE);
 		if (is_key_movement(wolf) == true)
 			event_key_hook(wolf);
