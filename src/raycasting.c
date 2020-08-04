@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/03 16:38:09 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 15:42:06 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,14 @@ void			render_texture(t_wolf *wolf, t_walls *walls, int x1)
 	rect.w = 1;
 	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
 	SDL_RenderDrawLine(wolf->sdl.render, x1, 0, x1, walls->draw_start);
-	if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '1')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_gold_fass], &rect, &rect_wall);
-	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '2')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_steel_cuz], &rect, &rect_wall);
-	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '3')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_steel_panel], &rect, &rect_wall);
-	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '4')
-		SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_gray_brick], &rect, &rect_wall);
+	side_determination(wolf);
+	render_blocks(wolf,rect,rect_wall);
 	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
 	SDL_RenderDrawLine(wolf->sdl.render, x1,
 	walls->draw_end, x1, wolf->sdl.height);
 }
+
+
 
 int				raycasting(t_wolf *wolf)
 {

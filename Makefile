@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/01 08:57:49 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/03 19:48:58 by mcarc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ INCLUDES_SDL2 = $(LIBSDL2_DIR)/include/SDL2
 INCLUDES = -I$(INCLUDES_DIRECTORY) \
 		-I$(INCLUDES_DIRECTORY_LIBFT) \
 		-I$(INCLUDES_SDL2)
-	
+
 # Основные файлы программы и их пути:
 SRC_DIRECTORY = $(CURDIR)/src/
 SRC_LIST = *.c
@@ -66,7 +66,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo "wolf3d: $(GREEN)Компиляция исполняемого файла$(RESET)"
-	@$(GCC) $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
+	@$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
 	$(OTHERS_FLAGS) $(SRC) -o $(NAME)
 	@echo "wolf3d: $(GREEN)Компиляция завершена$(RESET)"
 

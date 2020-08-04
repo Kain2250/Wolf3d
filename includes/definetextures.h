@@ -3,22 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   definetextures.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 22:43:03 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/03 13:31:03 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 15:42:57 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINETEXTURES_H
 # define DEFINETEXTURES_H
 
-# define TEX_STEEL_PANEL "resource/textures/steel_panel.png"
+# define TEX_STEEL_PANEL_N "resource/textures/steel_panel_n.png"
+# define TEX_STEEL_PANEL_S "resource/textures/steel_panel_s.png"
+# define TEX_STEEL_PANEL_E "resource/textures/steel_panel_e.png"
+# define TEX_STEEL_PANEL_W "resource/textures/steel_panel_w.png"
 # define TEX_GRAY_BRICK "resource/textures/gray_brick.jpg"
-# define TEX_STEEL_CUZ "resource/textures/steel_cuz.png"
+# define TEX_STEEL_CUZ_N "resource/textures/steel_cuz_n.png"
+# define TEX_STEEL_CUZ_S "resource/textures/steel_cuz_s.png"
+# define TEX_STEEL_CUZ_E "resource/textures/steel_cuz_e.png"
+# define TEX_STEEL_CUZ_W "resource/textures/steel_cuz_w.png"
 # define TEX_STEEL_DOOR "resource/textures/steel_door.png"
-# define TEX_GOLD_FASS "resource/textures/gold_fass.jpg"
-# define TEX_BRICK "resource/textures/brick.jpg"
+# define TEX_GOLD_FASS_N "resource/textures/gold_fass_n.jpg"
+# define TEX_GOLD_FASS_S "resource/textures/gold_fass_s.jpg"
+# define TEX_GOLD_FASS_E "resource/textures/gold_fass_e.jpg"
+# define TEX_GOLD_FASS_W "resource/textures/gold_fass_w.jpg"
+# define TEX_BRICK_N "resource/textures/brick_n.jpg"
+# define TEX_BRICK_S "resource/textures/brick_s.jpg"
+# define TEX_BRICK_E "resource/textures/brick_e.jpg"
+# define TEX_BRICK_W "resource/textures/brick_w.jpg"
 # define TEX_WIND_WOOD "resource/textures/wind_wood.png"
 
 # define SPRITE_COIN "resource/textures/coin.png"

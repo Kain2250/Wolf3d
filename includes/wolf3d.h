@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/03 16:37:57 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 15:42:59 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,35 @@
 # include "SDL_mixer.h"
 # include <stdio.h>
 
+typedef enum			e_cardinal_point
+{
+	north,
+	west,
+	south,
+	east
+}						t_cardinal_point;
+
 typedef enum			e_texture
 {
 	texture_main_menu,
-	texture_steel_panel,
+	texture_steel_panel_n,
+	texture_steel_panel_s,
+	texture_steel_panel_e,
+	texture_steel_panel_w,
 	texture_gray_brick,
-	texture_steel_cuz,
+	texture_steel_cuz_n,
+	texture_steel_cuz_s,
+	texture_steel_cuz_e,
+	texture_steel_cuz_w,
 	texture_steel_door,
-	texture_gold_fass,
-	texture_brick,
+	texture_gold_fass_n,
+	texture_gold_fass_s,
+	texture_gold_fass_e,
+	texture_gold_fass_w,
+	texture_brick_n,
+	texture_brick_s,
+	texture_brick_e,
+	texture_brick_w,
 	texture_wind_wood,
 	texture_button_start,
 	texture_button_exit,
@@ -102,6 +122,7 @@ typedef struct			s_player
 	int					side;
 	int					sit;
 	bool				player;
+	t_cardinal_point	cardinal;
 }						t_player;
 
 typedef struct			s_location
@@ -246,7 +267,7 @@ void					denine(t_wolf *w);
 
 void					fps_counter(t_wolf *wolf);
 
-void					clear_queue(void);
+//void					clear_queue(void);
 void					set_button(t_wolf *wolf);
 bool					is_button_area(SDL_MouseButtonEvent event,
 						SDL_Rect *area, int button);
@@ -257,4 +278,7 @@ void					quit_sdl(t_wolf *wolf);
 int						error_exit(char *err, char *buff);
 int						main(int ac, char **av);
 
+void					side_determination(t_wolf *wolf);
+void					render_blocks(t_wolf *wolf, SDL_Rect rect, SDL_Rect rect_wall);
+void					load_textures(SDL_Texture **textures, SDL_Renderer *render);
 #endif
