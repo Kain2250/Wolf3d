@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 19:07:45 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/02 20:17:35 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 15:42:04 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,17 @@
 	// 	}
 	// 	SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_concrete], &rect, &rect_wall);
 	// }
+//if (wolf->sdl.event.motion.xrel && wolf->sdl.event.motion.yrel)
+//{
+//rotate_plane_and_cam(wolf, -(wolf->sdl.event.motion.xrel)
+//* wolf->mouse.rot_speed * 0.5);
+//wolf->player.sit += -atan(wolf->sdl.event.motion.yrel)
+//+ wolf->mouse.rot_speed * 0.5;
+//}
+//else
+//{
+//rotate_plane_and_cam(wolf, -(wolf->sdl.event.motion.xrel)
+//* wolf->mouse.rot_speed);
+//wolf->player.sit += -(wolf->sdl.event.motion.yrel)
+//+ wolf->mouse.rot_speed * 0.5;
+//}
