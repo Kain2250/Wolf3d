@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:04 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/04 15:42:01 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/04 22:47:42 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-int			error_exit(char *err, char *buff)
-{
-	if (buff != NULL)
-		free(buff);
-	ft_putendl_fd(err, ERR_FD);
-	return (1);
-}
-
-void		clear_queue(void)
-{
-	SDL_EventState(SDL_KEYDOWN, SDL_DISABLE);
-	SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);
-	SDL_EventState(SDL_MOUSEMOTION, SDL_DISABLE);
-	SDL_EventState(SDL_MOUSEMOTION, SDL_ENABLE);
-}
 
 void		start_menu(t_wolf *wolf)
 {
@@ -71,13 +55,10 @@ int			main(int ac, char **av)
 			filling_var(wolf);
 			while (wolf->quit == false)
 			{
-				//fps_counter(wolf);
-				
 				if (wolf->menu.menu == false)
 					start_menu(wolf);
 				if (event_list(wolf) == false)
 					break ;
-				// printf("%d\n", SDL_PeepEvents(&wolf->sdl.event, 5, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT));
 			}
 		}
 		quit_sdl(wolf);
