@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:04 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/04 22:47:42 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 23:45:31 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ void		start_menu(t_wolf *wolf)
 	}
 	else if (is_button_area(wolf->sdl.event.button,
 		wolf->menu.button_exit, SDL_BUTTON_LEFT))
-	{
 		quit_sdl(wolf);
-		exit(0);
-	}
 }
 
 int			main(int ac, char **av)

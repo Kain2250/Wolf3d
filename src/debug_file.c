@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:09:59 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 22:47:38 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/04 23:36:04 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	quit_sdl(t_wolf *wolf)
 		else
 			i++;
 	}
+	free(wolf->menu.button_new);
+	free(wolf->menu.button_exit);
 	IMG_Quit();
 	SDL_Quit();
 	if (wolf->time != NULL)
