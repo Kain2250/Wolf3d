@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/04 23:11:50 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/05 11:46:07 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,10 @@ INCLUDES_SDL2 = $(LIBSDL2_DIR)/include/SDL2
 INCLUDES = -I$(INCLUDES_DIRECTORY) \
 		-I$(INCLUDES_DIRECTORY_LIBFT) \
 		-I$(INCLUDES_SDL2)
+HEADERS_LIST = wolf3d.h \
+	definetextures.h \
+	errorout.h
+HEADERS = $(addprefix $(INCLUDES_DIRECTORY), $(HEADERS_LIST))
 
 # Основные файлы программы и их пути:
 SRC_DIRECTORY = $(CURDIR)/src
@@ -65,11 +69,6 @@ SRC_LIST = /main.c \
 
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 
-# Объектные файлы и их пути:
-OBJECTS = $(addprefix $(OBJ_DIR), $(OBJ_LIST))
-OBJ_DIR = objects/
-OBJ_LIST = $(patsubst %.c, %.o, $(SRC_LIST))
-
 # Определение цвета вывода:
 GREEN = \033[0;32;1m
 RED = \033[0;31;1m
@@ -81,19 +80,24 @@ RESET = \033[0m
 # Основные правила сборки:
 all: $(NAME)
 
-$(NAME): libft
-	@echo "wolf3d: $(GREEN)Компиляция исполняемого файла$(RESET)"
+$(NAME): $(SRC) $(HEADERS) $(LIBFT_DIRECTORY) download_res
+	@echo "wolf3d: $(GREEN)Компиляция исполняемого файла$(RESET)\n"
 	@$(GCC) $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
 	$(OTHERS_FLAGS) $(SRC) -o $(NAME)
-	@echo "wolf3d: $(GREEN)Компиляция завершена$(RESET)"
+	@echo "wolf3d: $(GREEN)Компиляция завершена$(RESET)\n"
 
-libft:
+$(LIBFT_DIRECTORY):
 	@$(MAKE) -C $(LIBFT_DIRECTORY)
 
+download_res:
+	@echo "wolf3d: $(GREEN)Подгрузка материалов$(RESET)\n"
+	@git clone https://github.com/Kain2250/resourse_of_wolf3d.git $(CURDIR)/resource
+	@echo "wolf3d: $(GREEN)Подгрузка материалов завершена$(RESET)\n"
+
 sdl2:
-	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2$(RESET)"
+	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2$(RESET)\n"
 	@sh $(CURDIR)/configure.sh
-	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2 завершена$(RESET)"
+	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2 завершена$(RESET)\n"
 
 clean:
 	@rm -rf $(ALLLIBS)/.deps
@@ -103,18 +107,16 @@ clean:
 	@rm -f $(ALLLIBS)/*.pc
 	@rm -rf $(ALLLIBS)/include/
 	@rm -rf $(ALLLIBS)/temp_src
-	@echo "$(NAME): $(RED)Объектные и вспомогательные файлы SDL2 удалены$(RESET)"
-	@rm -rf $(CURDIR)/objects
-	@echo "$(NAME): $(RED)Объектные файлы удалены$(RESET)"
+	@echo "$(NAME): $(RED)Объектные и вспомогательные файлы SDL2 удалены$(RESET)\n"
 	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME): $(RED)Исполняемый файл $(NAME) удален$(RESET)"
+	@echo "$(NAME): $(RED)Исполняемый файл $(NAME) удален$(RESET)\n"
 	@$(MAKE) -C $(LIBFT_DIRECTORY) fclean
-	@echo "Libft: $(RED)Библиотека Libft удалена$(RESET)"
+	@echo "Libft: $(RED)Библиотека Libft удалена$(RESET)\n"
 	# @rm -rf $(LIBSDL2_DIR)
-	# @echo "$(NAME): $(RED)Библиотека SDL2 удалена$(RESET)"
+	# @echo "$(NAME): $(RED)Библиотека SDL2 удалена$(RESET)\n"
 
 re:
 	@$(MAKE) fclean
