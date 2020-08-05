@@ -9,3 +9,5 @@ wolf3d
 *.dSYM/
 *.o
 *.a
+build_*
+temp_src
