@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/05 12:51:46 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/05 13:20:26 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,9 +101,8 @@ $(LIBSDL2):
 	@echo "SDL2_lib: $(GREEN)Компиляция библиотеки SDL2 завершена$(RESET)\n"
 
 clean:
-	@rm -rf $(ALLLIBS)/build_*
-	@echo "$(NAME): $(RED)Объектные и вспомогательные файлы SDL2 удалены$(RESET)\n"
-	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
+	@rm -rf $(ALLLIBS)/temp_src
+	@echo "$(NAME): $(RED)Исходные данные SDL2 удалены$(RESET)\n"
 
 fclean: clean
 	@rm -f $(NAME)
@@ -111,8 +110,9 @@ fclean: clean
 	@$(MAKE) -C $(LIBFT_DIRECTORY) fclean
 	@rm -rf $(CURDIR)/resource
 	@echo "$(NAME): $(RED)Ресурсы удалены$(RESET)\n"
-	@rm -rf $(ALLLIBS)/temp_src
-	@echo "$(NAME): $(RED)Исходные данные SDL2 удалены$(RESET)\n"
+	@rm -rf $(ALLLIBS)/build_*
+	@echo "$(NAME): $(RED)Объектные и вспомогательные файлы SDL2 удалены$(RESET)\n"
+	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 	@rm -rf $(LIBSDL2_DIR)
 	@echo "$(NAME): $(RED)Библиотека SDL2 удалена$(RESET)\n"
 
