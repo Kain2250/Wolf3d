@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   texture_loading.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 15:03:46 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/04 20:06:00 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/05 15:21:15 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void		check_render_mode(t_wolf *wolf, SDL_Rect rect[2])
+{
+	if (wolf->location.color_mode == mode_cardinal)
+	{
+		side_determination(wolf);
+		render_blocks(wolf, rect);
+	}
+	else if (wolf->location.color_mode == mode_texture)
+		wall_definition(wolf, rect);
+}
 
 static void	dop_load(SDL_Texture **textures, SDL_Renderer *render)
 {

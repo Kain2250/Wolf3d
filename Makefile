@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/05 13:20:26 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/05 15:47:02 by mcarc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ $(LIBSDL2):
 clean:
 	@rm -rf $(ALLLIBS)/temp_src
 	@echo "$(NAME): $(RED)Исходные данные SDL2 удалены$(RESET)\n"
+	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 
 fclean: clean
 	@rm -f $(NAME)
