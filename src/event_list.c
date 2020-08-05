@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 23:27:12 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/05 15:15:28 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ void			event_mouse_hook(t_wolf *wolf)
 {
 	SDL_EventState(SDL_KEYDOWN, SDL_DISABLE);
 	SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);
-	// if (wolf->sdl.event.motion.xrel && wolf->sdl.event.motion.yrel)
-	// {
-		// rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
-		// * wolf->mouse.rot_speed * 0.5);
-		// wolf->player.sit += -atan(wolf->sdl.event.motion.yrel) * 10;
-	// }
-	// else
-	// {
+	if (wolf->sdl.event.motion.xrel && wolf->sdl.event.motion.yrel)
+	{
+		rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
+		* wolf->mouse.rot_speed * 0.5);
+		wolf->player.sit += -atan(wolf->sdl.event.motion.yrel) * 10;
+	}
+	else
+	{
 		rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
 		* wolf->mouse.rot_speed);
 		wolf->player.sit += -atan(wolf->sdl.event.motion.yrel) * 15;
-	// }
+	}
 	wolf->sdl.event.motion.xrel = 0;
 	wolf->sdl.event.motion.yrel = 0;
 }
@@ -61,16 +61,6 @@ bool			is_key_movement(t_wolf *wolf)
 					KEY_KEY == SDLK_RIGHT))
 		return (true);
 	return (false);
-}
-
-void			change_color_mod(t_wolf *wolf)
-{
-	if (KEY_KEY == SDLK_1)
-		wolf->location.color_mode = mode_texture;
-	else if (KEY_KEY == SDLK_2)
-		wolf->location.color_mode = mode_cardinal;
-	else if (KEY_KEY == SDLK_3)
-		wolf->location.color_mode = mode_rgb;
 }
 
 void			game_events(t_wolf *wolf)

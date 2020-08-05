@@ -6,11 +6,21 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 18:45:19 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 15:42:03 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/05 15:14:59 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void		change_color_mod(t_wolf *wolf)
+{
+	if (KEY_KEY == SDLK_1)
+		wolf->location.color_mode = mode_texture;
+	else if (KEY_KEY == SDLK_2)
+		wolf->location.color_mode = mode_cardinal;
+	else if (KEY_KEY == SDLK_3)
+		wolf->location.color_mode = mode_rgb;
+}
 
 void		rotate_plane_and_cam(t_wolf *wolf, float rot_speed)
 {
@@ -52,6 +62,6 @@ void		move_player(t_wolf *wolf, int direction)
 		if (wolf->location.map[(int)x1][(int)wolf->player.pos_y] == '0')
 			wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
 		if (wolf->location.map[(int)wolf->player.pos_x][(int)y1] == '0')
-			wolf->player.pos_y -= wolf->player.dir_y  * wolf->mouse.move_speed;
+			wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
 	}
 }

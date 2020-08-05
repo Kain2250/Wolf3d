@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_raysting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 19:41:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 22:30:09 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/05 15:15:42 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			getting_the_height_to_the_wall(t_wolf *wolf, t_walls *walls)
 	2 + wolf->player.sit;
 	walls->draw_end = walls->line_height / 2 + wolf->sdl.height /
 	2 + wolf->player.sit;
-	}
+}
 
 void			find_hit(t_wolf *wolf)
 {

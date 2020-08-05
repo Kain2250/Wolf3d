@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:09:59 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 23:36:04 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/05 15:13:58 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	quit_sdl(t_wolf *wolf)
 	exit(0);
 }
 
-int			error_exit(char *err, char *buff)
+int		error_exit(char *err, char *buff)
 {
 	if (buff != NULL)
 		free(buff);

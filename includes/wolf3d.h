@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/05 10:55:26 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/05 15:45:27 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,9 @@ void					render_screen(t_walls *walls, int x,
 SDL_Color				*assigned_color(Uint8 red, Uint8 green,
 						Uint8 blue, Uint8 alpha);
 SDL_Color				*color_cahge(char **map, int x, int y);
-void					shadow_render(t_wolf *wolf, int num_text, SDL_Rect rect[2]);
+void					shadow_render(t_wolf *wolf, int num_text,
+						SDL_Rect rect[2]);
+void					change_color_mod(t_wolf *wolf);
 
 bool					put_error_sdl(char *error, const char *error_sdl);
 int						put_error_sys(char *error);
@@ -272,7 +274,6 @@ void					denine(t_wolf *w);
 
 void					fps_counter(t_wolf *wolf);
 
-//void					clear_queue(void);
 void					set_button(t_wolf *wolf);
 bool					is_button_area(SDL_MouseButtonEvent event,
 						SDL_Rect *area, int button);
@@ -284,5 +285,13 @@ int						main(int ac, char **av);
 
 void					side_determination(t_wolf *wolf);
 void					render_blocks(t_wolf *wolf, SDL_Rect rect[2]);
-void					load_textures(SDL_Texture **textures, SDL_Renderer *render);
+void					load_textures(SDL_Texture **textures,
+						SDL_Renderer *render);
+void					render_texture(t_wolf *wolf, t_walls *walls, int x1);
+void					wall_definition(t_wolf *wolf, SDL_Rect rect[2]);
+void					shadow_render(t_wolf *wolf,
+						int num_text, SDL_Rect rect[2]);
+void					check_render_mode(t_wolf *wolf, SDL_Rect rect[2]);
+void					rect_init(t_walls *walls, int x1,
+						SDL_Rect rect[2], int tex_x);
 #endif
