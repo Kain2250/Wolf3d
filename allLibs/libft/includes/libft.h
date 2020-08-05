@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 19:19:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/10 19:33:35 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/05 15:48:17 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -491,7 +491,7 @@ void				ft_free_split(char **split);
 ** Возвращает процент позиции числа current между числами start и end.
 */
 double				ft_percent(int start, int end, int current);
-/* 
+/*
 ** Выводит двойной массив в стандартный вывод
 */
 void				ft_put2arr(int count, char **arr);
