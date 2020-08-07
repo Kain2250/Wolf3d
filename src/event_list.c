@@ -6,12 +6,11 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/07 21:49:51 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/07 22:56:49 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include <time.h>
 
 void			event_key_hook(t_wolf *wolf)
 {
@@ -27,20 +26,26 @@ void			event_key_hook(t_wolf *wolf)
 		Mix_PlayChannel(2, wolf->sdl.mix.steps[time(NULL) % 3], 0);
 }
 
+void			move_mouse(t_wolf *wolf, double k_diag, int k_y)
+{
+	int			buf;
+
+	rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
+	* wolf->mouse.rot_speed * k_diag);
+	buf = -atan(wolf->sdl.event.motion.yrel) * k_y + wolf->player.sit;
+	if (buf <= 700 && buf >= -700)
+		wolf->player.sit = buf;
+}
+
 void			event_mouse_hook(t_wolf *wolf)
 {
+	int			buf_sit;
+
+	buf_sit = wolf->player.sit;
 	if (wolf->sdl.event.motion.xrel && wolf->sdl.event.motion.yrel)
-	{
-		rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
-		* wolf->mouse.rot_speed * 0.9);
-		wolf->player.sit += -atan(wolf->sdl.event.motion.yrel) * 10;
-	}
+		move_mouse(wolf, 0.9, 15);
 	else
-	{
-		rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
-		* wolf->mouse.rot_speed);
-		wolf->player.sit += -atan(wolf->sdl.event.motion.yrel) * 15;
-	}
+		move_mouse(wolf, 1.0, 10);
 	wolf->sdl.event.motion.xrel = 0;
 	wolf->sdl.event.motion.yrel = 0;
 }

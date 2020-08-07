@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 16:03:36 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/04 15:42:02 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/07 22:05:18 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int			check_line(char *buff)
 		if (buff[iter] == '0' || buff[iter] == '1' ||
 			buff[iter] == '2' || buff[iter] == '3' ||
 			buff[iter] == '4' || buff[iter] == ' ' ||
-			buff[iter] == '5' || buff[iter] == '6' ||
-			buff[iter] == '7' || buff[iter] == '9')
+			buff[iter] == '9')
 			iter++;
 		else
 			return (0);
