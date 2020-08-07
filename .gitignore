@@ -1,4 +1,5 @@
-
+/allLibs/*
+!/allLibs/libft/*
 .DS_Store
 SDL*.h
 libSDL*
