@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   timer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 14:15:36 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 15:42:11 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/07 21:27:38 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,17 @@ bool		time_is_paused(t_timer *time)
 	return (time->paused);
 }
 
-float		get_fps(t_timer *time)
+void		fps_counter(t_timer *time)
 {
-	float	fps;
-
-	fps = time->counted_frames / (get_ticks(time) / 1000.f);
-	if (fps > 2000000)
-		fps = 0;
-	return (fps);
-}
-
-void		fps_counter(t_wolf *wolf)
-{
-	float	avg_fps;
-
-	avg_fps = wolf->time->counted_frames / (get_ticks(wolf->time) / 1000.f);
-	if (avg_fps > 2000000)
-		avg_fps = 0;
-	ft_putnbr((int)avg_fps);
-	ft_putchar('\n');
-	++wolf->time->counted_frames;
+	if (get_ticks(time) >= 1000)
+	{
+		ft_putstr("FPS: ");
+		ft_putnbr(time->counted_frames);
+		ft_putchar('\n');
+		timer_stop(time);
+		timer_start(time);
+		time->counted_frames = 0;
+	}
+	else
+		time->counted_frames++;
 }

@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 02:11:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2019/11/04 23:07:42 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/07 21:27:24 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,5 @@
 void	ft_putstr(char *s)
 {
 	if (s != NULL)
-	{
-		while (*s)
-		{
-			ft_putchar(*s);
-			s++;
-		}
-	}
+		write(1, s, ft_strlen(s));
 }

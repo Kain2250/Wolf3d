@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:04 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/06 19:45:23 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/07 21:47:54 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void		start_menu(t_wolf *wolf)
 {
-	set_button(wolf);
-	if (Mix_PlayingMusic() == 0)
+	mute_music(wolf);
+	if (Mix_PlayingMusic() == 0 && wolf->sdl.mix.mute == false)
 		Mix_PlayMusic(wolf->sdl.mix.music[mix_menu], -1);
+	set_button(wolf);
 	SDL_RenderCopy(wolf->sdl.render,
 	wolf->sdl.textures[texture_main_menu], 0, 0);
 	SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_button_start],
@@ -29,7 +30,8 @@ void		start_menu(t_wolf *wolf)
 	{
 		wolf->menu.menu = true;
 		SDL_SetRelativeMouseMode(SDL_TRUE);
-		Mix_HaltMusic();
+		if (Mix_PlayingMusic() == 1)
+			Mix_HaltMusic();
 		raycasting(wolf);
 	}
 	else if (is_button_area(wolf->sdl.event.button,
@@ -40,7 +42,6 @@ void		start_menu(t_wolf *wolf)
 int			main(int ac, char **av)
 {
 	t_wolf	*wolf;
-	// double	angle_y;
 
 	(void)av;
 	if (ac == 2)
@@ -53,13 +54,11 @@ int			main(int ac, char **av)
 			filling_var(wolf);
 			while (wolf->quit == false)
 			{
-				//  printf("%f %f\n", wolf->player.dir_x, wolf->player.dir_y);
-				// printf("%f %f\n", acos(wolf->player.dir_x) * 180 / M_PI, acos(wolf->player.dir_y) * 180 / M_PI);
-				// printf("%f %f %f %f\n", wolf->player.dir_x, wolf->player.dir_y, acos(wolf->player.dir_x), asin(wolf->player.dir_x));
 				if (wolf->menu.menu == false)
 					start_menu(wolf);
 				if (event_list(wolf) == false)
 					break ;
+				fps_counter(wolf->time);
 			}
 		}
 		quit_sdl(wolf);

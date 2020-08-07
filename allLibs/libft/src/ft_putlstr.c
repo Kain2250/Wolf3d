@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 23:38:35 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/06/08 23:39:06 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/07 21:26:47 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	ft_putlstr(char *s, int len)
 {
-	int	i;
-
-	i = 0;
-	while (i != len)
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
+	if (s != NULL)
+		write(1, s, len);
 }

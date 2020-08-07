@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/05 15:45:27 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/07 21:48:16 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct			s_music
 {
 	Mix_Chunk			*steps[mix_step_total];
 	Mix_Music			*music[mix_total];
+	bool				mute;
 }						t_music;
 
 typedef struct			s_sdl_sys
@@ -272,12 +273,13 @@ bool					user_placing(t_wolf *w, char *line);
 int						check_line(char *buff);
 void					denine(t_wolf *w);
 
-void					fps_counter(t_wolf *wolf);
+void					fps_counter(t_timer *time);
 
 void					set_button(t_wolf *wolf);
 bool					is_button_area(SDL_MouseButtonEvent event,
 						SDL_Rect *area, int button);
 
+void					mute_music(t_wolf *wolf);
 bool					init_sdl(t_wolf *wolf);
 void					quit_sdl(t_wolf *wolf);
 int						error_exit(char *err, char *buff);
