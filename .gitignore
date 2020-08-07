@@ -13,4 +13,4 @@ build_*
 temp_src
 .vscode/launch.json
 /maps/tests
-/resource/*
+/resource/
