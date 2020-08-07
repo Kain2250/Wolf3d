@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/05 15:15:28 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/06 16:47:41 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void			event_key_hook(t_wolf *wolf)
 		rotate_plane_and_cam(wolf, -wolf->mouse.rot_speed);
 	else if (KEY_KEY == SDLK_a || KEY_KEY == SDLK_LEFT)
 		rotate_plane_and_cam(wolf, wolf->mouse.rot_speed);
-	if (Mix_Playing(2) == 0)
-		Mix_PlayChannel(2, wolf->sdl.mix.steps[time(NULL) % 3], 0);
+	//if (Mix_Playing(2) == 0)
+	//	Mix_PlayChannel(2, wolf->sdl.mix.steps[time(NULL) % 3], 0);
 }
 
 void			event_mouse_hook(t_wolf *wolf)

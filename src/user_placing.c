@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 14:25:12 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/04 15:42:21 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/05 17:37:16 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void		line_user_placing(t_wolf *w, int y, char **sline)
 		if (sline[x][0] == '9')
 		{
 			counter++;
-			w->player.pos_x = y;
-			w->player.pos_y = x;
+			w->player.pos_x = y + 0.5;
+			w->player.pos_y = x + 0.5;
 		}
 		x++;
 	}
