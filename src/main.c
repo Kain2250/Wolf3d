@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:04 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/04 23:45:31 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/06 19:45:23 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		start_menu(t_wolf *wolf)
 int			main(int ac, char **av)
 {
 	t_wolf	*wolf;
+	// double	angle_y;
 
 	(void)av;
 	if (ac == 2)
@@ -52,6 +53,9 @@ int			main(int ac, char **av)
 			filling_var(wolf);
 			while (wolf->quit == false)
 			{
+				//  printf("%f %f\n", wolf->player.dir_x, wolf->player.dir_y);
+				// printf("%f %f\n", acos(wolf->player.dir_x) * 180 / M_PI, acos(wolf->player.dir_y) * 180 / M_PI);
+				// printf("%f %f %f %f\n", wolf->player.dir_x, wolf->player.dir_y, acos(wolf->player.dir_x), asin(wolf->player.dir_x));
 				if (wolf->menu.menu == false)
 					start_menu(wolf);
 				if (event_list(wolf) == false)
