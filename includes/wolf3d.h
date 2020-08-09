@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/09 18:10:52 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 19:44:34 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@
 # include "libft.h"
 # include "definetextures.h"
 # include "errorout.h"
+# include <errno.h>
 # include "SDL.h"
 # include "SDL_image.h"
 # include "SDL_mixer.h"
-# include <stdio.h>
+// # include <stdio.h>
 
 typedef enum			e_cardinal_point
 {
