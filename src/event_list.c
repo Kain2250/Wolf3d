@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/09 20:00:12 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 20:31:46 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void			event_key_hook(t_wolf *wolf)
 		rotate_plane_and_cam(wolf, wolf->mouse.rot_speed);
 	if (Mix_Playing(2) == 0 && wolf->sdl.mix.mute == false)
 		Mix_PlayChannel(2, wolf->sdl.mix.steps[time(NULL) % 3], 0);
-	if (IS_PUSH && KEY_KEY == SDLK_TAB && wolf->location.minimap == false)
-		wolf->location.minimap = true;
-	else if (IS_PUSH && KEY_KEY == SDLK_TAB && wolf->location.minimap == true)
-		wolf->location.minimap = false;
+	if (IS_PUSH && KEY_KEY == SDLK_TAB
+		&& SDL_GetTicks() - wolf->location.delta_time >= 500)
+	{
+		wolf->location.minimap = !wolf->location.minimap;
+		wolf->location.delta_time = SDL_GetTicks();
+	}
 }
 
 bool			is_key_movement(t_wolf *wolf)

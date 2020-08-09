@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:53:36 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/09 19:59:23 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 20:30:11 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	put_player(t_wolf *wolf)
 	rect.h = 4;
 	rect.w = 4;
 	SDL_SetRenderDrawColor(wolf->sdl.render, 255, 0, 0, 0);
-	SDL_RenderDrawRect(wolf->sdl.render, &rect);
+	SDL_RenderFillRect(wolf->sdl.render, &rect);
 }
 
 void		minimap_output(t_wolf *wolf)
