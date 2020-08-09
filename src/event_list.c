@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/07 22:56:49 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 15:06:18 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,6 @@ void			event_key_hook(t_wolf *wolf)
 		rotate_plane_and_cam(wolf, wolf->mouse.rot_speed);
 	if (Mix_Playing(2) == 0 && wolf->sdl.mix.mute == false)
 		Mix_PlayChannel(2, wolf->sdl.mix.steps[time(NULL) % 3], 0);
-}
-
-void			move_mouse(t_wolf *wolf, double k_diag, int k_y)
-{
-	int			buf;
-
-	rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
-	* wolf->mouse.rot_speed * k_diag);
-	buf = -atan(wolf->sdl.event.motion.yrel) * k_y + wolf->player.sit;
-	if (buf <= 700 && buf >= -700)
-		wolf->player.sit = buf;
-}
-
-void			event_mouse_hook(t_wolf *wolf)
-{
-	int			buf_sit;
-
-	buf_sit = wolf->player.sit;
-	if (wolf->sdl.event.motion.xrel && wolf->sdl.event.motion.yrel)
-		move_mouse(wolf, 0.9, 15);
-	else
-		move_mouse(wolf, 1.0, 10);
-	wolf->sdl.event.motion.xrel = 0;
-	wolf->sdl.event.motion.yrel = 0;
 }
 
 bool			is_key_movement(t_wolf *wolf)

@@ -6,11 +6,37 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 18:42:09 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 22:38:11 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 15:59:48 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	calc_dir_def(t_wolf *wolf, int dir_def[8])
+{
+	dir_def[0] = wolf->location.map[(int)(wolf->player.pos_x)]
+	[(int)(wolf->player.pos_y + wolf->mouse.move_speed + 0.2)] > '0' ? 0 : 1;
+	dir_def[1] = wolf->location.map[(int)(wolf->player.pos_x)]
+	[(int)(wolf->player.pos_y - (wolf->mouse.move_speed + 0.2))] > '0' ? 0 : 1;
+	dir_def[2] = wolf->location.map
+	[(int)(wolf->player.pos_x + wolf->mouse.move_speed + 0.2)]
+	[(int)(wolf->player.pos_y)] > '0' ? 0 : 1;
+	dir_def[3] = wolf->location.map
+	[(int)(wolf->player.pos_x - wolf->mouse.move_speed - 0.2)]
+	[(int)(wolf->player.pos_y)] > '0' ? 0 : 1;
+	dir_def[4] = wolf->location.map
+	[(int)(wolf->player.pos_x - wolf->mouse.move_speed - 0.15)]
+	[(int)(wolf->player.pos_y + wolf->mouse.move_speed + 0.15)] > '0' ? 0 : 1;
+	dir_def[5] = wolf->location.map
+	[(int)(wolf->player.pos_x - wolf->mouse.move_speed - 0.15)]
+	[(int)(wolf->player.pos_y - wolf->mouse.move_speed - 0.15)] > '0' ? 0 : 1;
+	dir_def[6] = wolf->location.map
+	[(int)(wolf->player.pos_x + wolf->mouse.move_speed + 0.15)]
+	[(int)(wolf->player.pos_y - wolf->mouse.move_speed - 0.15)] > '0' ? 0 : 1;
+	dir_def[7] = wolf->location.map
+	[(int)(wolf->player.pos_x + wolf->mouse.move_speed + 0.15)]
+	[(int)(wolf->player.pos_y + wolf->mouse.move_speed + 0.15)] > '0' ? 0 : 1;
+}
 
 void	clear_screen(SDL_Renderer *render)
 {

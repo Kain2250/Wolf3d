@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:04 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/07 21:47:54 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 16:51:23 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void		start_menu(t_wolf *wolf)
 	if (Mix_PlayingMusic() == 0 && wolf->sdl.mix.mute == false)
 		Mix_PlayMusic(wolf->sdl.mix.music[mix_menu], -1);
 	set_button(wolf);
-	SDL_RenderCopy(wolf->sdl.render,
-	wolf->sdl.textures[texture_main_menu], 0, 0);
+	SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures
+	[(wolf->menu.leg ? texture_main_menu : texture_main_leg)], 0, 0);
 	SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_button_start],
 	0, wolf->menu.button_new);
 	SDL_RenderCopy(wolf->sdl.render, wolf->sdl.textures[texture_button_exit],

@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 22:39:19 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/02/11 00:12:22 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 17:16:54 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	ft_free_split(char **split)
 	int	i;
 
 	i = 0;
-	while (split[i])
+	if (split != NULL)
 	{
-		ft_strdel(&split[i]);
-		i++;
+		while (split[i])
+		{
+			ft_strdel(&split[i]);
+			i++;
+		}
+		free(split);
 	}
-	free(split);
 }

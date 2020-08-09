@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manipulation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 18:45:19 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/07 19:54:23 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/09 15:07:13 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,118 +48,26 @@ double		decriment(double a, double alpha)
 	return (a);
 }
 
-void		move_player(t_wolf *wolf, int direction)
+void		move_mouse(t_wolf *wolf, double k_diag, int k_y)
 {
-	int		dir_def[8];
+	int		buf;
 
-	dir_def[0] = wolf->location.map[(int)(wolf->player.pos_x)][(int)(wolf->player.pos_y + wolf->mouse.move_speed + 0.2)] > '0' ? 0 : 1;  //y> 0 1
-	dir_def[1] = wolf->location.map[(int)(wolf->player.pos_x)][(int)(wolf->player.pos_y - (wolf->mouse.move_speed + 0.2))] > '0' ? 0 : 1; //y< 1 0
-	dir_def[2] = wolf->location.map[(int)(wolf->player.pos_x + wolf->mouse.move_speed + 0.2)][(int)(wolf->player.pos_y)] > '0' ? 0 : 1;  //x> 2 3
-	dir_def[3] = wolf->location.map[(int)(wolf->player.pos_x - wolf->mouse.move_speed - 0.2)][(int)(wolf->player.pos_y)] > '0' ? 0 : 1;  //x< 3 2
-	dir_def[4] = wolf->location.map[(int)(wolf->player.pos_x - wolf->mouse.move_speed - 0.15)][(int)(wolf->player.pos_y + wolf->mouse.move_speed + 0.15)] > '0' ? 0 : 1;  // y> x< 4 6
-	dir_def[5] = wolf->location.map[(int)(wolf->player.pos_x - wolf->mouse.move_speed - 0.15)][(int)(wolf->player.pos_y - wolf->mouse.move_speed - 0.15)] > '0' ? 0 : 1;  // y< x< 5 7
-	dir_def[6] = wolf->location.map[(int)(wolf->player.pos_x + wolf->mouse.move_speed + 0.15)][(int)(wolf->player.pos_y - wolf->mouse.move_speed - 0.15)] > '0' ? 0 : 1;  // y< x> 6 4
-	dir_def[7] = wolf->location.map[(int)(wolf->player.pos_x + wolf->mouse.move_speed + 0.15)][(int)(wolf->player.pos_y + wolf->mouse.move_speed + 0.15)] > '0' ? 0 : 1;  // y> x> 7 5
-	if (direction == DIR_BACK)
-	{
-		if (wolf->player.dir_x < 0 && wolf->player.dir_y >= 0)
-		{
-			if (dir_def[6] && dir_def[1] && dir_def[2] && dir_def[5] && dir_def[7])
-			{
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[1] && dir_def[5])
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[2] && dir_def[7])
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-		if (wolf->player.dir_x >= 0 && wolf->player.dir_y < 0)
-		{
-			if (dir_def[4] && dir_def[0] && dir_def[3] && dir_def[5] && dir_def[7])
-			{
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[0] && dir_def[7])
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[3] && dir_def[5])
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-		if (wolf->player.dir_x < 0 && wolf->player.dir_y < 0)
-		{
-			if (dir_def[7] && dir_def[0] && dir_def[2] && dir_def[6] && dir_def[4])
-			{
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[0] && dir_def[4])
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[2] && dir_def[6])
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-		if (wolf->player.dir_x >= 0 && wolf->player.dir_y >= 0)
-		{
-			if (dir_def[5] && dir_def[1] && dir_def[3] && dir_def[6] && dir_def[4])
-			{
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[1] && dir_def[6])
-				wolf->player.pos_y -= wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[3] && dir_def[4])
-				wolf->player.pos_x -= wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-	}
-	else if (direction == DIR_FORWARD)
-	{
-		if (wolf->player.dir_x < 0 && wolf->player.dir_y >= 0)
-		{
-			if (dir_def[4] && dir_def[0] && dir_def[3] && dir_def[5] && dir_def[7])
-			{
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[0] && dir_def[7])
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[3] && dir_def[5])
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-		if (wolf->player.dir_x >= 0 && wolf->player.dir_y < 0)
-		{
-			if (dir_def[6] && dir_def[1] && dir_def[2] && dir_def[5] && dir_def[7])
-			{
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[1] && dir_def[5])
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[2] && dir_def[7])
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-		if (wolf->player.dir_x < 0 && wolf->player.dir_y < 0)
-		{
-			if (dir_def[5] && dir_def[1] && dir_def[3] && dir_def[6] && dir_def[4])
-			{
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[1] && dir_def[6])
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[3] && dir_def[4])
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-		if (wolf->player.dir_x >= 0 && wolf->player.dir_y >= 0)
-		{
-			if (dir_def[7] && dir_def[0] && dir_def[2] && dir_def[6] && dir_def[4])
-			{
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			}
-			else if (dir_def[0] && dir_def[4])
-				wolf->player.pos_y += wolf->player.dir_y * wolf->mouse.move_speed;
-			else if (dir_def[2] && dir_def[6])
-				wolf->player.pos_x += wolf->player.dir_x * wolf->mouse.move_speed;
-		}
-	}
+	rotate_plane_and_cam(wolf, -atan(wolf->sdl.event.motion.xrel)
+	* wolf->mouse.rot_speed * k_diag);
+	buf = -atan(wolf->sdl.event.motion.yrel) * k_y + wolf->player.sit;
+	if (buf <= 700 && buf >= -700)
+		wolf->player.sit = buf;
+}
+
+void		event_mouse_hook(t_wolf *wolf)
+{
+	int		buf_sit;
+
+	buf_sit = wolf->player.sit;
+	if (wolf->sdl.event.motion.xrel && wolf->sdl.event.motion.yrel)
+		move_mouse(wolf, 0.9, 15);
+	else
+		move_mouse(wolf, 1.0, 10);
+	wolf->sdl.event.motion.xrel = 0;
+	wolf->sdl.event.motion.yrel = 0;
 }

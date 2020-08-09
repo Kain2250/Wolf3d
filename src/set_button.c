@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_button.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 10:14:26 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/05 15:26:56 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/09 16:50:11 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,8 @@ void		set_button(t_wolf *wolf)
 	wolf->menu.button_exit->w = 180;
 	wolf->menu.button_exit->x = wolf->sdl.width / 3 * 2;
 	wolf->menu.button_exit->y = wolf->sdl.height / 7 * 5.2;
+	if (IS_PUSH && KEY_KEY == SDLK_l && wolf->menu.leg == false)
+		wolf->menu.leg = true;
+	else if (IS_PUSH && KEY_KEY == SDLK_l && wolf->menu.leg == true)
+		wolf->menu.leg = false;
 }

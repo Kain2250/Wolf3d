@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/07 22:12:28 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 16:48:20 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef enum			e_mode_color
 typedef enum			e_texture
 {
 	texture_main_menu,
+	texture_main_leg,
 	texture_steel_panel,
 	texture_steel_panel_n,
 	texture_steel_panel_s,
@@ -68,7 +69,6 @@ typedef enum			e_texture
 	texture_steel_cuz_s,
 	texture_steel_cuz_e,
 	texture_steel_cuz_w,
-	texture_steel_door,
 	texture_gold_fass,
 	texture_gold_fass_n,
 	texture_gold_fass_s,
@@ -135,7 +135,6 @@ typedef struct			s_player
 
 typedef struct			s_location
 {
-	bool				location;
 	int					x_len;
 	int					y_len;
 	int					x_len_check;
@@ -148,6 +147,7 @@ typedef struct			s_menu
 	bool				menu;
 	SDL_Rect			*button_new;
 	SDL_Rect			*button_exit;
+	bool				leg;
 }						t_menu;
 
 typedef struct			s_music
@@ -173,9 +173,7 @@ typedef struct			s_walls
 	int					draw_start;
 	int					draw_end;
 	int					line_height;
-	int					x;
 	SDL_Color			*color;
-	struct s_walls		*next;
 }						t_walls;
 
 typedef struct			s_timer
@@ -197,103 +195,99 @@ typedef struct			s_wolf
 	struct s_menu		menu;
 	struct s_walls		walls;
 	bool				quit;
+	int					dir_def[8];
 }						t_wolf;
-/*
-** Таймер для FPS
-*/
-Uint32					get_ticks(t_timer *time);
-bool					time_is_started(t_timer *time);
-bool					time_is_paused(t_timer *time);
+
+void					shadow_render(t_wolf *wolf, int num_text,
+						SDL_Rect rect[2]);
+void					wall_definition(t_wolf *wolf, SDL_Rect rect[2]);
+void					render_texture(t_wolf *wolf, t_walls *walls, int x1);
+void					render_all_block(t_wolf *wolf, SDL_Rect rect[2],
+						int texture);
+void					render_blocks(t_wolf *wolf, SDL_Rect rect[2]);
+
+void					render_screen(t_walls *walls, int x, int y,
+						t_wolf *wolf);
+void					getting_the_height_to_the_wall(t_wolf *wolf,
+						t_walls *walls);
+void					find_hit(t_wolf *wolf);
+void					ray_computation(t_wolf *wolf);
+void					cam_and_screen_setup(t_wolf *wolf, int x_screen,
+						double width);
+
+SDL_Color				*color_cahge(char **map, int x, int y);
+SDL_Color				*assigned_color(Uint8 red, Uint8 green, Uint8 blue,
+						Uint8 alpha);
+
+void					quit_sdl(t_wolf *wolf);
+int						error_exit(char *err, char *buff);
+bool					put_error_sdl(char *error, const char *error_sdl);
+int						put_error_sys(char *error);
+
+void					event_key_hook(t_wolf *wolf);
+bool					is_key_movement(t_wolf *wolf);
+void					mute_music(t_wolf *wolf);
+void					game_events(t_wolf *wolf);
+bool					event_list(t_wolf *wolf);
+
+void					filling_var(t_wolf *wolf);
+bool					load_files(SDL_Texture **textures,
+						SDL_Renderer *render);
+bool					init_sdl(t_wolf *wolf);
+bool					load_mixer(t_wolf *wolf);
+bool					initialization(t_wolf *wolf, char *map);
+
+void					start_menu(t_wolf *wolf);
+int						main(int ac, char **av);
+
+void					change_color_mod(t_wolf *wolf);
+void					rotate_plane_and_cam(t_wolf *wolf, float rot_speed);
+double					decriment(double a, double alpha);
+void					move_mouse(t_wolf *wolf, double k_diag, int k_y);
+void					event_mouse_hook(t_wolf *wolf);
+
+int						check_line(char *buff);
+bool					line_validation(char *buff, t_wolf *w);
+bool					topline_validation(char *buff, t_wolf *w);
+bool					map_validation(char *line, t_wolf *w);
+
+void					move_player(t_wolf *wolf, int direction);
+
+int						size_validation(t_wolf *w, char *map);
+int						pars_map(t_wolf *w, char *map);
+
+float					calc_dist(double ray_dir_1, double ray_dir_2);
+void					brightness_calc(SDL_Color *color);
+void					calculate_foog(t_wolf *wolf, t_walls *walls);
+void					rect_init(t_walls *walls, int x1,
+						SDL_Rect rect[2], int tex_x);
+int						raycasting(t_wolf *wolf);
+
+void					calc_dir_def(t_wolf *wolf, int dir_def[8]);
+void					clear_screen(SDL_Renderer *render);
+bool					event_exit(t_wolf *wolf);
+bool					is_button_area(SDL_MouseButtonEvent event,
+						SDL_Rect *area, int button);
+void					set_button(t_wolf *wolf);
+
+void					side_determination(t_wolf *wolf);
+
 void					timer_init(t_timer *time);
 void					timer_start(t_timer *time);
 void					timer_stop(t_timer *time);
 void					timer_pause(t_timer *time);
 void					timer_unpause(t_timer *time);
-float					get_fps(t_timer *time);
-/*
-** Эвенты
-*/
-bool					event_exit(t_wolf *wolf);
-bool					event_list(t_wolf *w);
-/*
-** Стандартные функции манипуляции изображений в SDL2
-*/
-void					apply_surface(SDL_Surface *source,
-						SDL_Surface *destination, SDL_Rect offset);
-void					apply_surface_scaled(SDL_Surface *source,
-						SDL_Surface *destination, SDL_Rect offset);
-void					apply_render(SDL_Renderer *render,
-						SDL_Texture *texture, SDL_Rect *srcrect,
-						const SDL_Rect *dstrect);
-void					clear_screen(SDL_Renderer *render);
-bool					event_exit(t_wolf *wolf);
-/*
-** Функции манипуляции игроком
-*/
-void					rotate_plane_and_cam(t_wolf *wolf, float rot_speed);
-void					move_player(t_wolf *wolf, int direction);
-/*
-** Инициализация проекта, присваивание значения переменным
-*/
-void					filling_var(t_wolf *wolf);
-bool					load_files(SDL_Texture **textures,
-						SDL_Renderer *render);
-bool					initialization(t_wolf *wolf, char *map);
-/*
-** Основной алгоритм бросания лучей RayCasting
-*/
-int						raycasting(t_wolf *wolf);
-float					calc_dist(double ray_dir_1, double ray_dir_2);
-void					brightness_calc(SDL_Color *color);
-void					calculate_foog(t_wolf *wolf, t_walls *walls);
-void					cam_and_screen_setup(t_wolf *wolf, int x_screen,
-						double width);
-void					ray_computation(t_wolf *wolf);
-void					find_hit(t_wolf *wolf);
-void					getting_the_height_to_the_wall(t_wolf *wolf,
-						t_walls *walls);
-void					render_screen(t_walls *walls, int x,
-						int y, t_wolf *wolf);
-/*
-** Функции выбора цвета
-*/
-SDL_Color				*assigned_color(Uint8 red, Uint8 green,
-						Uint8 blue, Uint8 alpha);
-SDL_Color				*color_cahge(char **map, int x, int y);
-void					shadow_render(t_wolf *wolf, int num_text,
-						SDL_Rect rect[2]);
-void					change_color_mod(t_wolf *wolf);
 
-bool					put_error_sdl(char *error, const char *error_sdl);
-int						put_error_sys(char *error);
-
-int						pars_map(t_wolf *f, char *map);
-bool					map_validation(char *line, t_wolf *w);
-bool					user_placing(t_wolf *w, char *line);
-int						check_line(char *buff);
-void					denine(t_wolf *w);
-
-void					fps_counter(t_timer *time);
-
-void					set_button(t_wolf *wolf);
-bool					is_button_area(SDL_MouseButtonEvent event,
-						SDL_Rect *area, int button);
-
-void					mute_music(t_wolf *wolf);
-bool					init_sdl(t_wolf *wolf);
-void					quit_sdl(t_wolf *wolf);
-int						error_exit(char *err, char *buff);
-int						main(int ac, char **av);
-
-void					side_determination(t_wolf *wolf);
-void					render_blocks(t_wolf *wolf, SDL_Rect rect[2]);
+void					check_render_mode(t_wolf *wolf, SDL_Rect rect[2]);
 void					load_textures(SDL_Texture **textures,
 						SDL_Renderer *render);
-void					render_texture(t_wolf *wolf, t_walls *walls, int x1);
-void					wall_definition(t_wolf *wolf, SDL_Rect rect[2]);
-void					shadow_render(t_wolf *wolf,
-						int num_text, SDL_Rect rect[2]);
-void					check_render_mode(t_wolf *wolf, SDL_Rect rect[2]);
-void					rect_init(t_walls *walls, int x1,
-						SDL_Rect rect[2], int tex_x);
+
+Uint32					get_ticks(t_timer *time);
+bool					time_is_started(t_timer *time);
+bool					time_is_paused(t_timer *time);
+void					fps_counter(t_timer *time);
+
+void					denine(t_wolf *w);
+bool					user_placing(t_wolf *w, char *line);
+
 #endif

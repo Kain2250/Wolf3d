@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 16:03:36 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/07 22:05:18 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 17:15:56 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ bool		line_validation(char *buff, t_wolf *w)
 	char	**split;
 
 	split = ft_strsplit(buff, ' ');
-	if (*split[0] == '0' || *split[w->location.x_len - 1] == '0')
+	if (*split[0] == '0' || *split[w->location.x_len - 1] == '0' ||
+		*split[0] == '9' || *split[w->location.x_len - 1] == '9')
 	{
 		ft_free_split(split);
 		return (false);
@@ -53,7 +54,7 @@ bool		topline_validation(char *buff, t_wolf *w)
 	x = 0;
 	while (x < w->location.x_len)
 	{
-		if (*split[x] == '0')
+		if (*split[x] == '0' || *split[x] == '9')
 		{
 			ft_free_split(split);
 			return (false);

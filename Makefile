@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+         #
+#    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/05 16:37:11 by mcarc            ###   ########.fr        #
+#    Updated: 2020/08/09 17:18:22 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ SRC_LIST = main.c \
 	set_button.c \
 	struct_timer.c \
 	texture_loading.c \
-	timer.c
+	timer.c \
+	moving_player.c
 
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 
@@ -83,7 +84,7 @@ all: $(NAME)
 
 $(NAME): $(SRC) $(HEADERS) $(LIBFT_DIRECTORY) $(LIBSDL2)
 	@echo "wolf3d: $(GREEN)Компиляция исполняемого файла$(RESET)\n"
-	@$(GCC) -g $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
+	@$(GCC) $(CCFLAGS) $(INCLUDES) $(LIBRARIES_LIBFT) $(LIBRARIES_SDL2) \
 	$(OTHERS_FLAGS) $(SRC) -o $(NAME)
 	@echo "wolf3d: $(GREEN)Компиляция завершена$(RESET)\n"
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_loading.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 15:03:46 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/05 15:21:15 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/09 16:37:51 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	dop_load(SDL_Texture **textures, SDL_Renderer *render)
 void		load_textures(SDL_Texture **textures, SDL_Renderer *render)
 {
 	textures[texture_main_menu] = IMG_LoadTexture(render, TEX_MENU);
+	textures[texture_main_leg] = IMG_LoadTexture(render, TEX_MENU_LEG);
 	textures[texture_steel_panel] = IMG_LoadTexture(render, TEX_STEEL_PANEL);
 	textures[texture_steel_panel_n] =
 	IMG_LoadTexture(render, TEX_STEEL_PANEL_N);
@@ -58,6 +59,5 @@ void		load_textures(SDL_Texture **textures, SDL_Renderer *render)
 	textures[texture_steel_cuz_s] = IMG_LoadTexture(render, TEX_STEEL_CUZ_S);
 	textures[texture_steel_cuz_e] = IMG_LoadTexture(render, TEX_STEEL_CUZ_E);
 	textures[texture_steel_cuz_w] = IMG_LoadTexture(render, TEX_STEEL_CUZ_W);
-	textures[texture_steel_door] = IMG_LoadTexture(render, TEX_STEEL_DOOR);
 	dop_load(textures, render);
 }

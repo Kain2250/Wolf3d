@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_placing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 14:25:12 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/05 17:37:16 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/09 17:12:40 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ bool			user_placing(t_wolf *w, char *line)
 		ft_free_split(split);
 		y++;
 	}
-	ft_free_split(sline);
+	if (sline != NULL)
+		ft_free_split(sline);
 	return (evaluate_user_position(w));
 }
