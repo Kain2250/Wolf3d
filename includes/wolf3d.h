@@ -6,7 +6,11 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/08/09 19:44:34 by mcarc            ###   ########.fr       */
+=======
+/*   Updated: 2020/08/09 19:13:11 by bdrinkin         ###   ########.fr       */
+>>>>>>> 093f974c942fdc073e7258574bf4c07c6456755e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +145,7 @@ typedef struct			s_location
 	int					y_len;
 	int					x_len_check;
 	int					color_mode;
+	bool				minimap;
 	char				**map;
 }						t_location;
 
