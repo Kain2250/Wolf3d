@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   block_rendering.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 14:51:29 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/05 16:29:09 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/09 17:39:21 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ void			shadow_render(t_wolf *wolf, int num_text, SDL_Rect rect[2])
 
 void			wall_definition(t_wolf *wolf, SDL_Rect rect[2])
 {
-	if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '2')
+	if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '1')
 		shadow_render(wolf, texture_gold_fass, rect);
-	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '1')
+	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '2')
 		shadow_render(wolf, texture_steel_cuz, rect);
 	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '3')
 		shadow_render(wolf, texture_steel_panel, rect);
 	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '4')
 		shadow_render(wolf, texture_gray_brick, rect);
+	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '5')
+		shadow_render(wolf, texture_wind_wood, rect);
 }
 
 void			render_texture(t_wolf *wolf, t_walls *walls, int x1)
@@ -85,7 +87,8 @@ void			render_blocks(t_wolf *wolf, SDL_Rect rect[2])
 {
 	if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '1')
 		render_all_block(wolf, rect, texture_gold_fass_n);
-	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '2')
+	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '2' ||
+			wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '5')
 		render_all_block(wolf, rect, texture_steel_cuz_n);
 	else if (wolf->location.map[wolf->player.map_x][wolf->player.map_y] == '3')
 		render_all_block(wolf, rect, texture_steel_panel_n);

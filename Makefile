@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/09 17:18:22 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/09 18:12:05 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ SRC_LIST = main.c \
 	struct_timer.c \
 	texture_loading.c \
 	timer.c \
-	moving_player.c
+	moving_player.c \
+	minimap.c
 
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 

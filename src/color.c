@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 10:47:42 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/04 15:41:53 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/09 17:47:54 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ SDL_Color		*color_cahge(char **map, int x, int y)
 		return (assigned_color(COLOR_GREEN));
 	else if (map[x][y] == '4')
 		return (assigned_color(COLOR_BLUE));
+	else if (map[x][y] == '5')
+		return (assigned_color(COLOR_PURPLE));
 	return (NULL);
 }
 

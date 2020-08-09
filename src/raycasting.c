@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/07 21:32:57 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 18:11:15 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int				raycasting(t_wolf *wolf)
 			render_texture(wolf, walls, x_screen);
 		x_screen++;
 	}
+	minimap_output(wolf);
 	SDL_RenderPresent(wolf->sdl.render);
 	free(walls);
 	return (0);

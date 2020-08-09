@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/09 16:48:20 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 18:10:52 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 # define KEY_KEY wolf->sdl.event.key.keysym.sym
 # define DIR_FORWARD 1
 # define DIR_BACK 2
-# define COLOR_RED 160, 6, 5, 0
-# define COLOR_BLUE 18, 10, 143, 0
-# define COLOR_GREEN 119, 221, 119, 0
+# define COLOR_RED 255, 60, 60, 0
+# define COLOR_BLUE 60, 135, 255, 0
+# define COLOR_GREEN 79, 255, 60, 0
 # define COLOR_BLACK 0, 0, 0, 0
-# define COLOR_YELLOW 112, 66, 20, 0
-# define COLOR_SKY 100, 100, 100, 0
-# define COLOR_FLOR 50, 50, 50, 0
+# define COLOR_YELLOW 255, 241, 60, 0
+# define COLOR_PURPLE 174, 91, 179, 0
+# define COLOR_SKY 127, 231, 255, 0
+# define COLOR_FLOR 179, 130, 91, 0
 
 # include <math.h>
 # include <stdbool.h>
@@ -289,5 +290,6 @@ void					fps_counter(t_timer *time);
 
 void					denine(t_wolf *w);
 bool					user_placing(t_wolf *w, char *line);
+void					minimap_output(t_wolf *wolf);
 
 #endif
