@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/07 21:43:44 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 20:30:09 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	filling_var(t_wolf *wolf)
 	wolf->mouse.rot_speed = 0.019;
 	wolf->player.sit = 2;
 	wolf->location.color_mode = mode_texture;
+	wolf->location.delta_time = SDL_GetTicks();
 }
 
 bool	load_files(SDL_Texture **textures, SDL_Renderer *render)

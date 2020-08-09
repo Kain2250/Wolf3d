@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/09 19:13:11 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 20:30:19 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@
 # include "libft.h"
 # include "definetextures.h"
 # include "errorout.h"
+# include <errno.h>
 # include "SDL.h"
 # include "SDL_image.h"
 # include "SDL_mixer.h"
-# include <stdio.h>
+// # include <stdio.h>
 
 typedef enum			e_cardinal_point
 {
@@ -142,6 +143,7 @@ typedef struct			s_location
 	int					color_mode;
 	bool				minimap;
 	char				**map;
+	Uint32				delta_time;
 }						t_location;
 
 typedef struct			s_menu

@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 19:19:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/05 15:48:17 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/09 19:46:11 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define INT_MAX 2147483647
 # define INT_MIN -214748368
-# include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
