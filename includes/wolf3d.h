@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/09 18:10:52 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 19:13:11 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ typedef struct			s_location
 	int					y_len;
 	int					x_len_check;
 	int					color_mode;
+	bool				minimap;
 	char				**map;
 }						t_location;
 

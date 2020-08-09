@@ -6,11 +6,23 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/09 17:53:36 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/09 18:40:28 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/09 19:59:23 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void	put_player(t_wolf *wolf)
+{
+	SDL_Rect	rect;
+
+	rect.x = wolf->player.pos_y * 10 + 5;
+	rect.y = wolf->player.pos_x * 10 + 5;
+	rect.h = 4;
+	rect.w = 4;
+	SDL_SetRenderDrawColor(wolf->sdl.render, 255, 0, 0, 0);
+	SDL_RenderDrawRect(wolf->sdl.render, &rect);
+}
 
 void		minimap_output(t_wolf *wolf)
 {
@@ -18,6 +30,8 @@ void		minimap_output(t_wolf *wolf)
 	int			y;
 	SDL_Rect	rect;
 
+	if (wolf->location.minimap == false)
+		return ;
 	y = 0;
 	rect.y = 10;
 	rect.h = 10;
@@ -28,15 +42,13 @@ void		minimap_output(t_wolf *wolf)
 		rect.x = 10;
 		while (x < wolf->location.x_len)
 		{
-			SDL_SetRenderDrawColor(wolf->sdl.render, 150, 100, 150, 0);
+			SDL_SetRenderDrawColor(wolf->sdl.render, 200, 150, 50, 0);
 			wolf->location.map[y][x] == '0' ?
 			SDL_RenderDrawRect(wolf->sdl.render, &rect) :
 			SDL_RenderFillRect(wolf->sdl.render, &rect);
 			rect.x += 10;
 			x++;
-			SDL_SetRenderDrawColor(wolf->sdl.render, 255, 0, 0, 0);
-			SDL_RenderDrawPointF(wolf->sdl.render,
-			wolf->player.pos_y * 10 + 10, wolf->player.pos_x * 10 + 10);
+			put_player(wolf);
 		}
 		rect.y += 10;
 		y++;
