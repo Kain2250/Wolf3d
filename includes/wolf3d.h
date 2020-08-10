@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/10 19:07:38 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/10 20:49:15 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,5 +295,7 @@ void					fps_counter(t_timer *time);
 void					denine(t_wolf *w);
 bool					user_placing(t_wolf *w, char *line);
 void					minimap_output(t_wolf *wolf);
+void					floor_cast(t_wolf *wolf);
+
 
 #endif

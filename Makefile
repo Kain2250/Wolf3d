@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+         #
+#    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2020/08/09 19:49:45 by bdrinkin         ###   ########.fr        #
-=======
-#    Updated: 2020/08/09 19:22:59 by mcarc            ###   ########.fr        #
->>>>>>> 64e34656ca246149fdccacfcd8459529929fc219
+#    Updated: 2020/08/10 20:50:18 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +68,8 @@ SRC_LIST = main.c \
 	texture_loading.c \
 	timer.c \
 	moving_player.c \
-	minimap.c
+	minimap.c \
+	floor_and_sky.c
 
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 

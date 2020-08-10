@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 22:43:03 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/10 19:13:43 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/10 21:26:24 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define TEX_BRICK_E "resource/textures/brick_e.jpg"
 # define TEX_BRICK_W "resource/textures/brick_w.jpg"
 # define TEX_WIND_WOOD "resource/textures/wind_wood.png"
-# define SURF_FLOOR "resource/textures/floor.jpg"
+# define SURF_FLOOR "resource/textures/floor.png"
 
 # define TEX_MENU "resource/textures/main_menu.jpg"
 # define TEX_MENU_LEG "resource/textures/main_menu_leg.jpg"
