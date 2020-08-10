@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/09 20:30:19 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/10 19:07:38 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ typedef struct			s_sdl_sys
 	SDL_Window			*window;
 	SDL_Renderer		*render;
 	SDL_Texture			*textures[texture_total];
+	SDL_Surface			*floor[2];
 	struct s_music		mix;
 	SDL_Event			event;
 	int					width;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/09 20:30:09 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/10 19:10:54 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ bool	initialization(t_wolf *wolf, char *map)
 		return (false);
 	else if (load_mixer(wolf) == false)
 		return (false);
+	wolf->sdl.floor[0] = IMG_Load(SURF_FLOOR);
 	return (true);
 }
