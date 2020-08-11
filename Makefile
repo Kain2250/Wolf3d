@@ -6,11 +6,7 @@
 #    By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2020/08/09 19:49:45 by bdrinkin         ###   ########.fr        #
-=======
-#    Updated: 2020/08/09 19:22:59 by mcarc            ###   ########.fr        #
->>>>>>> 64e34656ca246149fdccacfcd8459529929fc219
+#    Updated: 2020/08/11 10:28:19 by mcarc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +68,8 @@ SRC_LIST = main.c \
 	texture_loading.c \
 	timer.c \
 	moving_player.c \
-	minimap.c
+	minimap.c \
+	map_init.c
 
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 

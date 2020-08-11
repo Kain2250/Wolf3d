@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/10 19:10:54 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 09:30:02 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 
 	load_textures(textures, render);
 	i = 0;
-	while (i != texture_total)
+	while (i != texture_total - 2)
 	{
 		if (textures[i] == NULL)
 			return (false);
@@ -87,7 +87,11 @@ bool	initialization(t_wolf *wolf, char *map)
 	else if (init_sdl(wolf) == false)
 		return (false);
 	else if (load_files(wolf->sdl.textures, wolf->sdl.render) == false)
+	{
+		printf("load\n");
 		return (false);
+	}
+
 	else if (load_mixer(wolf) == false)
 		return (false);
 	wolf->sdl.floor[0] = IMG_Load(SURF_FLOOR);

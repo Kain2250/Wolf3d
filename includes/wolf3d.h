@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/10 19:07:38 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 10:30:24 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define COLOR_PURPLE 174, 91, 179, 0
 # define COLOR_SKY 127, 231, 255, 0
 # define COLOR_FLOR 179, 130, 91, 0
+# define NAME_MAP "Minimap"
+# define WIDTH_MAP 250
+# define HEIGHT_MAP 200
+
 
 # include <math.h>
 # include <stdbool.h>
@@ -84,6 +88,8 @@ typedef enum			e_texture
 	texture_wind_wood,
 	texture_button_start,
 	texture_button_exit,
+	map_zero,
+	map_cell,
 	texture_total
 }						t_texture;
 
@@ -165,12 +171,16 @@ typedef struct			s_sdl_sys
 {
 	SDL_Window			*window;
 	SDL_Renderer		*render;
+	SDL_Window			*map_window;
+	SDL_Renderer		*map_render;
 	SDL_Texture			*textures[texture_total];
 	SDL_Surface			*floor[2];
 	struct s_music		mix;
 	SDL_Event			event;
 	int					width;
 	int					height;
+	int					map_width;
+	int					map_heigth;
 }						t_sdl_sys;
 
 typedef struct			s_walls
@@ -295,5 +305,8 @@ void					fps_counter(t_timer *time);
 void					denine(t_wolf *w);
 bool					user_placing(t_wolf *w, char *line);
 void					minimap_output(t_wolf *wolf);
+double					angle(t_wolf * wolf);
+bool					map_init(t_wolf * wolf);
+bool					map_destroy(t_wolf *wolf);
 
 #endif
