@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_maps.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 19:23:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/09 19:42:54 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/11 20:51:44 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int			pars_map(t_wolf *w, char *map)
 {
 	int		fd;
 	char	*buff;
-	
+
 	if ((fd = open(map, O_RDONLY)) < 1 || read(fd, 0, O_RDONLY) < 0)
 	{
 		perror(map);

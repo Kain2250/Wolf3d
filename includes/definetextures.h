@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definetextures.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 22:43:03 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/09 16:38:16 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 10:33:19 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define TEX_BRICK_E "resource/textures/brick_e.jpg"
 # define TEX_BRICK_W "resource/textures/brick_w.jpg"
 # define TEX_WIND_WOOD "resource/textures/wind_wood.png"
+# define TEX_MAP_ZERO "resource/textures/zero_cell.png"
+# define TEX_MAP_CELL "resource/textures/nonzero_cell.png"
 
 # define TEX_MENU "resource/textures/main_menu.jpg"
 # define TEX_MENU_LEG "resource/textures/main_menu_leg.jpg"

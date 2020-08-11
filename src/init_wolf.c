@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/09 20:30:09 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/11 10:35:28 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 
 	load_textures(textures, render);
 	i = 0;
-	while (i != texture_total)
+	while (i != texture_total - 2)
 	{
 		if (textures[i] == NULL)
 			return (false);
@@ -87,7 +87,7 @@ bool	initialization(t_wolf *wolf, char *map)
 	else if (init_sdl(wolf) == false)
 		return (false);
 	else if (load_files(wolf->sdl.textures, wolf->sdl.render) == false)
-		return (false);
+		return (put_error_sdl(ERR_LOAD_IMG, SDL_GetError()));
 	else if (load_mixer(wolf) == false)
 		return (false);
 	return (true);

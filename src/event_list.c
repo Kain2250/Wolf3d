@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/09 20:31:46 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/11 10:35:39 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void			event_key_hook(t_wolf *wolf)
 	{
 		wolf->location.minimap = !wolf->location.minimap;
 		wolf->location.delta_time = SDL_GetTicks();
+		if (wolf->location.minimap && !map_init(wolf))
+			perror("Couldn't create a map window");
+		if (!wolf->location.minimap)
+			map_destroy(wolf);
 	}
 }
 
