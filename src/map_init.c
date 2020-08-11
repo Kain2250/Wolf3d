@@ -15,7 +15,6 @@
 bool			map_init(t_wolf *wolf)
 {
 	wolf->sdl.map_width = wolf->location.x_len * 10;
-	printf("%d\n", wolf->sdl.map_width);
 	if ((wolf->sdl.map_window = SDL_CreateWindow(NAME_MAP, 0, 0,
 	wolf->sdl.map_width,
 		HEIGHT_MAP, SDL_WINDOW_SHOWN)) == NULL)
