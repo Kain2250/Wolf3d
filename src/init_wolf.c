@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/11 09:30:02 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/11 10:35:28 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,8 @@ bool	initialization(t_wolf *wolf, char *map)
 	else if (init_sdl(wolf) == false)
 		return (false);
 	else if (load_files(wolf->sdl.textures, wolf->sdl.render) == false)
-	{
-		printf("load\n");
-		return (false);
-	}
-
+		return (put_error_sdl(ERR_LOAD_IMG, SDL_GetError()));
 	else if (load_mixer(wolf) == false)
 		return (false);
-	wolf->sdl.floor[0] = IMG_Load(SURF_FLOOR);
 	return (true);
 }

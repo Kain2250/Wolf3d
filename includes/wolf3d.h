@@ -6,7 +6,7 @@
 /*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/11 10:30:24 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/11 10:35:25 by mcarc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@
 # include "SDL.h"
 # include "SDL_image.h"
 # include "SDL_mixer.h"
-// # include <stdio.h>
 
 typedef enum			e_cardinal_point
 {
