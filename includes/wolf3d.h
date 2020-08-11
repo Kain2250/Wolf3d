@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/11 10:35:25 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/11 21:21:18 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define NAME_MAP "Minimap"
 # define WIDTH_MAP 250
 # define HEIGHT_MAP 200
-
 
 # include <math.h>
 # include <stdbool.h>
@@ -173,7 +172,6 @@ typedef struct			s_sdl_sys
 	SDL_Window			*map_window;
 	SDL_Renderer		*map_render;
 	SDL_Texture			*textures[texture_total];
-	SDL_Surface			*floor[2];
 	struct s_music		mix;
 	SDL_Event			event;
 	int					width;
@@ -304,8 +302,8 @@ void					fps_counter(t_timer *time);
 void					denine(t_wolf *w);
 bool					user_placing(t_wolf *w, char *line);
 void					minimap_output(t_wolf *wolf);
-double					angle(t_wolf * wolf);
-bool					map_init(t_wolf * wolf);
+double					angle(t_wolf *wolf);
+bool					map_init(t_wolf *wolf);
 bool					map_destroy(t_wolf *wolf);
 
 #endif

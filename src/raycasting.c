@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/11 17:54:30 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 20:50:47 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				raycasting(t_wolf *wolf)
 {
 	int			x_screen;
 	double		width;
-	t_walls		*walls;
+	t_walls		walls;
 
 	clear_screen(wolf->sdl.render);
 	if (Mix_PlayingMusic() == 0 && wolf->sdl.mix.mute == false)
@@ -64,20 +64,18 @@ int				raycasting(t_wolf *wolf)
 	SDL_GetWindowSize(wolf->sdl.window, &wolf->sdl.width, &wolf->sdl.height);
 	x_screen = 0;
 	width = wolf->sdl.width;
-	walls = ft_memalloc(sizeof(t_walls));
 	while (x_screen < wolf->sdl.width)
 	{
 		cam_and_screen_setup(wolf, x_screen, width);
 		ray_computation(wolf);
 		find_hit(wolf);
-		getting_the_height_to_the_wall(wolf, walls);
+		getting_the_height_to_the_wall(wolf, &walls);
 		wolf->location.color_mode == mode_rgb ?
-		render_screen(walls, x_screen, x_screen, wolf) :
-			render_texture(wolf, walls, x_screen);
+		render_screen(&walls, x_screen, x_screen, wolf) :
+			render_texture(wolf, &walls, x_screen);
 		x_screen++;
 	}
 	minimap_output(wolf);
 	SDL_RenderPresent(wolf->sdl.render);
-	free(walls);
 	return (0);
 }
