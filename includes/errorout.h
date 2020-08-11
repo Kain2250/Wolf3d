@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 15:59:58 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/07/30 18:22:32 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 18:42:59 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define ERR_INIT_SDL "\033[0;31;1mFailed to init SDL\033[0m"
 # define ERR_INIT_MIX "\033[0;31;1mFailed to init MIX\033[0m"
 # define ERR_LOAD_MIX "\033[0;31;1mFailed to load MIX\033[0m"
+# define ERR_EVENT "\033[0;31;1mError SDL Event\033[0m"
+# define ERR_LOAD_IMG "\033[0;31;1mError IMG load\033[0m"
 
 # define ERR_CAPTURE_MOUSE "\033[0;31;1mFailed to make mouse capture\033[0m"
 

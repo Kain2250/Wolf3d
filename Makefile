@@ -6,7 +6,7 @@
 #    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/21 19:14:26 by kain2250          #+#    #+#              #
-#    Updated: 2020/08/10 20:50:18 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/08/11 17:56:25 by bdrinkin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,6 @@ SRC_LIST = main.c \
 	timer.c \
 	moving_player.c \
 	minimap.c \
-	floor_and_sky.c
 
 SRC = $(addprefix $(SRC_DIRECTORY), $(SRC_LIST))
 

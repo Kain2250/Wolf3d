@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/10 22:01:35 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 18:43:03 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	load_files(SDL_Texture **textures, SDL_Renderer *render)
 bool	init_sdl(t_wolf *wolf)
 {
 	if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
-		SDL_INIT_EVENTS | SDL_GL_ACCELERATED_VISUAL) == -1)
+		SDL_INIT_EVENTS) == -1)
 		return (put_error_sdl(ERR_INIT_SDL, SDL_GetError()));
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		return (put_error_sdl(ERR_INIT_MIX, Mix_GetError()));
@@ -87,9 +87,8 @@ bool	initialization(t_wolf *wolf, char *map)
 	else if (init_sdl(wolf) == false)
 		return (false);
 	else if (load_files(wolf->sdl.textures, wolf->sdl.render) == false)
-		return (false);
+		return (put_error_sdl(ERR_LOAD_IMG, SDL_GetError()));
 	else if (load_mixer(wolf) == false)
 		return (false);
-	wolf->sdl.floor[0] = IMG_Load(SURF_FLOOR);
 	return (true);
 }

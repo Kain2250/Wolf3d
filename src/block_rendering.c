@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 14:51:29 by mcarc             #+#    #+#             */
-/*   Updated: 2020/08/10 21:15:42 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 17:55:59 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void			render_texture(t_wolf *wolf, t_walls *walls, int x1)
 	if (wolf->player.side == 1 && wolf->player.ray_dir_y < 0)
 		tex_x = TEXT_SIZE - tex_x - 1;
 	rect_init(walls, x1, rect, tex_x);
-	// SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
-	// SDL_RenderDrawLine(wolf->sdl.render, x1, 0, x1, walls->draw_start);
+	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
+	SDL_RenderDrawLine(wolf->sdl.render, x1, 0, x1, walls->draw_start);
 	check_render_mode(wolf, rect);
-	// SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
-	// SDL_RenderDrawLine(wolf->sdl.render, x1,
-	// walls->draw_end, x1, wolf->sdl.height);
+	SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
+	SDL_RenderDrawLine(wolf->sdl.render, x1,
+	walls->draw_end, x1, wolf->sdl.height);
 }
 
 void			render_all_block(t_wolf *wolf, SDL_Rect rect[2], int texture)

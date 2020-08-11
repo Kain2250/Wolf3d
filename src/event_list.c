@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/10 22:03:00 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/11 19:05:44 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ bool			event_list(t_wolf *wolf)
 	if (wolf->menu.menu == true)
 	{
 		game_events(wolf);
-		// if (IS_PUSH && is_key_movement(wolf) && wolf->sdl.event.type == SDL_MOUSEMOTION)
-			floor_cast(wolf);
 		raycasting(wolf);
 		SDL_EventState(SDL_MOUSEMOTION, SDL_DISABLE);
 		SDL_EventState(SDL_MOUSEMOTION, SDL_ENABLE);
