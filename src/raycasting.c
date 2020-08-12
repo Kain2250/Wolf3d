@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:45:30 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/11 20:50:47 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:26:58 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int				raycasting(t_wolf *wolf)
 	double		width;
 	t_walls		walls;
 
-	clear_screen(wolf->sdl.render);
 	if (Mix_PlayingMusic() == 0 && wolf->sdl.mix.mute == false)
 		Mix_PlayMusic(wolf->sdl.mix.music[mix_game], -1);
 	SDL_GetWindowSize(wolf->sdl.window, &wolf->sdl.width, &wolf->sdl.height);

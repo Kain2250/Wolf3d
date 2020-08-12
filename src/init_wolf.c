@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/12 19:39:41 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/11 10:35:28 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/12 14:56:02 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	filling_var(t_wolf *wolf)
 {
 	wolf->player.dir_x = -1.f;
-	wolf->player.dir_y = 0.f;
+	wolf->player.dir_y = 0;
 	wolf->player.plane_x = 0.f;
 	wolf->player.plane_y = 0.65;
 	wolf->mouse.move_speed = 0.2;
@@ -55,7 +55,7 @@ bool	init_sdl(t_wolf *wolf)
 		HEIGHT_WIN, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE)) == NULL)
 		return (put_error_sdl(ERR_CREATE_WIN, SDL_GetError()));
 	if ((wolf->sdl.render = SDL_CreateRenderer(wolf->sdl.window,
-		-1, SDL_RENDERER_ACCELERATED)) == NULL)
+		-1, 0)) == NULL)
 		return (put_error_sdl(ERR_CREATE_RENDERER, SDL_GetError()));
 	return (true);
 }

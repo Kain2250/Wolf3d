@@ -6,7 +6,7 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:27 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/11 21:21:18 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:30:29 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,29 @@ typedef struct			s_mouse
 	float				move_speed;
 	float				rot_speed;
 }						t_mose;
-
+/*
+** pos_x - позиция игрока по х.
+** pos_y - позиция игрока по у.
+** map_x - длина луча от текущей позиции до следующей стороны x.
+** map_у - длина луча от текущей позиции до следующей стороны y.
+** dir_x - начальный вектор направления игрока.
+** dir_y - начальный вектор направления игрока.
+** ray_dir_x - вектор направления луча (координаты).
+** ray_dir_y - вектор направления луча (координаты).
+** plane_x - плоскость камеры.
+** plane_y - плоскость камеры.
+** camera_x - х координата в пространстве камеры.
+** side_dist_x - начальный луч от игрока до граници квадрата по х.
+** side_dist_y - начальный луч от игрока до граници квадрата по у.
+** delta_dist_x - длинна луча от одной стены х до следующей стены х.
+** delta_dist_y - длинна луча от одной стены у до следующей стены у.
+** perp_wall_dist - измененная длинна луча (ноуфишай).
+** step_x - передвижение по оси х (+1 или -1).
+** step_y - передвижение по оси у (+1 или -1).
+** hit - датчик удара.
+** side - х или у стена.
+** sit - центр отрисовки стен.
+*/
 typedef struct			s_player
 {
 	double				pos_x;
@@ -145,6 +167,7 @@ typedef struct			s_location
 	int					y_len;
 	int					x_len_check;
 	int					color_mode;
+	bool				on_line;
 	bool				minimap;
 	char				**map;
 	Uint32				delta_time;
@@ -251,6 +274,7 @@ bool					initialization(t_wolf *wolf, char *map);
 
 void					start_menu(t_wolf *wolf);
 int						main(int ac, char **av);
+void					draw_line(t_wolf *wolf, int x, t_walls *wall);
 
 void					change_color_mod(t_wolf *wolf);
 void					rotate_plane_and_cam(t_wolf *wolf, float rot_speed);

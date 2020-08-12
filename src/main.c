@@ -6,11 +6,36 @@
 /*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 19:19:04 by kain2250          #+#    #+#             */
-/*   Updated: 2020/08/09 16:51:23 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:04:23 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void		draw_line(t_wolf *wolf, int x, t_walls *wall)
+{
+	int		i;
+
+	if (wolf->location.on_line == true)
+	{
+		i = 0;
+		SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
+		while (i <= wall->draw_start)
+			SDL_RenderDrawPoint(wolf->sdl.render, x, i++);
+		i = wall->draw_end;
+		SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
+		while (i <= wolf->sdl.height)
+			SDL_RenderDrawPoint(wolf->sdl.render, x, i++);
+	}
+	else
+	{
+		SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_SKY);
+		SDL_RenderDrawLine(wolf->sdl.render, x, 0, x, wall->draw_start);
+		SDL_SetRenderDrawColor(wolf->sdl.render, COLOR_FLOR);
+		SDL_RenderDrawLine(wolf->sdl.render, x,
+		wall->draw_end, x, wolf->sdl.height);
+	}
+}
 
 void		start_menu(t_wolf *wolf)
 {

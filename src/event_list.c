@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcarc <mcarc@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 19:53:50 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/08/11 10:35:39 by mcarc            ###   ########.fr       */
+/*   Updated: 2020/08/12 15:03:55 by bdrinkin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ void			mute_music(t_wolf *wolf)
 	}
 	else if (IS_PUSH && KEY_KEY == SDLK_m && wolf->sdl.mix.mute == true)
 		wolf->sdl.mix.mute = false;
+	if (IS_PUSH && KEY_KEY == SDLK_v)
+		wolf->location.on_line = true;
+	if (IS_PUSH && KEY_KEY == SDLK_b)
+		wolf->location.on_line = false;
 }
 
 void			game_events(t_wolf *wolf)
